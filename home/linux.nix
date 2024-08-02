@@ -19,7 +19,7 @@
 
   # This is required information for home-manager to do its job
   home = {
-    stateVersion = "24.11-pre";
+    stateVersion = "24.11";
     username = "pro";
     homeDirectory = "/home/pro";
 
