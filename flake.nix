@@ -198,7 +198,7 @@
         # / //_/ |_/\____/_/ /_//_/_/ |_/_/_/|_|\____/____/
         # |_|                 /_/
         # For my unstable non NixOS machines
-        "sakhib@unstable" = home-manager.lib.homeManagerConfiguration {
+        "pro@unstable" = home-manager.lib.homeManagerConfiguration {
           pkgs =
             nixpkgs-unstable.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };

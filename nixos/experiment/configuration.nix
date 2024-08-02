@@ -19,7 +19,7 @@
     # outputs.nixosModules.media
     outputs.nixosModules.desktop
     outputs.nixosModules.nixpkgs
-    outputs.nixosModules.users.sakhib
+    outputs.nixosModules.users.pro
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd

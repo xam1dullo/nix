@@ -24,8 +24,8 @@ in
       lfs.enable = true;
 
       # User credentials
-      userName = "Sokhibjon Orzikulov";
-      userEmail = "sakhib@orzklv.uz";
+      userName = "Khamidullo Khudoyberdieb";
+      userEmail = "khkhamidullo@gmail.com";
 
       extraConfig = {
         http.sslVerify = false;
