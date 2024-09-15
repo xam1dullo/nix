@@ -78,7 +78,7 @@
   services = {
      xserver = {
        enable = true;
-       videoDrivers = [ "nvidia" ];
+      #  videoDrivers = [ "nvidia" ];
      };
 
      displayManager.sddm.enable = true;
@@ -115,7 +115,7 @@
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
 
-  hardware.nvidia.open.enable = true;
+  # hardware.nvidia.open.enable = true;
 
 
   security.rtkit.enable = true;
