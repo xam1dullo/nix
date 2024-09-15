@@ -195,6 +195,7 @@ environment = {
      unzip
      insomnia
      postman
+     github-desktop
   ];
 };
 
