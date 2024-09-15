@@ -167,6 +167,7 @@ environment = {
      neovim
      git
      zsh
+     rust
      zed-editor
      obs-studio
      obsidian
