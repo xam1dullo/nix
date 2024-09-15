@@ -198,7 +198,7 @@ environment = {
      insomnia
      postman
      github-desktop
-     starship
+     zoxide
   ];
 };
 
