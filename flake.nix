@@ -96,6 +96,6 @@
       };
     };
 
-          devShell = lib.mapAttrs (system: _: devShellFor system) (lib.genAttrs systems { });
+    devShell = lib.mapAttrs (system: _: devShellFor system) (lib.genAttrs systems { });
   };
 }
