@@ -167,7 +167,7 @@ environment = {
      neovim
      git
      zsh
-     zed
+     zed-editor
      obs-studio
      obsidian
      fzf
@@ -177,7 +177,7 @@ environment = {
      bluez
      bluez-tools
      telegram-desktop
-     # bluez-utils
+    #  bluez-utils
 
      # home manager
      home-manager
