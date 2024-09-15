@@ -90,10 +90,11 @@
    };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
+  # services.xserver.xkb.variant
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -149,8 +150,8 @@
   };
 
  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "pro";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "pro";
 
   # Install firefox.
   programs.firefox.enable = true;
