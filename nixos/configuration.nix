@@ -131,7 +131,7 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  sound.enable = true;
+  # sound.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # rvices.xserver.libinput.enable = true;
@@ -166,7 +166,7 @@ environment = {
      neovim
      git
      zsh
-     zed-editor
+     zed
      obs-studio
      obsidian
      fzf
