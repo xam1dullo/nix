@@ -61,7 +61,7 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "pro"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # Enable networking
   networking.networkmanager.enable = true;
@@ -114,6 +114,10 @@
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
+
+  hardware.nvidia.open.enable = true;
+
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
