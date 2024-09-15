@@ -2,6 +2,6 @@
   # Zpxide path integration
   programs.zoxide = {
     enable = true;
-    enableZshIntegration = true;
+    # enableZshIntegration = true;
   };
 }
