@@ -61,10 +61,6 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # Enable networking
@@ -148,6 +144,73 @@
     ];
   };
 
+ # Enable automatic login for the user.
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "pro";
+
+  # Install firefox.
+  programs.firefox.enable = true;
+
+environment = {
+    shells = with pkgs; [ zsh ];
+    pathsToLink = [ "/share/zsh" ];
+    systemPackages = with pkgs; [
+     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     wget
+     alacritty
+     tmux
+     neovim
+     git
+     zsh
+     zed-editor
+     obs-studio
+     obsidian
+     fzf
+     nodejs
+     vscode
+     vlc
+     bluez
+     bluez-tools
+     telegram-desktop
+     # bluez-utils
+
+     # home manager
+     home-manager
+
+     zoxide
+     starship
+     gh
+     # cc
+     gcc
+     clang
+     cl
+     zig
+     bat
+     unzip
+     insomnia
+     postman
+  ];
+};
+
+
+
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+  programs.mtr.enable = true;
+   programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+   };
 
   services.openssh = {
     enable = true;
@@ -156,6 +219,7 @@
       PasswordAuthentication = false;
     };
   };
+
 
   system.stateVersion = "24.05";
 }
