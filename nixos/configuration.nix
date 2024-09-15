@@ -14,6 +14,8 @@
     # outputs.nixosModules.example
     outputs.nixosModules.ssh
     outputs.homeManagerModules.zsh
+    outputs.nixosModules.users.pro
+
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
@@ -140,16 +142,7 @@
   # rvices.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.pro = {
-    isNormalUser = true;
-    description = "Khamidullo";
-    initialPassword = "1532";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kate
-      thunderbird
-    ];
-  };
+
 
  # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
