@@ -15,7 +15,7 @@
     # ZSH Autosuggestions
     # The option `programs.zsh.enableAutosuggestions' defined in config
     # has been renamed to `programs.zsh.autosuggestion.enable'.
-    autosuggestion.enable = true;
+    # autosuggestion.enable = true;
 
     # ZSH Completions
     enableCompletion = true;
