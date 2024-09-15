@@ -12,9 +12,9 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
+    outputs.nixosModules.users.pro
     outputs.nixosModules.ssh
     outputs.homeManagerModules.zsh
-    outputs.nixosModules.users.pro
 
 
     # Or modules from other flakes (such as nixos-hardware):
