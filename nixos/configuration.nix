@@ -157,41 +157,6 @@ environment = {
     systemPackages = with pkgs; [
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
-     alacritty
-     tmux
-     neovim
-     git
-     zsh
-    #  rust
-    #  zed-editor
-     obs-studio
-     obsidian
-     fzf
-     nodejs
-     vscode
-     vlc
-     bluez
-     bluez-tools
-     telegram-desktop
-    #  bluez-utils
-
-     # home manager
-     home-manager
-
-     zoxide
-     starship
-     gh
-     # cc
-     gcc
-     clang
-     cl
-     zig
-     bat
-     unzip
-     insomnia
-     postman
-     github-desktop
-     zoxide
   ];
 };
 
