@@ -15,7 +15,7 @@
     outputs.nixosModules.users.pro
     outputs.nixosModules.ssh
     outputs.homeManagerModules.zsh
-
+    outputs.home-manager.nixosModules.home-manager
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd

@@ -1,24 +1,26 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
+  config,
+  pkgs,
   inputs,
   outputs,
   lib,
-  config,
-  pkgs,
+  packages,
   ...
 }: {
+    imports = (builtins.attrValues outputs.homeManagerModules);
   # You can import other home-manager modules here
-  imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
+  # imports = [
+  #   # If you want to use modules your own flake exports (from modules/home-manager):
+  #   # outputs.homeManagerModules.example
 
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
+  #   # Or modules exported from other flakes (such as nix-colors):
+  #   # inputs.nix-colors.homeManagerModules.default
 
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-  ];
+  #   # You can also split up your configuration and import pieces of it here:
+  #   # ./nvim.nix
+  # ];
 
   nixpkgs = {
     # You can add overlays here
@@ -42,6 +44,7 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
+      allowUnfreePredicate = _: true;
     };
   };
 
@@ -49,11 +52,16 @@
   home = {
     username = "pro";
     homeDirectory = "/home/pro";
+    enableNixpkgsReleaseCheck = false;
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [
+    neovim
+    alacritty
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
