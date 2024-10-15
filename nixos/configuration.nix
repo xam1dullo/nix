@@ -2,17 +2,67 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs
+, outputs
+, lib
+, config
+, pkgs
+, ...
+}:
 
 {
   imports =
     [
+
+
+      outputs.nixosModules.users.khamidullo
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+      # You can also add overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+    };
+  };
+
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        flake-registry = "";
+        nix-path = config.nix.nixPath;
+      };
+      channel.enable = false;
+
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    };
+
+
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -26,6 +76,10 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # enable direnv
+  programs.direnv.enable = true;
+
 
   # Set your time zone.
   time.timeZone = "Asia/Tashkent";
@@ -44,23 +98,27 @@
 
       # Exclude some defautl packages
       excludePackages = [ pkgs.xterm ];
+
     };
 
     displayManager = {
+      # defaultSession = "none+i3";
+      autoLogin.enable = true;
+      autoLogin.user = "pro";
       sddm = {
         enable = true;
         wayland.enable = true;
-        autoLogin.enable = true;
-        autoLogin.user = "pro";
       };
     };
 
     desktopManager = {
+      # xterm.enable = false;
       plasma6.enable = true;
     };
 
+
     envfs.enable = true;
-    blueman.enable = true;
+    # blueman.enable = true;
 
     printing.enable = true; # CUPS ni yoqing
 
@@ -84,23 +142,42 @@
     };
   };
   # GPU for docker containers
-  hardware.nvidia-container-toolkit.enable = true;
-
+  hardware = {
+    pulseaudio.enable = false;
+    nvidia-container-toolkit.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      extraPackages = with pkgs; [
+        vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
+    nvidia = {
+      open = false;
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+  };
   # Kernel mod for nvidia laptops
   boot.kernelParams = [
     "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
   ];
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
   virtualisation.docker = {
@@ -112,18 +189,7 @@
     };
   };
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.khamidullo = {
-    isNormalUser = true;
-    description = "khamidullo";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      # kate
-      thunderbird
-    ];
-  };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
 
 
@@ -223,21 +289,14 @@
       auto-cpufreq
 
     ];
-
-    #  ) ++ (with pkgs.unstable; [
-    #	   zed-editor
-    #	   vscode
-    #	   postman
-    #
-    #	   nodejs_22
-    #	   pnpm
-    #
-    # ]);
   };
 
-  programs.firefox.enable = true;
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  programs = {
+    zsh.enable = true;
+    firefox.enable = true;
+    # floorp.enable = true;
+  };
+
 
   # home-manager.useGlobalPkgs = true;
   # home-manager.useUserPackages = true;
@@ -261,29 +320,13 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   # Enable bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
-        Enable = "Source,Sink,Media,Socket";
-      };
-    };
-  };
   # Driver + parameters
-  hardware.nvidia = {
-    open = false;
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
   # Don't ask for sudo password
-  security.sudo.wheelNeedsPassword = false;
-  security.rtkit.enable = true;
-
+  security =
+    {
+      rtkit.enable = true;
+      sudo.wheelNeedsPassword = false;
+    };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

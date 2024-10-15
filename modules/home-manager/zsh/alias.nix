@@ -70,10 +70,17 @@ let
 
     # Updating system
     update = "nix store gc && topgrade";
+    homeupdate = "export NIXPKGS_ALLOW_INSECURE=1 && home-manager switch --flake .#khamidullo --impure";
     nix-shell = "nix-shell --run zsh";
     nix-develop = "nix develop -c \"$SHELL\"";
     determinate = "${determinateSystems} | sh -s -- ";
     repair = "${determinateSystems} | sh -s -- repair";
+
+    docker-ls-restart = "docker container ls -q | xargs docker container inspect --format '{{ .Name }}: {{.HostConfig.RestartPolicy.Name}}'";
+    docker-stop-all = "docker ps -q | xargs docker stop";
+    docker-compose-restart = "docker compose up --force-recreate --build -d";
+
+
   };
 
   cfg = lib.mkMerge [

@@ -1,0 +1,3 @@
+{
+  khamidullo = import ./khamidullo.nix;
+}
