@@ -3,7 +3,7 @@
 {
   # List your module files here
   ssh = import ./ssh;
-  # zsh = import ./zsh;
+  zsh = import ./zsh;
   # boot = import ./boot;
   # game = import ./game;
   sound = import ./sound;

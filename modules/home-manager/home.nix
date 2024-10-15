@@ -24,6 +24,8 @@ in
     ./app.nix
     ./terminal
     ./packages
+    # ./vscode
+    ./git
   ];
   nixpkgs.config = {
     allowUnfree = true;
