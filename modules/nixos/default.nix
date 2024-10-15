@@ -10,6 +10,6 @@
   # media = import ./media;
   fonts = import ./fonts;
   users = import ./users;
-  # desktop = import ./desktop;
-  # nixpkgs = import ./nixpkgs;
+  desktop = import ./desktop;
+  nixpkgs = import ./nixpkgs;
 }

@@ -18,7 +18,7 @@
       outputs.nixosModules.zsh
       outputs.nixosModules.fonts
       outputs.nixosModules.sound
-      # outputs.nixosModules.nixpkgs
+      outputs.nixosModules.nixpkgs
       # outputs.nixosModules.boot.grub
       outputs.nixosModules.users.khamidullo
       outputs.nixosModules.desktop.kde
@@ -94,215 +94,14 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services = {
-    xserver = {
-      enable = true;
-      videoDrivers = [ "nvidia" ]; # Agar NVIDIA video drayverlari kerak bo'lsa
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
 
-      # Exclude some defautl packages
-      excludePackages = [ pkgs.xterm ];
-
-    };
-
-    displayManager = {
-      # defaultSession = "none+i3";
-      autoLogin.enable = true;
-      autoLogin.user = "pro";
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
-
-    desktopManager = {
-      # xterm.enable = false;
-      plasma6.enable = true;
-    };
-
-
-    envfs.enable = true;
-    # blueman.enable = true;
-
-    printing.enable = true; # CUPS ni yoqing
-
-    openssh = {
-      enable = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
-      };
-    };
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      audio.enable = true;
-      # jack.enable = true; # JACK ilovalari uchun
-      # Agar media-session kerak bo'lsa:
-      # media-session.enable = true;
-    };
-  };
-  # GPU for docker containers
-  hardware = {
-    pulseaudio.enable = false;
-    nvidia-container-toolkit.enable = true;
-    opengl = {
-      enable = true;
-      driSupport = true;
-      extraPackages = with pkgs; [
-        vaapiIntel
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
-    };
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings = {
-        General = {
-          Experimental = true;
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
-    };
-    nvidia = {
-      open = false;
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  };
-  # Kernel mod for nvidia laptops
-  boot.kernelParams = [
-    "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
-  ];
+ 
   # Enable sound with pipewire.
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
+ 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
-
-
-
-  environment = {
-    shells = with pkgs; [ zsh ];
-    pathsToLink = [ "/share/zsh" ];
-    systemPackages = with pkgs; [
-      nil
-      nixd
-      nixpkgs-fmt
-
-      firefox
-      google-chrome
-
-      vim
-      wget
-      alacritty
-      tmux
-      neovim
-      git
-      zsh
-      tree
-      obsidian
-      fzf
-      nodejs
-      vscode
-
-      vlc
-      obs-studio
-
-      termius
-      htop
-      virtualenv
-
-
-
-      bluez
-      bluez-tools
-
-      telegram-desktop
-      # bluez-utils
-
-      # home manager
-      home-manager
-      zoxide
-      starship
-      gh
-      # cc
-      gcc
-      clang
-      cl
-      zig
-      bat
-      unzip
-      insomnia
-
-      github-desktop
-      # Papirus Icon Pack
-      papirus-icon-theme
-
-      # Various plugins for KDE
-      kdePackages.kdeconnect-kde
-      kdePackages.plasma-browser-integration
-
-      # X server video bridge
-      vulkan-tools
-      wayland-utils
-      xwaylandvideobridge
-      kdePackages.kdeconnect-kde
-      kdePackages.plasma-browser-integration
-      vulkan-tools
-      wayland-utils
-      wineWowPackages.waylandFull
-      xwaylandvideobridge
-      curl
-      ffmpeg-full
-      flameshot
-
-      zulip-term
-      keepassxc
-      stacer
-      baobab
-      smartmontools
-      flameshot
-      libqalculate
-      nfs-utils
-
-
-      # Media
-      moc
-      yt-dlp
-      feh
-      imagemagick
-      optipng
-      peek
-
-      auto-cpufreq
-
-    ];
-  };
-
-  programs = {
-    zsh.enable = true;
-    firefox.enable = true;
-    # floorp.enable = true;
-  };
 
 
   # home-manager.useGlobalPkgs = true;
@@ -329,11 +128,8 @@
   # Enable bluetooth
   # Driver + parameters
   # Don't ask for sudo password
-  security =
-    {
-      rtkit.enable = true;
-      sudo.wheelNeedsPassword = false;
-    };
+  
+  security.sudo.wheelNeedsPassword = false;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

@@ -2,6 +2,9 @@
 {
 
   # GPU for docker containers
+  
+  hardware.pulseaudio.enable = false;
+
   hardware = {
     pulseaudio.enable = false;
     nvidia-container-toolkit.enable = true;
@@ -33,5 +36,18 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
+   # Kernel mod for nvidia laptops
+  boot.kernelParams = [
+    "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
+  ];
 
+ virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+  
 }
