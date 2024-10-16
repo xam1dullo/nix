@@ -87,6 +87,8 @@ in
     xclip
     pgadmin4
     nest-cli
+    wezterm
+
   ]) ++ (with unstablePkgs; [
     # Add your unstable packages here
     zed-editor
@@ -103,7 +105,6 @@ in
     liberation_ttf
     fira-code
     fira-code-symbols
-    wezterm
     (nerdfonts.override {
       fonts = [ "JetBrainsMono" ];
     })

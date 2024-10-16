@@ -1,86 +1,104 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  # Thanks: https://github.com/DanielFGray/dotfiles/blob/master/tmux.remote.conf
-  remoteConf = builtins.toFile "tmux.remote.conf" ''
-    unbind C-q
-    unbind q
-    set-option -g prefix C-m
-    bind s send-prefix
-    bind C-s last-window
-    set-option -g status-position top
-  '';
+  catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "catppuccin";
+    version = "unstable-2023-01-06";
+    src = pkgs.fetchFromGitHub {
+      owner = "dreamsofcode-io";
+      repo = "catppuccin-tmux";
+      rev = "main";
+      sha256 = "sha256-FJHM6LJkiAwxaLd5pnAoF3a7AE1ZqHWoCpUJE0ncCA8=";
+    };
+  };
+  tokyo-night = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "tokyo-night";
+    version = "unstable-2023-01-06";
+    src = pkgs.fetchFromGitHub {
+      owner = "janoamaral";
+      repo = "tokyo-night-tmux";
+      rev = "master";
+      sha256 = "sha256-3rMYYzzSS2jaAMLjcQoKreE0oo4VWF9dZgDtABCUOtY=";
+    };
+  };
 in
 {
-
-  imports = [ ./theme.nix ];
-
   programs.tmux = {
+
     enable = true;
-    shortcut = "q";
-    escapeTime = 10;
+
+    aggressiveResize = true;
+    baseIndex = 1;
+    disableConfirmationPrompt = true;
     keyMode = "vi";
-    terminal = "tmux-256color";
-    historyLimit = 50000;
+    newSession = true;
+    secureSocket = true;
+    shell = "${pkgs.zsh}/bin/zsh";
+    shortcut = "a";
+    terminal = "screen-256color";
 
-    extraConfig = with config.theme; with pkgs.tmuxPlugins;
-      ''
-        # Plugins
-        run-shell '${copycat}/share/tmux-plugins/copycat/copycat.tmux'
-        run-shell '${sensible}/share/tmux-plugins/sensible/sensible.tmux'
-        run-shell '${urlview}/share/tmux-plugins/urlview/urlview.tmux'
+    plugins = with pkgs.tmuxPlugins; [
+      tokyo-night
+      yank
+      sensible
+      vim-tmux-navigator
+    ];
 
-        bind-key R run-shell ' \
-          tmux source-file /etc/tmux.conf > /dev/null; \
-          tmux display-message "sourced /etc/tmux.conf"'
+    extraConfig = ''
+      # set-default colorset-option -ga terminal-overrides ",xterm-256color:Tc"
+      set -as terminal-features ",xterm-256color:RGB"
+      # set-option -sa terminal-overrides ",xterm*:Tc"
+      set -g mouse on
 
-        if -F "$SSH_CONNECTION" "source-file '${remoteConf}'"
+      unbind C-b
+      set -g prefix C-Space
+      bind C-Space send-prefix
 
-        set-option -g status-right ' #{prefix_highlight} "#{=21:pane_title}" %H:%M %d-%b-%y'
-        set-option -g status-left-length 20
-        set-option -g @prefix_highlight_fg '${colors.background}'
-        set-option -g @prefix_highlight_bg '${colors.dominant}'
-        run-shell '${prefix-highlight}/share/tmux-plugins/prefix-highlight/prefix_highlight.tmux'
+      # Vim style pane selection
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
 
-        # Be faster switching windows
-        bind C-n next-window
-        bind C-p previous-window
+      # Start windows and panes at 1, not 0
+      set -g base-index 1
+      set -g pane-base-index 1
+      set-window-option -g pane-base-index 1
+      set-option -g renumber-windows on
 
-        # Send the bracketed paste mode when pasting
-        bind ] paste-buffer -p
+      # Bind clearing the screen
+      bind L send-keys '^L'
 
-        set-option -g set-titles on
+      # Use Alt-arrow keys without prefix key to switch panes
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
 
-        bind C-y run-shell ' \
-          ${pkgs.tmux}/bin/tmux show-buffer > /dev/null 2>&1 \
-          && ${pkgs.tmux}/bin/tmux show-buffer | ${pkgs.xsel}/bin/xsel -ib'
+      # Shift arrow to switch windows
+      bind -n S-Left  previous-window
+      bind -n S-Right next-window
 
-        # Force true colors
-        set-option -ga terminal-overrides ",*:Tc"
+      # Shift Alt vim keys to switch windows
+      bind -n M-H previous-window
+      bind -n M-L next-window
 
-        set-option -g mouse on
-        set-option -g focus-events on
+      set -g @tokyo-night-tmux_window_id_style hsquare
+      set -g @tokyo-night-tmux_show_datetime 0
 
-        # Stay in same directory when split
-        bind % split-window -h -c "#{pane_current_path}"
-        bind '"' split-window -v -c "#{pane_current_path}"
+      run-shell ${tokyo-night}/share/tmux-plugins/tokyo-night/tokyo-night.tmux
 
-        # Colorscheme
-        set-option -g status-style 'fg=${colors.dimForeground}, bg=${colors.background}'
+      # set vi-mode
+      set-window-option -g mode-keys vi
 
-        set-option -g window-status-current-style 'fg=${colors.dominant}'
+      # keybindings
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-        set-option -g pane-border-style 'fg=${colors.background}'
-        set-option -g pane-active-border-style 'fg=${colors.dominant}'
-
-        set-option -g message-style 'fg=${colors.background}, bg=${colors.dimForeground}'
-
-        set-option -g mode-style    'fg=${colors.background}, bg=${colors.dominant}'
-
-        set-option -g display-panes-active-colour '${colors.dominant}'
-        set-option -g display-panes-colour '${colors.dimForeground}'
-
-        set-option -g clock-mode-colour '${colors.dominant}'
-      '';
+      bind '"' split-window -v -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+      bind c new-window -c "#{pane_current_path}"
+    '';
   };
 }
