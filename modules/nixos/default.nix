@@ -8,6 +8,7 @@
   # game = import ./game;
   sound = import ./sound;
   # media = import ./media;
+  hardware = import ./hardware;
   fonts = import ./fonts;
   users = import ./users;
   desktop = import ./desktop;

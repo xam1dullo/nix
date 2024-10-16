@@ -22,6 +22,8 @@
       # outputs.nixosModules.boot.grub
       outputs.nixosModules.users.khamidullo
       outputs.nixosModules.desktop.kde
+      # outputs.homeManagerModules.pipewire
+
 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -95,18 +97,18 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
 
- 
+
   # Enable sound with pipewire.
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
- 
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
 
 
   # home-manager.useGlobalPkgs = true;
   # home-manager.useUserPackages = true;
-  # home-manager.enable = true;
+  # home-manager.pipewire.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -126,9 +128,14 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   # Enable bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # Driver + parameters
   # Don't ask for sudo password
-  
+
   security.sudo.wheelNeedsPassword = false;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

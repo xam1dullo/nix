@@ -12,3 +12,8 @@ DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.
 DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.
 zed is already running
 DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.
+DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.
+Io error: Broken pipe (os error 32)
+Error trying to flush the wayland display: Broken pipe (os error 32)
+DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.
+zed is already running

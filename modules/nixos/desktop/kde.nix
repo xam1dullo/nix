@@ -52,22 +52,23 @@
     };
 
     # Make sure opengl is enabled
-    hardware.opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiIntel
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
-    };
+    # hardware.opengl = {
+    #   enable = true;
+    #   driSupport = true;
+    #   driSupport32Bit = true;
+    #   extraPackages = with pkgs; [
+    #     vaapiIntel
+    #     vaapiVdpau
+    #     libvdpau-va-gl
+    #   ];
+    # };
 
     # Exclude some packages from the KDE desktop environment.
     environment.plasma6.excludePackages =
       with pkgs.kdePackages; [
-        kate # that editor
-        plasma-browser-integration # browser integration
+        # kate # that editor
+        # plasma-browser-integration # browser integration
+        helix
       ];
 
     # programs.gnupg.agent = {
@@ -92,7 +93,7 @@
       vim
       wget
       alacritty
-      tmux
+      # tmux
       neovim
       git
       zsh

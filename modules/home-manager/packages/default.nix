@@ -75,6 +75,7 @@ in
     # davinci-resolve-studio
     # pkgs.openssl # For Prisma
 
+    tmux
     curl
     rofi
     tldr
@@ -98,9 +99,11 @@ in
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    kitty
     liberation_ttf
     fira-code
     fira-code-symbols
+    wezterm
     (nerdfonts.override {
       fonts = [ "JetBrainsMono" ];
     })

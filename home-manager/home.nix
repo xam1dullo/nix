@@ -14,11 +14,13 @@
     outputs.homeManagerModules.zsh
     outputs.homeManagerModules.git
     outputs.homeManagerModules.terminal
-    outputs.homeManagerModules.nixpkgs
+    # outputs.homeManagerModules.nixpkgs
     outputs.homeManagerModules.tmux
-    outputs.homeManagerModules.vscode
+    # outputs.homeManagerModules.vscode
     # outputs.homeManagerModules.topgrade
     outputs.homeManagerModules.packages
+    # outputs.homeManagerModules.pipewire
+
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 

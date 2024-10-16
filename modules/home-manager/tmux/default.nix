@@ -1,95 +1,86 @@
 { config, pkgs, ... }:
 
+let
+  # Thanks: https://github.com/DanielFGray/dotfiles/blob/master/tmux.remote.conf
+  remoteConf = builtins.toFile "tmux.remote.conf" ''
+    unbind C-q
+    unbind q
+    set-option -g prefix C-m
+    bind s send-prefix
+    bind C-s last-window
+    set-option -g status-position top
+  '';
+in
 {
+
+  imports = [ ./theme.nix ];
+
   programs.tmux = {
     enable = true;
-    # Tmux versiyasi va boshqa parametrlar
-    # config faylining to‘liq mazmunini yozishingiz mumkin
-    config = ''
-      set-option -sa terminal-overrides ",xterm*:Tc"
-      set -g mouse on
+    shortcut = "q";
+    escapeTime = 10;
+    keyMode = "vi";
+    terminal = "tmux-256color";
+    historyLimit = 50000;
 
-      unbind C-b
-      set -g prefix C-Space
-      bind C-Space send-prefix
-      set -g default-command /bin/zsh
-      setw -g mode-keys vi
-      # Vim style pane selection
-      bind h select-pane -L
-      bind j select-pane -D
-      bind k select-pane -U
-      bind l select-pane -R
+    extraConfig = with config.theme; with pkgs.tmuxPlugins;
+      ''
+        # Plugins
+        run-shell '${copycat}/share/tmux-plugins/copycat/copycat.tmux'
+        run-shell '${sensible}/share/tmux-plugins/sensible/sensible.tmux'
+        run-shell '${urlview}/share/tmux-plugins/urlview/urlview.tmux'
 
-      # Start windows and panes at 1, not 0
-      set -g base-index 1
-      set -g pane-base-index 1
-      set -g visual-activity on
-      set-window-option -g pane-base-index 1
-      set-option -g renumber-windows on
+        bind-key R run-shell ' \
+          tmux source-file /etc/tmux.conf > /dev/null; \
+          tmux display-message "sourced /etc/tmux.conf"'
 
-      # Use Alt-arrow keys without prefix key to switch panes
-      bind -n M-Left select-pane -L
-      bind -n M-Right select-pane -R
-      bind -n M-Up select-pane -U
-      bind -n M-Down select-pane -D
+        if -F "$SSH_CONNECTION" "source-file '${remoteConf}'"
 
-      # Shift arrow to switch windows
-      bind -n S-Left  previous-window
-      bind -n S-Right next-window
+        set-option -g status-right ' #{prefix_highlight} "#{=21:pane_title}" %H:%M %d-%b-%y'
+        set-option -g status-left-length 20
+        set-option -g @prefix_highlight_fg '${colors.background}'
+        set-option -g @prefix_highlight_bg '${colors.dominant}'
+        run-shell '${prefix-highlight}/share/tmux-plugins/prefix-highlight/prefix_highlight.tmux'
 
-      # Shift Alt vim keys to switch windows
-      bind -n M-H previous-window
-      bind -n M-L next-window
+        # Be faster switching windows
+        bind C-n next-window
+        bind C-p previous-window
 
-      set -g @catppuccin_flavour 'mocha'
-      set -g @tokyo-night-tmux_show_datetime 0
-      set -g @tokyo-night-tmux_show_path 1
-      set -g @tokyo-night-tmux_path_format relative
-      set -g @tokyo-night-tmux_window_id_style dsquare
-      set -g @tokyo-night-tmux_window_id_style dsquare
-      set -g @tokyo-night-tmux_show_git 0
+        # Send the bracketed paste mode when pasting
+        bind ] paste-buffer -p
 
-      set -g @plugin 'tmux-plugins/tpm'
-      set -g @plugin 'tmux-plugins/tmux-sensible'
-      set -g @plugin 'christoomey/vim-tmux-navigator'
-      #set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
-      set -g @plugin "janoamaral/tokyo-night-tmux"
-      set -g @plugin 'tmux-plugins/tmux-yank'
+        set-option -g set-titles on
 
+        bind C-y run-shell ' \
+          ${pkgs.tmux}/bin/tmux show-buffer > /dev/null 2>&1 \
+          && ${pkgs.tmux}/bin/tmux show-buffer | ${pkgs.xsel}/bin/xsel -ib'
 
-      run "$HOME/.config/tmux/tpm/tpm" # always at end of file
+        # Force true colors
+        set-option -ga terminal-overrides ",*:Tc"
 
-      # set vi-mode
-      set-window-option -g mode-keys vi
-      # keybindings
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        set-option -g mouse on
+        set-option -g focus-events on
 
-      bind '"' split-window -v -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
-      bind c new-window -c "#{pane_current_path}"
-    '';
-    # config = ''
-    #   set -g mouse on
-    #   set -g history-limit 10000
-    #   unbind C-b
-    #   set-option -g prefix C-a
-    #   bind-key C-a send-prefix
-    #   bind h split-window -h
-    #   bind v split-window -v
-    #   unbind '"'
-    #   unbind %
-    #   bind-key Left select-pane -L
-    #   bind-key Right select-pane -R
-    #   bind-key Up select-pane -U
-    #   bind-key Down select-pane -D
-    #   bind-key r command-prompt "rename-session %%"
-    #   set -g status on
-    #   set -g status-interval 2
-    #   set -g status-justify "centre"
-    #   set -g status-left "#[fg=green]#H"
-    #   set -g status-right "#[fg=yellow]#(cut -d' ' -f1 /proc/loadavg) #[fg=white]%Y-%m-%d %H:%M:%S"
-    # '';
+        # Stay in same directory when split
+        bind % split-window -h -c "#{pane_current_path}"
+        bind '"' split-window -v -c "#{pane_current_path}"
+
+        # Colorscheme
+        set-option -g status-style 'fg=${colors.dimForeground}, bg=${colors.background}'
+
+        set-option -g window-status-current-style 'fg=${colors.dominant}'
+
+        set-option -g pane-border-style 'fg=${colors.background}'
+        set-option -g pane-active-border-style 'fg=${colors.dominant}'
+
+        set-option -g message-style 'fg=${colors.background}, bg=${colors.dimForeground}'
+
+        set-option -g mode-style    'fg=${colors.background}, bg=${colors.dominant}'
+
+        set-option -g display-panes-active-colour '${colors.dominant}'
+        set-option -g display-panes-colour '${colors.dimForeground}'
+
+        set-option -g clock-mode-colour '${colors.dominant}'
+      '';
   };
 }
