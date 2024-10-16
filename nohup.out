@@ -17,3 +17,5 @@ Io error: Broken pipe (os error 32)
 Error trying to flush the wayland display: Broken pipe (os error 32)
 DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.
 zed is already running
+Io error: Connection reset by peer (os error 104)
+DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau.

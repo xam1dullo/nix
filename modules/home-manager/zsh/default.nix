@@ -17,7 +17,7 @@
     # has been renamed to `programs.zsh.autosuggestion.enable'.
     autosuggestion.enable = true;
 
-    # ZSH Completions
+    # ZSH CompletionCompletions
     enableCompletion = true;
 
     # ZSH Syntax Highlighting
@@ -43,6 +43,27 @@
           rev = "v0.11.0";
           sha256 = "0bs5p6p5846hcgf3rb234yzq87rfjs18gfha9w0y0nf5jif23dy5";
         };
+      }
+      {
+        # will source zsh-autosuggestions.plugin.zsh
+        name = "zsh-autosuggestions";
+        src = pkgs.zsh-autosuggestions;
+        file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+      }
+      {
+        name = "zsh-completions";
+        src = pkgs.zsh-completions;
+        file = "share/zsh-completions/zsh-completions.zsh";
+      }
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.zsh-syntax-highlighting;
+        file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
       }
     ];
 
@@ -168,6 +189,27 @@
       export GOPATH="$HOME/.go"
       export PATH="$PATH:$HOME/.go/bin"
 
+
+      # disable sort when completing `git checkout`
+      zstyle ':completion:*:git-checkout:*' sort false
+
+      # set descriptions format to enable group support
+      # NOTE: don't use escape sequences here, fzf-tab will ignore them
+      zstyle ':completion:*:descriptions' format '[%d]'
+
+      # set list-colors to enable filename colorizing
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+
+      # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+      zstyle ':completion:*' menu no
+
+      # preview directory's content with eza when completing cd
+      zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+      zstyle ':fzf-tab:complete:ls:*' fzf-preview 'cat $realpath'
+
+      # switch group using `<` and `>`
+      zstyle ':fzf-tab:*' switch-group '<' '>'
       # Extra services
       # here...
     '';
