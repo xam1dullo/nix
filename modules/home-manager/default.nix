@@ -7,6 +7,9 @@
   terminal = import ./terminal;
   tmux = import ./tmux;
   packages = import ./packages;
-  vscode = import ./vscodeu;
+  vscode = import ./vscode;
   # pipewire = import ./pipewire;
+  # postgres = import ./postgres;
+  # utils = import ./utils;
+  cli = import ./cli;
 }

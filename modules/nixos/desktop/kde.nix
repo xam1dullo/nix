@@ -68,7 +68,7 @@
       with pkgs.kdePackages; [
         # kate # that editor
         # plasma-browser-integration # browser integration
-        helix
+        # helix
       ];
 
     # programs.gnupg.agent = {

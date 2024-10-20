@@ -22,7 +22,7 @@
       # outputs.nixosModules.boot.grub
       outputs.nixosModules.users.khamidullo
       outputs.nixosModules.desktop.kde
-      # outputs.homeManagerModules.pipewire
+      # outputs.homeManagerModules.postgres
 
 
       # Include the results of the hardware scan.
@@ -135,8 +135,33 @@
 
   # Driver + parameters
   # Don't ask for sudo password
+  services.auto-cpufreq.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_16;
+    ensureDatabases = [ "b1_db" ];
+    enableTCPIP = true;
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all      all                    trust
+      host  all      all     127.0.0.1/32   trust
+      host  all      all     ::1/128        trust
+    '';
+    initialScript = pkgs.writeText "backend-initScript" ''
+      CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
+      CREATE DATABASE nixcloud;
+      GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
+    '';
+  };
+
+  # services.pgadmin = {
+  #   enable = true;
+  #   initialEmail = "khkhamidullo@gmail.com";
+  #   initialPasswordFile = "/var/lib/pgadmin/initial-password"; # Define this file
+  #   # port = 5432;
+  # };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

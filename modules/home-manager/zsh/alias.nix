@@ -63,6 +63,7 @@ let
     # Others (Developer)
     ports = "sudo lsof -PiTCP -sTCP:LISTEN";
     rit = "gitui";
+    open = "xdg-open";
     dotenv = "eval export $(cat .env)";
     xclip = "xclip -selection c";
     speedtest = "curl -o /dev/null cachefly.cachefly.net/100mb.test";
@@ -70,7 +71,7 @@ let
 
     # Updating system
     update = "nix store gc && topgrade";
-    homeupdate = "export NIXPKGS_ALLOW_INSECURE=1 && home-manager switch --flake .#khamidullo --impure";
+    homeupdate = "export NIXPKGS_ALLOW_INSECURE=1 && home-manager switch --flake .#khamidullo@nix --impure";
     nix-shell = "nix-shell --run zsh";
     nix-develop = "nix develop -c \"$SHELL\"";
     determinate = "${determinateSystems} | sh -s -- ";

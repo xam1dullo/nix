@@ -13,7 +13,7 @@
           packages = with pkgs; [
             # kate
             thunderbird
-            vscode
+            # vscode
             telegram-desktop
             git
             libreoffice-fresh
@@ -24,6 +24,9 @@
             btop
             unstable.zed-editor
 
+            wayland
+            wayland-utils
+            weston
           ];
         };
       };

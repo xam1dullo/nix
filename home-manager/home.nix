@@ -16,10 +16,12 @@
     outputs.homeManagerModules.terminal
     # outputs.homeManagerModules.nixpkgs
     outputs.homeManagerModules.tmux
-    # outputs.homeManagerModules.vscode
+    outputs.homeManagerModules.vscode
     # outputs.homeManagerModules.topgrade
     outputs.homeManagerModules.packages
     # outputs.homeManagerModules.pipewire
+    # outputs.homeManagerModules.postgres
+    outputs.homeManagerModules.cli
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default

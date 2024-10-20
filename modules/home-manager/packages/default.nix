@@ -85,24 +85,41 @@ in
     lsof
     yt-dlp
     xclip
-    pgadmin4
     nest-cli
     wezterm
 
+    # pgadmin4
+    pgadmin4-desktopmode
+
+    auto-cpufreq
+
+    # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
+    gst_all_1.gstreamer
+    # Common plugins like "filesrc" to combine within e.g. gst-launch
+    gst_all_1.gst-plugins-base
+    # Specialized plugins separated by quality
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
+    # Plugins to reuse ffmpeg to play almost every video format
+    gst_all_1.gst-libav
+    # Support the Video Audio (Hardware) Acceleration API
+    gst_all_1.gst-vaapi
+
   ]) ++ (with unstablePkgs; [
     # Add your unstable packages here
-    zed-editor
+    # zed-editor
     vscode
-    discord
+    # discord
     postman
     nodejs_22
     pnpm
-    floorp
+    # floorp
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     kitty
-    liberation_ttf
+    # liberation_ttf
     fira-code
     fira-code-symbols
     (nerdfonts.override {
