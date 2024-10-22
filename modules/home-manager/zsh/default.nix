@@ -3,6 +3,9 @@
     ./alias.nix
     ./zoxide.nix
     ./starship.nix
+    ./eza.nix
+    ./fd.nix
+    ./jq.nix
   ];
 
   # I use zsh, but bash and fish work just as well here. This will setup
