@@ -64,7 +64,7 @@
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # Home 🏛Namangan International school xususiy maktabi Janubiy Koreya universitetlari bilan hamkorlik boshlamoqda.Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
     # ".zshrc".source = ~/dotfiles/zshrc/.zshrc;

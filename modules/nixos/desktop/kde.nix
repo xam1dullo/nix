@@ -101,7 +101,7 @@
       obsidian
       fzf
       nodejs
-      vscode
+      # vscode
 
       vlc
       obs-studio

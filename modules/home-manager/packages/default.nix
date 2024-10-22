@@ -41,7 +41,7 @@ in
     direnv
     git-lfs
     gitoxide
-    cargo-update
+    # cargo-update
 
     # Environment
     fd
@@ -59,18 +59,18 @@ in
     topgrade
 
     # For Prismlauncher
-    jdk17
+    # jdk17
 
     # Media encode & decode
     ffmpeg
     libheif
 
     # Anime
-    crunchy-cli
+    # crunchy-cli
 
     # GPG Signing
     gnupg
-    sublime4
+    # sublime4
 
     # davinci-resolve-studio
     # pkgs.openssl # For Prisma
@@ -110,19 +110,20 @@ in
   ]) ++ (with unstablePkgs; [
     # Add your unstable packages here
     # zed-editor
-    vscode
+    # vscode
     # discord
     postman
     nodejs_22
     pnpm
     # floorp
     noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    kitty
+    # noto-fonts-cjk
+    # noto-fonts-emoji
+    # kitty
     # liberation_ttf
-    fira-code
-    fira-code-symbols
+    deno
+    # fira-code
+    # fira-code-symbols
     (nerdfonts.override {
       fonts = [ "JetBrainsMono" ];
     })
