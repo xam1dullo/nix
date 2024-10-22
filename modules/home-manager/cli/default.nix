@@ -1,5 +1,5 @@
 {
-  eza = import ./eza;
-  fd = import ./fd;
-  jq = import ./jq;
+  # eza = import ./eza;
+  # fd = import ./fd;
+  # jq = import ./jq;
 }
