@@ -39,6 +39,13 @@
       pkief.material-icon-theme
       streetsidesoftware.code-spell-checker
       zhuangtongfa.material-theme
+      formulahendry.code-runner
+      ms-azuretools.vscode-docker
+      # 'denoland.vscode-deno
+      # 'Postman.postman-for-vscode'
+
+      # denoland.vscode-deno
+      # Postman.postman-for-vscode
     ];
 
     # User defined setings (raw json)

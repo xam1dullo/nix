@@ -1,0 +1,365 @@
+{
+  "editor.mouseWheelZoom": true,
+  "editor.cursorBlinking": "expand",
+  "editor.cursorWidth": 2,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.renderWhitespace": "selection",
+  "editor.codeLensFontSize": 14,
+  "editor.fontFamily": "Aglet Mono",
+  "editor.fontLigatures": true,
+  "scm.inputFontFamily": "JetBrains Mono",
+  "editor.tabSize": 2,
+  "editor.showFoldingControls": "never",
+  "editor.insertSpaces": true,
+  "terminal.integrated.tabs.enabled": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "terminal.integrated.cursorWidth": 3,
+  "editor.padding.top": 10,
+  "editor.lineHeight": 1.7,
+  "gitlens.defaultDateFormat": null,
+  "gitlens.advanced.messages": {
+    "suppressGitDisabledWarning": true,
+    "suppressLineUncommittedWarning": true
+  },
+  "editor.wordWrap": "on",
+  "terminal.external.linuxExec": "terminal",
+  "editor.linkedEditing": true,
+  "sync.gist": "90945527177390cb57333c4c956582e3",
+  "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "editor.suggestSelection": "first",
+  "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Default Dark Modern",
+  "explorer.confirmDelete": false,
+  "json.maxItemsComputed": 5000000,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  "terminal.integrated.gpuAcceleration": "off",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.inlayHints.fontFamily": "JetBrains Mono",
+  "debug.console.fontFamily": "JetBrains Mono NL,  Regular",
+  "files.exclude": {
+    "**/.git": false,
+    "**/node_module": false
+  },
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeLensFontFamily": "JetBrains Mono",
+  "terminal.integrated.localEchoExcludePrograms": [
+    "vim",
+    "vi",
+    "nano",
+    "tmux",
+    "nvim"
+  ],
+  "terminal.integrated.lineHeight": 0,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.altClickMovesCursor": false,
+  "terminal.integrated.cursorStyle": "underline",
+  "extensions.ignoreRecommendations": true,
+  "editor.largeFileOptimizations": false,
+  "hide-node-modules.enable": true,
+  "editor.glyphMargin": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "gitlens.defaultDateLocale": null,
+  "gitlens.defaultDateShortFormat": null,
+  "gitlens.defaultTimeFormat": null,
+  "prettier.jsxSingleQuote": true,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "double",
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "workbench.colorCustomizations": {
+    "terminal.background": "#1B2B34",
+    "terminal.foreground": "#C0C5CE",
+    "terminalCursor.background": "#C0C5CE",
+    "terminalCursor.foreground": "#C0C5CE",
+    "terminal.ansiBlack": "#1B2B34",
+    "terminal.ansiBlue": "#6699CC",
+    "terminal.ansiBrightBlack": "#65737E",
+    "terminal.ansiBrightBlue": "#6699CC",
+    "terminal.ansiBrightCyan": "#5FB3B3",
+    "terminal.ansiBrightGreen": "#99C794",
+    "terminal.ansiBrightMagenta": "#C594C5",
+    "terminal.ansiBrightRed": "#EC5F67",
+    "terminal.ansiBrightWhite": "#D8DEE9",
+    "terminal.ansiBrightYellow": "#FAC863",
+    "terminal.ansiCyan": "#5FB3B3",
+    "terminal.ansiGreen": "#99C794",
+    "terminal.ansiMagenta": "#C594C5",
+    "terminal.ansiRed": "#EC5F67",
+    "terminal.ansiWhite": "#C0C5CE",
+    "terminal.ansiYellow": "#FAC863"
+  },
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+    // "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.commandCenter": true,
+  "window.doubleClickIconToClose": true,
+  "deno.cache": "/home/pro/.cache/deno",
+  "deno.enable": false,
+  "deno.inlayHints.enumMemberValues.enabled": true,
+  "window.titleBarStyle": "custom",
+  "notebook.output.fontFamily": "JetBrainsMono Nerd Font`",
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "deno.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
+  "deno.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "go.toolsManagement.autoUpdate": true,
+  "workbench.tree.indent": 20,
+  "redhat.telemetry.enabled": true,
+  "DockerRun.DisableAutoGenerateConfig": true,
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "totalTypeScript.hiddenTips": [
+    "basic-types",
+    "variable-type-annotation",
+    "interface-declaration",
+    "passing-generics-to-types",
+    "typing-function-parameters",
+    "array-type",
+    "function-return-type",
+    "typeof",
+    "returntype-utility-type",
+    "record-utility-type",
+    "literal-type",
+    "generic-slots-in-functions",
+    "union-type",
+    "never-keyword",
+    "ts-object-type",
+    "type-alias-declaration",
+    "optional-object-property",
+    "any-type",
+    "null-keyword",
+    "as-assertion",
+    "tuple-type",
+    "non-null-expression",
+    "partial-utility-type",
+    "undefined-keyword"
+  ],
+  "explorer.confirmDragAndDrop": false,
+  // "explorer.autoRevealExclude": {
+  //     "**/bower_components": false
+  // },
+  "workbench.sideBar.location": "right",
+  "workbench.editor.showTabs": "single",
+  "debug.onTaskErrors": "debugAnyway",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "git.autofetch": true,
+  "explorer.fileNesting.enabled": true,
+  "git.mergeEditor": true,
+  "workbench.experimental.share.enabled": true,
+  "window.density.editorTabHeight": "compact",
+  "files.trimFinalNewlines": true,
+  "workbench.editorAssociations": {
+    "*.html": "default"
+  },
+  "editor.minimap.autohide": true,
+  "deno.cacheOnSave": true,
+  "deno.unstable": true,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.implementationsCodeLens.enabled": true,
+  "editor.fontWeight": "normal",
+  "path-intellisense.extensionOnImport": true,
+  "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
+  "terminal.integrated.env.linux": {},
+  "breadcrumbs.enabled": false,
+  "editor.lineNumbers": "relative",
+  "editor.scrollBeyondLastLine": false, // recommended by neovim
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.leader": " ",
+  "vim.insertModeKeyBindings": [
+    {
+      // Pressing j twice ("before": ["j", "j"]) simulates the Esc key ("after": ["<Esc>"]).
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      // Pressing the leader key (Spacebar) followed by d deletes the current line.
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      // Pressing ctrl+n clears search highlighting
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    {
+      // Pressing K inserts a line break above the cursor.
+      "before": ["K"],
+      "commands": ["lineBreakInsert"],
+      "silent": true
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by w splits the editor.
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by e toggles the sidebar visibility.
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by c comments the current line.
+      "before": ["<leader>", "c"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by f reveals the current file in the Explorer.
+      "before": ["<leader>", "f"],
+      "commands": ["revealInExplorer"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by r and then e renames the current symbol.
+      "before": ["<leader>", "r", "e"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by r and then f renames the current file.
+      "before": ["<leader>", "r", "f"],
+      "commands": ["fileutils.renameFile"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by o, g shows all symbols in the workspace.
+      "before": ["<leader>", "o", "g"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by o, o shows all open editors in the active group.
+      "before": ["<leader>", "o", "o"],
+      "commands": ["workbench.action.showEditorsInActiveGroup"]
+    },
+    {
+      // Pressing the leader key (Spacebar) followed by o, p opens the quick open panel.
+      "before": ["leader", "o", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      //  Pressing m followed by a toggles numbered bookmark 1.
+      "before": ["m", "a"],
+      "commands": ["numberedBookmarks.toggleBookmark1"]
+    },
+    {
+      // Pressing ' followed by a jumps to numbered bookmark 1.
+      "key": "' a",
+      "command": "numberedBookmarks.jumpToBookmark1",
+      "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+    }
+  ],
+
+  //
+  // Custom keybindings for visual
+  //
+
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["leader", "c"],
+      "commands": ["editor.action.commentLine", "extension.vim_escape"]
+    }
+  ],
+
+  // END OF VIM CONFIGURATION
+  // (...)
+
+  // install multi-command plugin to be able to use it with keybindings
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.toggleMaximizedPanelAndFocusTerminal",
+      "sequence": [
+        "workbench.action.toggleMaximizedPanel",
+        "workbench.action.terminal.focus"
+      ]
+    }
+  ],
+  "terminal.integrated.fontSize": 13,
+  "extensions.supportUntrustedWorkspaces": {
+    "waderyan.gitblame": {
+      "supported": true,
+      "version": "10.5.1"
+    }
+  },
+  "editor.stickyScroll.enabled": true,
+  "workbench.tree.enableStickyScroll": true,
+  "terminal.integrated.stickyScroll.enabled": true,
+  "gitlens.views.remotes.branches.layout": "list",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "window.customTitleBarVisibility": "auto",
+  "editor.snippetSuggestions": "top",
+  "workbench.activityBar.location": "top",
+  "workbench.startupEditor": "welcomePage",
+  "biome_lsp.trace.server": "messages",
+  "javascript.referencesCodeLens.enabled": true,
+  "javascript.referencesCodeLens.showOnAllFunctions": true,
+  "debug.javascript.autoAttachFilter": "smart",
+  "debug.javascript.breakOnConditionalError": true,
+  "javascript.format.insertSpaceAfterConstructor": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "gitlens.ai.experimental.provider": "openai",
+  "gitlens.ai.experimental.openai.model": "gpt-4-turbo-preview",
+  "terminal.integrated.fontFamily": "monospace",
+  "codesnap.transparentBackground": true,
+  "codesnap.containerPadding": "2em",
+  "codesnap.windowControlStyle": "OS X",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}
