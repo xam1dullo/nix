@@ -173,6 +173,7 @@
       peek
 
       auto-cpufreq
+      zulip
 
     ];
   };

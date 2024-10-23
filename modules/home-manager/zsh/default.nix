@@ -70,6 +70,18 @@
       }
     ];
 
+    # More history logs
+    history = {
+      extended = true;
+    };
+
+    # Oh my zsh integration
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+      theme = "robbyrussell";
+    };
+
     # Extra manually typed configs
     initExtra = ''
       # Global settings
