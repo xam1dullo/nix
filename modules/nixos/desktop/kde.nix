@@ -66,8 +66,8 @@
     # Exclude some packages from the KDE desktop environment.
     environment.plasma6.excludePackages =
       with pkgs.kdePackages; [
-        # kate # that editor
-        # plasma-browser-integration # browser integration
+        kate # that editor
+        plasma-browser-integration # browser integration
         # helix
       ];
 
@@ -83,99 +83,6 @@
     environment.systemPackages = with pkgs; [
       # Papirus Icon Pack
       papirus-icon-theme
-      nil
-      nixd
-      nixpkgs-fmt
-
-      firefox
-      google-chrome
-
-      vim
-      wget
-      alacritty
-      # tmux
-      neovim
-      git
-      zsh
-      tree
-      obsidian
-      fzf
-      nodejs
-      # vscode
-
-      vlc
-      obs-studio
-
-      termius
-      htop
-      virtualenv
-
-
-
-      bluez
-      bluez-tools
-
-      telegram-desktop
-      # bluez-utils
-
-      # home manager
-      home-manager
-      zoxide
-      starship
-      gh
-      # cc
-      gcc
-      clang
-      cl
-      zig
-      bat
-      unzip
-      insomnia
-
-      github-desktop
-      # Papirus Icon Pack
-      papirus-icon-theme
-
-      # Various plugins for KDE
-      kdePackages.kdeconnect-kde
-      kdePackages.plasma-browser-integration
-
-      # X server video bridge
-      vulkan-tools
-      wayland-utils
-      xwaylandvideobridge
-      kdePackages.kdeconnect-kde
-      kdePackages.plasma-browser-integration
-      vulkan-tools
-      wayland-utils
-      wineWowPackages.waylandFull
-      xwaylandvideobridge
-      curl
-      ffmpeg-full
-      flameshot
-
-      zulip-term
-      keepassxc
-      stacer
-      baobab
-      smartmontools
-      flameshot
-      libqalculate
-      nfs-utils
-
-
-      # Media
-      moc
-      yt-dlp
-      feh
-      imagemagick
-      optipng
-      peek
-
-      auto-cpufreq
-      zulip
-      # mongodb
-      mongodb-compass
     ];
   };
 }

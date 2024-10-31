@@ -6,8 +6,7 @@
   hardware.pulseaudio.enable = false;
 
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware = {
+   hardware = {
     nvidia-container-toolkit.enable = true;
     opengl = {
       enable = true;
@@ -42,13 +41,5 @@
     "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
   ];
 
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
 
 }

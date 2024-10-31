@@ -19,10 +19,12 @@
       outputs.nixosModules.fonts
       outputs.nixosModules.sound
       outputs.nixosModules.nixpkgs
-      # outputs.nixosModules.boot.grub
       outputs.nixosModules.users.khamidullo
       outputs.nixosModules.desktop.kde
-      # outputs.homeManagerModules.postgres
+      # outputs.nixosModules.hardware
+      outputs.nixosModules.nix-ld
+      outputs.nixosModules.docker
+      # outputs.homeManagerModules.postgresa
 
 
       # Include the results of the hardware scan.
