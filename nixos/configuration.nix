@@ -135,39 +135,105 @@
 
   # Driver + parameters
   # Don't ask for sudo password
-  services.auto-cpufreq.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_16;
-    ensureDatabases = [ "b1_db" ];
-    enableTCPIP = true;
-    authentication = pkgs.lib.mkOverride 10 ''
-      local all      all                    trust
-      host  all      all     127.0.0.1/32   trust
-      host  all      all     ::1/128        trust
-    '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
-      CREATE DATABASE nixcloud;
-      GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
-    '';
-  };
+  services = {
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_16;
+      ensureDatabases = [ "b1_db" ];
+      enableTCPIP = true;
+      authentication = pkgs.lib.mkOverride 10 ''
+        local all      all                    trust
+        host  all      all     127.0.0.1/32   trust
+        host  all      all     ::1/128        trust
+      '';
+      initialScript = pkgs.writeText "backend-initScript" ''
+        CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
+        CREATE DATABASE nixcloud;
+        GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
+      '';
+    };
 
-  # services.pgadmin = {
-  #   enable = true;
-  #   initialEmail = "khkhamidullo@gmail.com";
-  #   initialPasswordFile = "/var/lib/pgadmin/initial-password"; # Define this file
-  #   # port = 5432;
+    # mongodb = {
+    #   enable = true;
+    #   package = pkgs.mongodb;
+    #   extraConfig = ''
+    #     storage:
+    #       dbPath: "/var/lib/mongodb"
+    #       journal:
+    #         enabled: true
+    #     systemLog:
+    #       destination: "file"
+    #       path: "/var/log/mongodb/mongod.log"
+    #       logAppend: true
+    #     net:
+    #       bindIp: "127.0.0.1"
+    #       port: 27017
+    #   '';
+
+    # enable = true;
+    # package = pkgs.mongodb;
+    # settings = {
+    #   storage = {
+    #     dbPath = "/var/lib/mongodb";
+    #     journal = {
+    #       enabled = true;
+    #     };
+    #   };
+    #   systemLog = {
+    #     destination = "file";
+    #     path = "/var/log/mongodb/mongod.log";
+    #     logAppend = true;
+    #   };
+    #   net = {
+    #     bindIp = "127.0.0.1";
+    #     port = 27017;
+    #   };
+    # };
   # };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  #   mongodb = {
+  #     enable = true;
+  #     package = pkgs.mongodb;
+  #     # dataDir = "/var/lib/mongodb";
+  #     logPath = "/var/log/mongodb/mongod.log";
+  #     extraConfig = ''
+  #       storage:
+  #         dbPath: "/var/lib/mongodb"
+  #         journal:
+  #           enabled: true
+  #       net:
+  #         bindIp: "127.0.0.1"
+  #         port: 27017
+  #     '';
+  # };
+  # mongodb = {
+  #   package = pkgs.mongodb-7;
+  #   #bind_ip = "0.0.0.0";
+  #   enable = true;
+  #   extraConfig = ''
+  #     operationProfiling.mode: all
+  #     systemLog.quiet: false
+  #   '';
+  # };
+  auto-cpufreq.enable = true;
+  nginx.enable = true;
+};
+
+# services.pgadmin = {
+#   enable = true;
+#   initialEmail = "khkhamidullo@gmail.com";
+#   initialPasswordFile = "/var/lib/pgadmin/initial-password"; # Define this file
+#   # port = 5432;
+# };
+
+# This value determines the NixOS release from which the default
+# settings for stateful data, like file locations and database versions
+# on your system were taken. It‘s perfectly fine and recommended to leave
+# this value at the release version of the first install of this system.
+# Before changing this value read the documentation for this option
+# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+system.stateVersion = "24.05"; # Did you read the comment?
 
 }

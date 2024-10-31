@@ -174,7 +174,8 @@
 
       auto-cpufreq
       zulip
-
+      # mongodb
+      mongodb-compass
     ];
   };
 }
