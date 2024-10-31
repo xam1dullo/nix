@@ -1,0 +1,81 @@
+{
+  "editor.mouseWheelZoom": true,
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "Aglet Mono",
+  "window.nativeTabs": true,
+  "files.autoSave": "afterDelay",
+  "redhat.telemetry.enabled": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "terminal.integrated.tabs.enabled": true,
+  "editor.tabSize": 2,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wrappingIndent": "same",
+    "editor.wordWrapColumn": 120,
+    "vim.textwidth": 120
+  },
+  "haskell.manageHLS": "GHCup",
+  "files.associations": {
+    "*.hs": "haskell"
+  },
+  "terminal.integrated.cursorStyle": "underline",
+  "metals.excludedPackages": [],
+  "cSpell.userWords": [
+    "payme"
+  ],
+  "cSpell.customDictionaries": {},
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.lsp": true,
+    "**/.svn": true,
+    "**/.vscode": true,
+    "**/.idea": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/target": true
+  },
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "top",
+  "workbench.tree.indent": 20,
+  "workbench.experimental.share.enabled": true,
+  "workbench.startupEditor": "welcomePage",
+  "workbench.tree.enableStickyScroll": true,
+  "window.titleBarStyle": "custom",
+  "code-runner.runInTerminal": true,
+  "window.density.editorTabHeight": "compact",
+  "editor.lineNumbers": "relative",
+  "window.customTitleBarVisibility": "auto",
+  "nix.serverPath": "nixd",
+  "nix.enableLanguageServer": true,
+  "nixpkgs": {
+    "expr": "import <nixpkgs> {}"
+  },
+  "formatting": {
+    "command": [
+      "alejandra"
+    ]
+  }
+}

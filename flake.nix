@@ -1,68 +1,101 @@
 {
-  description = "A very basic flake";
+  description = "My first nix config";
 
   inputs = {
+    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , ...
+    } @ inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        system = system;
-        config.allowUnfree = true; # Allow unfree packages globally
-        devShells.default = import ./shell.nix { inherit pkgs; };
+      inherit (self) outputs;
 
-      };
+      lib = nixpkgs.lib // home-manager.lib;
+
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+
+
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+
+
+      pkgsFor = lib.genAttrs systems (system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        });
+
+      # Define a development shell for each system
+      devShellFor = system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        in
+        import ./shell.nix { inherit pkgs; };
+
     in
     {
 
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+
+      overlays = import ./overlays { inherit inputs; };
+
+
       nixosModules = import ./modules/nixos;
 
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home;
 
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
+      homeManagerModules = import ./modules/home-manager;
+
+
+      # Available through 'nixos-rebuild --flake .#nixos'
       nixosConfigurations = {
-        # FIXME replace with your hostname
+
+
         khamidullo = nixpkgs.lib.nixosSystem {
-          inherit system;
+          specialArgs = { inherit inputs outputs; };
           modules = [
+            # > Our main nixos configuration file <
             ./nixos/configuration.nix
           ];
-          specialArgs = {
-            inherit home-manager;
-          };
         };
       };
 
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
+
+      # Available through 'home-manager --flake .#rshohruh@nixos'
       homeConfigurations = {
-        khamidullo = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+
+        "khamidullo@nix" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
           ];
         };
       };
-      # nixosConfigurations.nixos = nixosConfigurations.khamidullo;
     };
 }
