@@ -1,9 +1,4 @@
-{ inputs
-, lib
-, pkgs
-, config
-, packages
-, self
+{ pkgs
 , ...
 }:
 
@@ -27,153 +22,148 @@ in
 
   # O'rnatiladigan paketlar
 
-home.packages = (with pkgs;  [
-  # Downloader
-  aria
+  home.packages = (with pkgs;  [
+    # Downloader
+    aria
 
-  # Developer Mode
-  gh
-  jq
-  wget
-  zola
-  gitui
-  zellij
-  netcat
-  direnv
-  git-lfs
-  gitoxide
-  # cargo-update
+    # Developer Mode
+    gh
+    jq
+    wget
+    zola
+    gitui
+    zellij
+    netcat
+    direnv
+    git-lfs
+    gitoxide
+    # cargo-update
 
-  # Environment
-  fd
-  bat
-  btop
-  eza
-  figlet
-  gping
-  hyperfine
-  lolcat
-  fastfetch
-  onefetch
-  procs
-  ripgrep
-  topgrade
+    # Environment
+    fd
+    bat
+    btop
+    eza
+    figlet
+    gping
+    hyperfine
+    lolcat
+    fastfetch
+    onefetch
+    procs
+    ripgrep
+    topgrade
 
-  # Media encode & decode
-  ffmpeg
-  libheif
+    # Media encode & decode
+    # ffmpeg
+    libheif
 
-  # GPG Signing
-  gnupg
+    # GPG Signing
+    gnupg
 
-  tmux
-  curl
-  rofi
-  tldr
-  yazi
-  zathura
-  lsof
-  yt-dlp
-  xclip
-  nest-cli
-  wezterm
+    tmux
+    curl
+    rofi
+    tldr
+    yazi
+    zathura
+    lsof
+    yt-dlp
+    xclip
+    nest-cli
+    wezterm
 
-  # pgadmin4
-  pgadmin4-desktopmode
+    # pgadmin4
+    pgadmin4-desktopmode
 
-  auto-cpufreq
+    auto-cpufreq
 
-  # GStreamer packages
-  gst_all_1.gstreamer
-  gst_all_1.gst-plugins-base
-  gst_all_1.gst-plugins-good
-  gst_all_1.gst-plugins-bad
-  gst_all_1.gst-plugins-ugly
-  gst_all_1.gst-libav
-  gst_all_1.gst-vaapi
+    # GStreamer packages
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
+    gst_all_1.gst-libav
+    gst_all_1.gst-vaapi
 
-  nil
-  nixd
-  nixpkgs-fmt
+    nil
+    nixd
+    nixpkgs-fmt
 
-  firefox
-  google-chrome
+    firefox
+    google-chrome
 
-  vim
-  alacritty
-  neovim
-  git
-  zsh
-  tree
-  obsidian
-  fzf
-  nodejs
+    vim
+    alacritty
+    neovim
+    git
+    zsh
+    tree
+    obsidian
+    fzf
+    nodejs
 
-  vlc
-  obs-studio
+    vlc
+    obs-studio
 
-  termius
-  htop
-  virtualenv
+    termius
+    htop
+    virtualenv
 
-  bluez
-  bluez-tools
+    bluez
+    bluez-tools
+    telegram-desktop
 
-  telegram-desktop
+    # Home Manager
+    zoxide
+    starship
+    gcc
+    # clang
+    cl
+    zig
+    unzip
+    # insomnia
 
-  # Home Manager
-  home-manager
-  zoxide
-  starship
-  gcc
-  clang
-  cl
-  zig
-  unzip
-  insomnia
+    # X server video bridge
+    vulkan-tools
+    wayland-utils
+    xwaylandvideobridge
 
-  github-desktop
-  kdePackages.kdeconnect-kde
-  kdePackages.plasma-browser-integration
+    ffmpeg-full
+    flameshot
 
-  # X server video bridge
-  vulkan-tools
-  wayland-utils
-  xwaylandvideobridge
+    zulip-term
+    keepassxc
+    stacer
+    baobab
+    smartmontools
+    libqalculate
+    nfs-utils
 
-  ffmpeg-full
-  flameshot
+    # Media
+    moc
+    yt-dlp
+    feh
+    imagemagick
+    optipng
+    peek
 
-  zulip-term
-  keepassxc
-  stacer
-  baobab
-  smartmontools
-  libqalculate
-  nfs-utils
+    zulip
+    mongodb-compass
+    docker-compose
 
-  # Media
-  moc
-  yt-dlp
-  feh
-  imagemagick
-  optipng
-  peek
-
-  zulip
-  mongodb-compass
-  docker-compose
-]) ++ (with unstablePkgs; [
-  postman
-  nodejs_22
-  pnpm
-  noto-fonts
-  deno
-  alejandra
-  (nerdfonts.override {
-    fonts = [ "JetBrainsMono" ];
-  })
-]);
+  ]) ++ (with unstablePkgs; [
+    postman
+    nodejs_22
+    pnpm
+    noto-fonts
+    deno
+    alejandra
+    (nerdfonts.override {
+      fonts = [ "JetBrainsMono" ];
+    })
+  ]);
   # home.packages = (with pkgs;  [
   #   # Downloader
   #   aria
