@@ -1,9 +1,9 @@
-{ color-schemes, ... }:
+{ pkgs, ... }:
 
 {
   programs.ghostty = {
     enable = true;
-    shellIntegration.enable = false;
+    # shellIntegration.enable = false;
     shellIntegration.enableZshIntegration = true;
     settings = {
       font-size = 11;
@@ -18,10 +18,10 @@
       macos-option-as-alt = true;
 
       # Disables ligatures
-      font-feature = [ "-liga" "-dlig" "-calt" ];
-      config-file = [
-        (color-schemes + "/Ghostty/GruvboxDark")
-      ];
+      # font-feature = [ "-liga" "-dlig" "-calt" ];
+      # config-file = [
+      #   (color-schemes + "/Ghostty/GruvboxDark")
+      # ];
     };
 
   };

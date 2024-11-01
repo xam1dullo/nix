@@ -3,10 +3,11 @@
 
   inputs = {
     # Nixpkgs
-    color-schemes = {
-      url = "github:mbadolato/iTerm2-Color-Schemes";
-      flake = false;
-    };
+    # color-schemes = {
+    #   url = "github:mbadolato/iTerm2-Color-Schemes";
+    #   flake = false;
+    # };
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     ghostty.url = "github:clo4/ghostty-hm-module";
 
@@ -23,7 +24,7 @@
     , nixpkgs
     , home-manager
     , ghostty
-    , color-schemes
+    # , color-schemes
     , ...
 
     } @ inputs:
@@ -98,11 +99,11 @@
 
         "khamidullo@nix" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs ; };
           modules = [
             # > Our main home-manager configuration file <
-            ghostty.homeModules.default
             ./home-manager/home.nix
+            ghostty.homeModules.default
           ];
         };
       };

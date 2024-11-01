@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "color-schemes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1730169483,
-        "narHash": "sha256-AdZqPtBobUuzHEqaN0gU5NKT2b+flHwbL4uFw1yfVEc=",
-        "owner": "mbadolato",
-        "repo": "iTerm2-Color-Schemes",
-        "rev": "c2e70f2625b5b738c770e84c1d0aca98f03bc9cd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mbadolato",
-        "repo": "iTerm2-Color-Schemes",
-        "type": "github"
-      }
-    },
     "ghostty": {
       "locked": {
         "lastModified": 1702368251,
@@ -86,7 +70,6 @@
     },
     "root": {
       "inputs": {
-        "color-schemes": "color-schemes",
         "ghostty": "ghostty",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",

@@ -3,11 +3,12 @@
 { inputs
 , outputs
 , lib
+, color-schemes
 , config
 , pkgs
 , ...
 }: {
-  # You can import other home-manager modules here
+  # You can import other home-manager modules herecolor-schemes
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
@@ -22,9 +23,13 @@
     outputs.homeManagerModules.pipewire
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.helix
+    
+
+    # outputs.homeManagerModules.ghostty
+    # ghostty
 
     # outputs.homeManagerModules.utils
-    
+
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -85,7 +90,12 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+  programs.ghostty = {
+    enable = true;
+    # shellIntegration.enable = false;
+    shellIntegration.enableZshIntegration = true;
 
+  };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
