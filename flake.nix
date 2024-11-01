@@ -3,21 +3,29 @@
 
   inputs = {
     # Nixpkgs
+    color-schemes = {
+      url = "github:mbadolato/iTerm2-Color-Schemes";
+      flake = false;
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    ghostty.url = "github:clo4/ghostty-hm-module";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs =
     { self
     , nixpkgs
     , home-manager
+    , ghostty
+    , color-schemes
     , ...
+
     } @ inputs:
     let
       inherit (self) outputs;
@@ -93,6 +101,7 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main home-manager configuration file <
+            ghostty.homeModules.default
             ./home-manager/home.nix
           ];
         };
