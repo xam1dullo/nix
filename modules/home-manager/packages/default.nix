@@ -141,6 +141,16 @@ in
     libqalculate
     nfs-utils
 
+    # Archive tools
+    unzip
+    p7zip
+    gnutar
+    xz
+    gzip
+    bzip2
+    rar
+    pigz
+    
     # Media
     moc
     yt-dlp

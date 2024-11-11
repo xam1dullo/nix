@@ -23,9 +23,7 @@
     outputs.homeManagerModules.pipewire
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.helix
-    
-
-    # outputs.homeManagerModules.ghostty
+    outputs.homeManagerModules.ghostty
     # ghostty
 
     # outputs.homeManagerModules.utils

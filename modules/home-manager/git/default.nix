@@ -9,6 +9,8 @@
     userEmail = "khamidullo@gmail.com";
 
     extraConfig = {
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
       http.sslVerify = false;
     };
 
