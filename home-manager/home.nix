@@ -23,9 +23,7 @@
     outputs.homeManagerModules.pipewire
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.helix
-    outputs.homeManagerModules.ghostty
-    # ghostty
-
+   
     # outputs.homeManagerModules.utils
 
 
@@ -82,18 +80,12 @@
     # ".config/nix".source = ~/dotfiles/nix;
     # ".config/nix-darwin".source = ~/dotfiles/nix-darwin;
     # ".config/tmux".source = ~/dotfiles/tmux;
-    # ".config/ghostty".source = ~/dotfiles/ghostty;
   };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
-  programs.ghostty = {
-    enable = true;
-    # shellIntegration.enable = false;
-    shellIntegration.enableZshIntegration = true;
-
-  };
+  
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 

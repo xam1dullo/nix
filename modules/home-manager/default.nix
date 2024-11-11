@@ -12,5 +12,4 @@
   postgres = import ./postgres;
   utils = import ./utils;
   cli = import ./cli;
-  ghostty = import ./ghostty;
 }

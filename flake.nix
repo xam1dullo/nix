@@ -9,12 +9,6 @@
     # };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    ghostty-hm.url = "github:clo4/ghostty-hm-module";
-    # ghostty = {
-    #   url = "git+ssh://git@github.com/ghostty-org/ghostty";
-    #   inputs.nixpkgs-stable.follows = "nixpkgs";
-    #   inputs.nixpkgs-unstable.follows = "nixpkgs";
-    # };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
     # Home manager
@@ -27,9 +21,6 @@
     { self
     , nixpkgs
     , home-manager
-    # , ghostty-hm
-    , ghostty
-      # , color-schemes
     , ...
 
     } @ inputs:
@@ -105,11 +96,10 @@
         "khamidullo@nix" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
-       
+
           modules = [
             # > Our main home-manager configuration file <
-            ghostty.homeModules.default
-            # ghostty-hm.homeModules.default
+    
             ./home-manager/home.nix
           ];
         };
