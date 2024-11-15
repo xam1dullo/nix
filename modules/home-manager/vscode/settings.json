@@ -37,9 +37,7 @@
   },
   "terminal.integrated.cursorStyle": "underline",
   "metals.excludedPackages": [],
-  "cSpell.userWords": [
-    "payme"
-  ],
+  "cSpell.userWords": ["payme"],
   "cSpell.customDictionaries": {},
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -74,8 +72,7 @@
     "expr": "import <nixpkgs> {}"
   },
   "formatting": {
-    "command": [
-      "alejandra"
-    ]
-  }
+    "command": ["alejandra"]
+  },
+  "editor.minimap.enabled": false
 }
