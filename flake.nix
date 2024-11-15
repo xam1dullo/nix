@@ -89,18 +89,42 @@
       };
 
       # Home Manager configurations
-      homeManagerConfigurations = {
-        khamidullo = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; config = { allowUnfree = true; }; };
-          system = "x86_64-linux";
-          homeDirectory = "/home/khamidullo";
-          username = "khamidullo";
-          specialArgs = { inherit inputs; };
+      homeConfigurations = {
+        "khamidullo@nix" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
           modules = [
-            # Main home-manager configuration file
             ./home-manager/home.nix
           ];
         };
       };
+
+      # homeConfigurations = {
+      #   "khamidullo@nix" = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = import nixpkgs {
+      #       system = "x86_64-linux";
+      #       config.allowUnfree = true;
+      #     };
+      #     system = "x86_64-linux";
+      #     homeDirectory = "/home/khamidullo";
+      #     username = "khamidullo";
+      #     extraSpecialArgs = { inherit inputs; };
+      #     # specialArgs = { inherit inputs; };
+      #     modules = [ ./home-manager/home.nix ];
+      #   };
+      # };
+
+      # homeManagerConfigurations = {
+      #   khamidullo = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = import nixpkgs { system = "x86_64-linux"; config = { allowUnfree = true; }; };
+      #     system = "x86_64-linux";
+      #     homeDirectory = "/home/khamidullo";
+      #     username = "khamidullo";
+      #     specialArgs = { inherit inputs; };
+      #     modules = [
+      #       # Main home-manager configuration file
+      #       ./home-manager/home.nix
+      #     ];
+      #   };
+      # };
     };
 }

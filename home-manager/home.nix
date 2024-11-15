@@ -1,12 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ inputs
-, lib
-, color-schemes
-, config
-, pkgs
-, ...
-}: {
+{ config, pkgs, inputs, ... }: {
   # You can import other home-manager modules herecolor-schemes
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -84,6 +78,7 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+  programs.direnv.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
