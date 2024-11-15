@@ -41,11 +41,7 @@
       zhuangtongfa.material-theme
       formulahendry.code-runner
       ms-azuretools.vscode-docker
-      # 'denoland.vscode-deno
-      # 'Postman.postman-for-vscode'
-
-      # denoland.vscode-deno
-      # Postman.postman-for-vscode
+      cweijan.vscode-database-client2
     ];
 
     # User defined setings (raw json)
