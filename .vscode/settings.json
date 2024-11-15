@@ -1,4 +1,5 @@
 {
+ "extensions.jnoortheen.nix-ide": true,
   "cSpell.words": [
     "nixd",
     "nixpkgs"

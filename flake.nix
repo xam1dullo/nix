@@ -3,26 +3,19 @@
 
   inputs = {
     # Nixpkgs
-    # color-schemes = {
-    #   url = "github:mbadolato/iTerm2-Color-Schemes";
-    #   flake = false;
-    # };
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs =
     { self
-    , nixpkgs
+    , nixpkgs#
     , home-manager
     , ...
-
     } @ inputs:
     let
       inherit (self) outputs;
@@ -37,7 +30,9 @@
         "x86_64-darwin"
       ];
 
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+      forAllSystems = lib.genAttrs systems;
+      # forAllSystems = nixpkgs.lib.genAttrs systems;
+
 
 
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
@@ -99,7 +94,7 @@
 
           modules = [
             # > Our main home-manager configuration file <
-    
+
             ./home-manager/home.nix
           ];
         };

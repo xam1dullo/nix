@@ -1,23 +1,34 @@
 { pkgs
+, inputs
 , ...
 }:
 
 
+# let
+#   # Import the unstable Nixpkgs package set
+#   unstablePkgs = import
+#     (fetchTarball {
+#       url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
+#       # You can pin to a specific commit for reproducibility:
+#       sha256 = "0bvz453039jpis0gj18h8i9qj8cyngn7l7lqgqk4d7nybszkygxk";
+#       # url = "https://github.com/NixOS/nixpkgs/archive/<commit-hash>.tar.gz";
+#     })
+#     {
+#       inherit (pkgs) system;
+#       config = {
+#         allowUnfree = true;
+#       };
+#     };
+# in
 let
-  # Import the unstable Nixpkgs package set
-  unstablePkgs = import
-    (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-      # You can pin to a specific commit for reproducibility:
-      # url = "https://github.com/NixOS/nixpkgs/archive/<commit-hash>.tar.gz";
-    })
-    {
-      inherit (pkgs) system;
-      config = {
-        allowUnfree = true;
-      };
+  unstablePkgs = import inputs.nixpkgs-unstable {
+    inherit (pkgs) system;
+    config = {
+      allowUnfree = true;
     };
+  };
 in
+
 {
 
   # O'rnatiladigan paketlar
@@ -150,7 +161,7 @@ in
     bzip2
     rar
     pigz
-    
+
     # Media
     moc
     yt-dlp
