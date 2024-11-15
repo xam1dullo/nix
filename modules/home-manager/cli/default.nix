@@ -2,5 +2,5 @@
   # eza = import ./eza;
   # fd = import ./fd;
   # jq = import ./jq;
-  nixvim = import ./nixvim;
+  # nixvim = import ./nixvim;
 }

@@ -1,7 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
-, outputs
 , lib
 , color-schemes
 , config
@@ -11,20 +10,20 @@
   # You can import other home-manager modules herecolor-schemes
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
-    outputs.homeManagerModules.zsh
-    outputs.homeManagerModules.git
-    outputs.homeManagerModules.terminal
-    outputs.homeManagerModules.nixpkgs
-    outputs.homeManagerModules.tmux
-    outputs.homeManagerModules.vscode
-    # outputs.homeManagerModules.topgrade
-    outputs.homeManagerModules.packages
-    outputs.homeManagerModules.pipewire
-    outputs.homeManagerModules.cli
-    outputs.homeManagerModules.helix
+    # inputs.self.homeManagerModules.example
+    inputs.self.homeManagerModules.zsh
+    inputs.self.homeManagerModules.git
+    inputs.self.homeManagerModules.terminal
+    inputs.self.homeManagerModules.nixpkgs
+    inputs.self.homeManagerModules.tmux
+    inputs.self.homeManagerModules.vscode
+    # inputs.self.homeManagerModules.topgrade
+    inputs.self.homeManagerModules.packages
+    inputs.self.homeManagerModules.pipewire
+    inputs.self.homeManagerModules.cli
+    inputs.self.homeManagerModules.helix
 
-    # outputs.homeManagerModules.utils
+    # inputs.self.homeManagerModules.utils
 
 
     # Or modules exported from other flakes (such as nix-colors):
@@ -38,9 +37,9 @@
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      inputs.self.overlays.additions
+      inputs.self.overlays.modifications
+      inputs.self.overlays.unstable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -88,11 +87,9 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-  };
-  
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+
+
+  # powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";

@@ -49,17 +49,7 @@
       style = "breeze";
     };
 
-    # Make sure opengl is enabled
-    # hardware.opengl = {
-    #   enable = true;
-    #   driSupport = true;
-    #   driSupport32Bit = true;
-    #   extraPackages = with pkgs; [
-    #     vaapiIntel
-    #     vaapiVdpau
-    #     libvdpau-va-gl
-    #   ];
-    # };
+
 
     # Exclude some packages from the KDE desktop environment.
     environment.plasma6.excludePackages =
@@ -69,10 +59,6 @@
         # helix
       ];
 
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
     
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     # Enable the DConf configuration system.

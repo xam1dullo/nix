@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { inputs
-, outputs
 , lib
 , config
 , pkgs
@@ -14,17 +13,17 @@
   imports =
     [
 
-      outputs.nixosModules.ssh
-      outputs.nixosModules.zsh
-      outputs.nixosModules.fonts
-      outputs.nixosModules.sound
-      outputs.nixosModules.nixpkgs
-      outputs.nixosModules.users.khamidullo
-      outputs.nixosModules.desktop.kde
-      # outputs.nixosModules.hardware
-      outputs.nixosModules.nix-ld
-      outputs.nixosModules.docker
-      # outputs.homeManagerModules.postgresa
+      inputs.self.nixosModules.ssh
+      inputs.self.nixosModules.zsh
+      inputs.self.nixosModules.fonts
+      inputs.self.nixosModules.sound
+      inputs.self.nixosModules.nixpkgs
+      inputs.self.nixosModules.users.khamidullo
+      inputs.self.nixosModules.desktop.kde
+      # inputs.self.nixosModules.hardware
+      inputs.self.nixosModules.nix-ld
+      inputs.self.nixosModules.docker
+      # inputs.homeManagerModules.postgresa
 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -34,19 +33,13 @@
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      inputs.self.overlays.additions
+      inputs.self.overlays.modifications
+      inputs.self.overlays.unstable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -70,7 +63,6 @@
       registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-
 
 
 
@@ -158,66 +150,7 @@
 
     # mongodb = {
     #   enable = true;
-    #   package = pkgs.mongodb;
-    #   extraConfig = ''
-    #     storage:
-    #       dbPath: "/var/lib/mongodb"
-    #       journal:
-    #         enabled: true
-    #     systemLog:
-    #       destination: "file"
-    #       path: "/var/log/mongodb/mongod.log"
-    #       logAppend: true
-    #     net:
-    #       bindIp: "127.0.0.1"
-    #       port: 27017
-    #   '';
 
-    # enable = true;
-    # package = pkgs.mongodb;
-    # settings = {
-    #   storage = {
-    #     dbPath = "/var/lib/mongodb";
-    #     journal = {
-    #       enabled = true;
-    #     };
-    #   };
-    #   systemLog = {
-    #     destination = "file";
-    #     path = "/var/log/mongodb/mongod.log";
-    #     logAppend = true;
-    #   };
-    #   net = {
-    #     bindIp = "127.0.0.1";
-    #     port = 27017;
-    #   };
-    # };
-    # };
-
-    #   mongodb = {
-    #     enable = true;
-    #     package = pkgs.mongodb;
-    #     # dataDir = "/var/lib/mongodb";
-    #     logPath = "/var/log/mongodb/mongod.log";
-    #     extraConfig = ''
-    #       storage:
-    #         dbPath: "/var/lib/mongodb"
-    #         journal:
-    #           enabled: true
-    #       net:
-    #         bindIp: "127.0.0.1"
-    #         port: 27017
-    #     '';
-    # };
-    # mongodb = {
-    #   package = pkgs.mongodb-7;
-    #   #bind_ip = "0.0.0.0";
-    #   enable = true;
-    #   extraConfig = ''
-    #     operationProfiling.mode: all
-    #     systemLog.quiet: false
-    #   '';
-    # };
     auto-cpufreq.enable = true;
     nginx.enable = true;
   };
