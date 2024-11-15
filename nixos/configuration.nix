@@ -21,7 +21,7 @@
       outputs.nixosModules.nixpkgs
       outputs.nixosModules.users.khamidullo
       outputs.nixosModules.desktop.kde
-      # outputs.nixosModules.hardware
+      outputs.nixosModules.hardware
       outputs.nixosModules.nix-ld
       outputs.nixosModules.docker
       # outputs.homeManagerModules.postgresa

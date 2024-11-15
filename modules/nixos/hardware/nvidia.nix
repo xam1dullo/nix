@@ -6,7 +6,7 @@
   hardware.pulseaudio.enable = false;
 
 
-   hardware = {
+  hardware = {
     nvidia-container-toolkit.enable = true;
     opengl = {
       enable = true;
@@ -36,6 +36,7 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
+  
   # Kernel mod for nvidia laptops
   boot.kernelParams = [
     "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
