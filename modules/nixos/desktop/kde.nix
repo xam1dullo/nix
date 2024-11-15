@@ -25,8 +25,6 @@
 
       xserver = {
         enable = true;
-        videoDrivers = [ "nvidia" ]; # Agar NVIDIA video drayverlari kerak bo'lsa
-
         # Configure keymap in X11
         xkb = {
           variant = "";
@@ -75,7 +73,8 @@
     #   enable = true;
     #   enableSSHSupport = true;
     # };
-
+    
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
     # Enable the DConf configuration system.
     programs.dconf.enable = true;
 

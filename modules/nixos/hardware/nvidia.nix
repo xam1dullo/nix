@@ -1,46 +1,23 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, makeEnable, ... }:
 
-  # GPU for docker containers
-
-  hardware.pulseaudio.enable = false;
-
-
-  hardware = {
-    nvidia-container-toolkit.enable = true;
-    opengl = {
-      enable = true;
-      driSupport = true;
-      extraPackages = with pkgs; [
-        vaapiIntel
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
-    };
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings = {
-        General = {
-          Experimental = true;
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
-    };
-    nvidia = {
-      open = false;
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  };
-  
-  # Kernel mod for nvidia laptops
-  boot.kernelParams = [
-    "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
+makeEnable config "myModules.nvidia" false {
+  environment.systemPackages = with pkgs; [
+    nvidia-container-toolkit
+    vulkan-tools
   ];
+  hardware.nvidia-container-toolkit = {
+    enable = true;
+    mount-nvidia-executables = false;
+  };
 
 
+  
+  hardware.opengl.enable = true;
+  hardware.nvidia.open = true;
+  hardware.graphics.extraPackages = [ pkgs.linuxPackages.nvidia_x11.out ];
+  hardware.graphics.extraPackages32 = [ pkgs.linuxPackages.nvidia_x11.lib32 ];
+  hardware.graphics.enable32Bit = true;
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+  };
 }

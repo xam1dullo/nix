@@ -26,12 +26,15 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =
     { self
     , nixpkgs#
     , home-manager
+    , zen-browser
     , ...
     } @ inputs:
     let
@@ -98,6 +101,7 @@
             # > Our main nixos configuration file <
             ./nixos/configuration.nix
           ];
+
         };
       };
 
@@ -108,6 +112,7 @@
         "khamidullo@nix" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
+
 
           modules = [
             # > Our main home-manager configuration file <

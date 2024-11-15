@@ -23,7 +23,7 @@
     outputs.homeManagerModules.pipewire
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.helix
-   
+
     # outputs.homeManagerModules.utils
 
 
@@ -85,9 +85,14 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
-  
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+  };
+  
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";

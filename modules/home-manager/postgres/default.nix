@@ -1,38 +1,34 @@
-{ config, pkgs, lib, ... }:
-
-{
+{ pkgs, config, makeEnable, realUsers, ... }:
+makeEnable config "myModules.postgres" true {
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_16;
-    ensureDatabases = [ "b1_db" ];
-    enableTCPIP = true;
-    authentication = lib.mkOverride 10 ''
-      local   all             all                                     trust
-      host    all             all             127.0.0.1/32            trust
-      host    all             all             ::1/128                 trust
+    package = pkgs.postgresql_15;
+    ensureDatabases = [ "railbird" "public" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  CIDR-ADDRESS auth-method
+      local all       all                  trust
+      host  all       all     0.0.0.0/0    trust
+      host  all       all     ::1/128      trust
     '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
-      CREATE DATABASE nixcloud;
-      GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
-    '';
+    ensureUsers = map
+      (username: {
+        name = username;
+        ensureClauses = {
+          superuser = true;
+          createrole = true;
+          createdb = true;
+        };
+      })
+      realUsers;
+    # initialScript = pkgs.writeText "init-sql-script" ''
+    #   CREATE DATABASE IF NOT EXISTS railbird;
+    #   \c railbird
+    #   CREATE SCHEMA IF NOT EXISTS railbird;
+    # '';
   };
-
   services.pgadmin = {
-    enable = true;
-    package = pkgs.pgadmin4; # Agar siz pgadmin4 versiyasini ishlatmoqchi bo'lsangiz
+    enable = false;
     initialEmail = "khkhamidullo@gmail.com";
-    initialPasswordFile = "/var/lib/pgadmin/initial-password"; # Bu faylni yaratish kerak
-    port = 5050; # Standart portni o'zgartirish (pgAdmin uchun)
-    config = {
-      # Agar kerak bo'lsa, qo'shimcha konfiguratsiyalar
-      # Masalan, avtomatik ochilish uchun
-      APP_CONFIG_DATA_DIR = "/var/lib/pgadmin";
-    };
+    initialPasswordFile = (builtins.toFile "qwer12345" "This is the content of the file.");
   };
-
-  # pgAdmin uchun initial password faylini yaratish
-  environment.etc."pgadmin/initial-password".text = ''
-    qwer12345
-  '';
 }

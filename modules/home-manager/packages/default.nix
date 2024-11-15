@@ -101,7 +101,6 @@ in
     nil
     nixd
     nixpkgs-fmt
-
     firefox
     google-chrome
 
@@ -130,6 +129,7 @@ in
     zoxide
     starship
     gcc
+
     # clang
     cl
     zig
@@ -170,9 +170,21 @@ in
     optipng
     peek
 
+
     zulip
     mongodb-compass
     docker-compose
+
+
+      # Audio
+    picard
+    playerctl
+    pulsemixer
+    espeak
+
+
+    
+    
 
   ]) ++ (with unstablePkgs; [
     postman
