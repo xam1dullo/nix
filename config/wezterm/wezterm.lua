@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 return {
-	-- color_scheme = 'termnial.sexy',
-	color_scheme = 'Gruvbox Material (Gogh)',
+	color_scheme = 'termnial.sexy',
+	-- color_scheme = 'Gruvbox Material (Gogh)',
 	-- color_scheme = 'Catppuccin Mocha',
 	-- color_scheme = 'Tokyo Night',
 	enable_tab_bar = false,
