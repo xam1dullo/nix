@@ -150,19 +150,43 @@ in
     peek
 
     zulip
+    lazydocker
     mongodb-compass
+    docker
     docker-compose
 
+    safeeyes # Eye-strain protection
+
+
+    nodePackages.typescript
+    nodePackages.live-server
+    nodePackages.nodemon
+    nodePackages.prettier
+
+    pavucontrol
+    chromedriver
+
+    simplescreenrecorder
+    ngrok
+    flyctl
+    killall
+    # Nix stuff
+    cachix # adding/managing alternative binary caches hosted by Cachix
+    comma # run software from without installing it
+    niv # easy dependency management for nix projects
+    nix-tree # visualize the dependency graph of a nix derivation
+    alejandra # Nix code formatter
+    nix-init # Command line tool to generate Nix packages from URLs
+    nix-output-monitor # Use `nom <build|develop|shell>` to show aditional information while building
+
+    screenkey
+    shellcheck
   ]) ++ (with unstablePkgs; [
     postman
+    thunderbird
     nodejs_22
     pnpm
-    noto-fonts
     deno
-    alejandra
-    (nerdfonts.override {
-      fonts = [ "JetBrainsMono" ];
-    })
   ]);
   # home.packages = (with pkgs;  [
   #   # Downloader
