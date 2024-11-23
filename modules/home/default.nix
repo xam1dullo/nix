@@ -12,4 +12,5 @@
   postgres = import ./postgres;
   utils = import ./utils;
   cli = import ./cli;
+  veditor = import ./veditor;
 }

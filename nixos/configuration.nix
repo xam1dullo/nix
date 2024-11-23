@@ -23,7 +23,7 @@
       outputs.nixosModules.desktop.kde
       # outputs.nixosModules.hardware
       outputs.nixosModules.nix-ld
-      outputs.nixosModules.docker
+      # outputs.nixosModules.docker
       # outputs.homeManagerModules.postgresa
 
 
@@ -85,6 +85,28 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+
+  hardware = {
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      open = false;
+      nvidiaSettings = true;
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
+
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -129,10 +151,20 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   # Enable bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  services = {
+    xserver = {
+      enable = true;
+      videoDrivers = [ "nvidia" ];
+    };
+
+    displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
+    desktopManager.plasma6.enable = true;
+
+    blueman.enable = true;
+    teamviewer.enable = true;
   };
+
 
   # Driver + parameters
   # Don't ask for sudo password

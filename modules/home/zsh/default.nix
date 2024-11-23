@@ -227,6 +227,8 @@
       zstyle ':fzf-tab:*' switch-group '<' '>'
       # Extra services
       # here...
+      export NIXPKGS_ALLOW_UNFREE=1
+      eval "$(zoxide init zsh)"
     '';
   };
 }

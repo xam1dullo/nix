@@ -19,9 +19,12 @@
     outputs.homeManagerModules.vscode
     # outputs.homeManagerModules.topgrade
     outputs.homeManagerModules.packages
-    # outputs.homeManagerModules.pipewire
+    outputs.homeManagerModules.pipewire
     # outputs.homeManagerModules.postgres
     outputs.homeManagerModules.cli
+    outputs.homeManagerModules.helix
+    outputs.homeManagerModules.utils
+    # outputs.homeManagerModules.veditor
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -58,7 +61,7 @@
   home = {
     username = "khamidullo";
     homeDirectory = "/home/khamidullo";
-      enableNixpkgsReleaseCheck = false;
+    enableNixpkgsReleaseCheck = false;
   };
 
   # Add stuff for your user as you see fit:
