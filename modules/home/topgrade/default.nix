@@ -16,7 +16,7 @@ let
     "cargo"
     "vscode"
   ];
-ini
+  in
 {
   config = {
     programs.topgrade = {

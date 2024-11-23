@@ -14,14 +14,15 @@
     outputs.homeManagerModules.zsh
     outputs.homeManagerModules.git
     outputs.homeManagerModules.terminal
-    # outputs.homeManagerModules.nixpkgs
+    outputs.homeManagerModules.nixpkgs
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.vscode
     # outputs.homeManagerModules.topgrade
     outputs.homeManagerModules.packages
-    # outputs.homeManagerModules.pipewire
+    outputs.homeManagerModules.pipewire
     # outputs.homeManagerModules.postgres
     outputs.homeManagerModules.cli
+    outputs.homeManagerModules.helix
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -58,6 +59,7 @@
   home = {
     username = "khamidullo";
     homeDirectory = "/home/khamidullo";
+      enableNixpkgsReleaseCheck = false;
   };
 
   # Add stuff for your user as you see fit:
@@ -82,6 +84,7 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+  programs.direnv.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

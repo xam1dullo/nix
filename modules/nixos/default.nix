@@ -13,4 +13,7 @@
   users = import ./users;
   desktop = import ./desktop;
   nixpkgs = import ./nixpkgs;
+  # docker = import ./docker;
+  gnupg = import ./gnupg;
+  nix-ld = import ./nix-ld;
 }
