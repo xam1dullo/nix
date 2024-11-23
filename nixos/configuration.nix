@@ -46,7 +46,7 @@
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
       #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
+      #   });     
       # })
     ];
     # Configure your nixpkgs instance
