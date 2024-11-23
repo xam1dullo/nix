@@ -1,12 +1,12 @@
 { pkgs, ... }: {
   programs.vscode = {
     enable = true;
-    enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
+    enableExtensionUpdateCheck = false;
     package = pkgs.vscode;
-
+    mutableExtensionsDir = false;
     # Extentions
-    extensions = with pkgs.vscode-extensions; [
+    extensions = (with pkgs.vscode-extensions; [
       alefragnani.bookmarks
       davidanson.vscode-markdownlint
       editorconfig.editorconfig
@@ -46,7 +46,10 @@
 
       # denoland.vscode-deno
       # Postman.postman-for-vscode
-    ];
+    ]) ++ (with pkgs.unstable.vscode-extensions; [
+      # Unstable
+      seatonjiang.gitmoji-vscode
+    ]);
 
     # User defined setings (raw json)
     userSettings = builtins.fromJSON (builtins.readFile ./settings.json);

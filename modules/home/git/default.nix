@@ -29,6 +29,7 @@
     # Git ignores
     ignores = [
       ".idea"
+      "node_modules"
       "nohup.out"
     ];
   };

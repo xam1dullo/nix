@@ -173,6 +173,10 @@ in
       optipng
       peek
 
+
+      # Video editing
+      # davinci-resolve
+
       auto-cpufreq
       zulip
       # Browser for at least searching something

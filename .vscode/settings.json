@@ -1,6 +1,3 @@
 {
-  "cSpell.words": [
-    "nixd",
-    "nixpkgs"
-  ]
+  "editor.defaultFormatter": "jnoortheen.nix-ide"
 }
