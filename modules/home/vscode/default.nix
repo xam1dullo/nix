@@ -41,9 +41,15 @@
       zhuangtongfa.material-theme
       formulahendry.code-runner
       ms-azuretools.vscode-docker
+      github.vscode-pull-request-github
+      
       # 'denoland.vscode-deno
-      # 'Postman.postman-for-vscode'
-
+      # 'Postman.postman-for-vscode'a
+      bbenoist.nix
+      prisma.prisma
+      alefragnani.project-manager
+      # wayou.vscode-todo-highlight
+      # wayou.vscode-todo-highlight
       # denoland.vscode-deno
       # Postman.postman-for-vscode
     ]) ++ (with pkgs.unstable.vscode-extensions; [

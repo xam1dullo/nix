@@ -17,22 +17,4 @@
       GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
     '';
   };
-
-  services.pgadmin = {
-    enable = true;
-    package = pkgs.pgadmin4; # Agar siz pgadmin4 versiyasini ishlatmoqchi bo'lsangiz
-    initialEmail = "khkhamidullo@gmail.com";
-    initialPasswordFile = "/var/lib/pgadmin/initial-password"; # Bu faylni yaratish kerak
-    port = 5050; # Standart portni o'zgartirish (pgAdmin uchun)
-    config = {
-      # Agar kerak bo'lsa, qo'shimcha konfiguratsiyalar
-      # Masalan, avtomatik ochilish uchun
-      APP_CONFIG_DATA_DIR = "/var/lib/pgadmin";
-    };
-  };
-
-  # pgAdmin uchun initial password faylini yaratish
-  environment.etc."pgadmin/initial-password".text = ''
-    qwer12345
-  '';
 }

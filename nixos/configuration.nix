@@ -157,8 +157,17 @@
       videoDrivers = [ "nvidia" ];
     };
 
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
+    # This helps fix tearing of windows for Nvidia cards
+    screenSection = ''
+      Option       "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+      Option       "AllowIndirectGLXProtocol" "off"
+      Option       "TripleBuffer" "on"
+    '';
+
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
     desktopManager.plasma6.enable = true;
 
     blueman.enable = true;

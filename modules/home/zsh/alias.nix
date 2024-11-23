@@ -81,6 +81,13 @@ let
     docker-stop-all = "docker ps -q | xargs docker stop";
     docker-compose-restart = "docker compose up --force-recreate --build -d";
 
+    # Git-related
+    # See oh-my-zsh -> plugins -> git
+    lg = "lazygit";
+    lzd = "lazydocker";
+    e = "exit";
+    c = "clear";
+    nixcleanup = "nix store gc && nix collect-garbage -d";
 
   };
 

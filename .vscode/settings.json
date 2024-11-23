@@ -1,3 +1,4 @@
 {
-  "editor.defaultFormatter": "jnoortheen.nix-ide"
+  "editor.defaultFormatter": "jnoortheen.nix-ide",
+    "editor.inlineSuggest.enabled": true,
 }
