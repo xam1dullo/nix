@@ -19,10 +19,9 @@
     outputs.homeManagerModules.vscode
     # outputs.homeManagerModules.topgrade
     outputs.homeManagerModules.packages
-    outputs.homeManagerModules.pipewire
+    # outputs.homeManagerModules.pipewire
     # outputs.homeManagerModules.postgres
     outputs.homeManagerModules.cli
-    outputs.homeManagerModules.helix
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default

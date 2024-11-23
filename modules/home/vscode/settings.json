@@ -37,7 +37,9 @@
   },
   "terminal.integrated.cursorStyle": "underline",
   "metals.excludedPackages": [],
-  "cSpell.userWords": ["payme"],
+  "cSpell.userWords": [
+    "payme"
+  ],
   "cSpell.customDictionaries": {},
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -65,5 +67,15 @@
   "code-runner.runInTerminal": true,
   "window.density.editorTabHeight": "compact",
   "editor.lineNumbers": "relative",
-  "window.customTitleBarVisibility": "auto"
+  "window.customTitleBarVisibility": "auto",
+  "nix.serverPath": "nixd",
+  "nix.enableLanguageServer": true,
+  "nixpkgs": {
+    "expr": "import <nixpkgs> {}"
+  },
+  "formatting": {
+    "command": [
+      "alejandra"
+    ]
+  }
 }

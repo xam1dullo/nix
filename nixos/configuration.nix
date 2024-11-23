@@ -19,10 +19,12 @@
       outputs.nixosModules.fonts
       outputs.nixosModules.sound
       outputs.nixosModules.nixpkgs
-      # outputs.nixosModules.boot.grub
       outputs.nixosModules.users.khamidullo
       outputs.nixosModules.desktop.kde
-      # outputs.homeManagerModules.postgres
+      # outputs.nixosModules.hardware
+      outputs.nixosModules.nix-ld
+      outputs.nixosModules.docker
+      # outputs.homeManagerModules.postgresa
 
 
       # Include the results of the hardware scan.
@@ -105,7 +107,6 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
 
-
   # home-manager.useGlobalPkgs = true;
   # home-manager.useUserPackages = true;
   # home-manager.pipewire.enable = true;
@@ -135,24 +136,90 @@
 
   # Driver + parameters
   # Don't ask for sudo password
-  services.auto-cpufreq.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_16;
-    ensureDatabases = [ "b1_db" ];
-    enableTCPIP = true;
-    authentication = pkgs.lib.mkOverride 10 ''
-      local all      all                    trust
-      host  all      all     127.0.0.1/32   trust
-      host  all      all     ::1/128        trust
-    '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
-      CREATE DATABASE nixcloud;
-      GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
-    '';
+  services = {
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_16;
+      ensureDatabases = [ "b1_db" ];
+      enableTCPIP = true;
+      authentication = pkgs.lib.mkOverride 10 ''
+        local all      all                    trust
+        host  all      all     127.0.0.1/32   trust
+        host  all      all     ::1/128        trust
+      '';
+      initialScript = pkgs.writeText "backend-initScript" ''
+        CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
+        CREATE DATABASE nixcloud;
+        GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
+      '';
+    };
+
+    # mongodb = {
+    #   enable = true;
+    #   package = pkgs.mongodb;
+    #   extraConfig = ''
+    #     storage:
+    #       dbPath: "/var/lib/mongodb"
+    #       journal:
+    #         enabled: true
+    #     systemLog:
+    #       destination: "file"
+    #       path: "/var/log/mongodb/mongod.log"
+    #       logAppend: true
+    #     net:
+    #       bindIp: "127.0.0.1"
+    #       port: 27017
+    #   '';
+
+    # enable = true;
+    # package = pkgs.mongodb;
+    # settings = {
+    #   storage = {
+    #     dbPath = "/var/lib/mongodb";
+    #     journal = {
+    #       enabled = true;
+    #     };
+    #   };
+    #   systemLog = {
+    #     destination = "file";
+    #     path = "/var/log/mongodb/mongod.log";
+    #     logAppend = true;
+    #   };
+    #   net = {
+    #     bindIp = "127.0.0.1";
+    #     port = 27017;
+    #   };
+    # };
+    # };
+
+    #   mongodb = {
+    #     enable = true;
+    #     package = pkgs.mongodb;
+    #     # dataDir = "/var/lib/mongodb";
+    #     logPath = "/var/log/mongodb/mongod.log";
+    #     extraConfig = ''
+    #       storage:
+    #         dbPath: "/var/lib/mongodb"
+    #         journal:
+    #           enabled: true
+    #       net:
+    #         bindIp: "127.0.0.1"
+    #         port: 27017
+    #     '';
+    # };
+    # mongodb = {
+    #   package = pkgs.mongodb-7;
+    #   #bind_ip = "0.0.0.0";
+    #   enable = true;
+    #   extraConfig = ''
+    #     operationProfiling.mode: all
+    #     systemLog.quiet: false
+    #   '';
+    # };
+    auto-cpufreq.enable = true;
+    nginx.enable = true;
   };
 
   # services.pgadmin = {
