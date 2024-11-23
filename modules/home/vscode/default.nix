@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.vscode = {
     enable = true;
-    enableExtensionUpdateCheck = false;
+    enableExtensionUpdateCheck = true;
     enableUpdateCheck = false;
     package = pkgs.vscode;
 
