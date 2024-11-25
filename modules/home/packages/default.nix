@@ -183,6 +183,7 @@ in
     shellcheck
   ]) ++ (with unstablePkgs; [
     postman
+    zoom-us
     thunderbird
     nodejs_22
     pnpm

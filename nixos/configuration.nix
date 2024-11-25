@@ -39,15 +39,6 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });     
-      # })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -61,9 +52,16 @@
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
     in
     {
+      gc = {
+        automatic = true; # Enable automatic execution of the task
+        dates = "weekly"; # Schedule the task to run weekly
+        options = "--delete-older-than 10d"; # Specify options for the task: delete files older than 10 days
+        randomizedDelaySec = "14m"; # Introduce a randomized delay of up to 14 minutes before executing the task
+      };
       settings = {
         experimental-features = "nix-command flakes";
         flake-registry = "";
+        auto-optimise-store = true;
         nix-path = config.nix.nixPath;
       };
       channel.enable = false;
@@ -122,6 +120,7 @@
 
 
 
+
   # Enable sound with pipewire.
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -154,15 +153,10 @@
   services = {
     xserver = {
       enable = true;
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = [ "nvidia-open" ];
     };
 
-    # This helps fix tearing of windows for Nvidia cards
-    screenSection = ''
-      Option       "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
-      Option       "AllowIndirectGLXProtocol" "off"
-      Option       "TripleBuffer" "on"
-    '';
+
 
     displayManager.sddm = {
       enable = true;
