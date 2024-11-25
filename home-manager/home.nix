@@ -24,6 +24,7 @@
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.helix
     outputs.homeManagerModules.utils
+    outputs.homeManagerModules.obs
     # outputs.homeManagerModules.veditor
 
     # Or modules exported from other flakes (such as nix-colors):

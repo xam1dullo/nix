@@ -10,8 +10,9 @@
 
     extraConfig = {
       http.sslVerify = false;
-      pull.rebase = false;
-      init.defaultBranch = "main";
+      init = { defaultBranch = "main"; };
+      pull = { rebase = false; };
+      push = { autoSetupRemote = true; };
     };
 
     # GPG Signing
