@@ -25,7 +25,6 @@ in
   home.packages = (with pkgs;  [
     # Downloader
     aria
-
     # Developer Mode
     gh
     jq
@@ -95,14 +94,11 @@ in
     google-chrome
 
     vim
-    alacritty
-    neovim
     git
     zsh
     tree
     obsidian
     fzf
-    nodejs
 
     vlc
     obs-studio
@@ -118,7 +114,6 @@ in
     # Home Manager
     zoxide
     starship
-    gcc
     # clang
     cl
     zig
@@ -188,6 +183,7 @@ in
     nodejs_22
     pnpm
     deno
+    neovim
   ]);
   # home.packages = (with pkgs;  [
   #   # Downloader
@@ -279,7 +275,7 @@ in
   #   google-chrome
 
   #   vim
-  #   alacritty
+  #  
   #   # tmux
   #   neovim
   #   git
