@@ -91,17 +91,14 @@ in
       firefox
       google-chrome
 
+      gcc
       vim
       wget
-      alacritty
-      # tmux
-      neovim
       git
       zsh
       tree
       obsidian
       fzf
-      nodejs
       # vscode
 
       vlc
@@ -133,6 +130,15 @@ in
       unzip
       insomnia
 
+      cmake
+      gcc
+      cmake-language-server
+      gnumake
+      checkmake
+      gcc # c/c++ compiler, required by nvim-treesitter!
+      llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
+      lldb
+      gnumake
       github-desktop
       # Papirus Icon Pack
       papirus-icon-theme
@@ -149,7 +155,6 @@ in
       kdePackages.plasma-browser-integration
       vulkan-tools
       wayland-utils
-      wineWowPackages.waylandFull
       xwaylandvideobridge
       curl
       ffmpeg-full

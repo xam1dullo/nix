@@ -4,7 +4,7 @@
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     package = pkgs.vscode;
-    mutableExtensionsDir = true;
+    mutableExtensionsDir = false;
     # Extentions
     extensions = (with pkgs.vscode-extensions; [
       alefragnani.bookmarks
