@@ -70,8 +70,6 @@ in
     yt-dlp
     xclip
     nest-cli
-    wezterm
-
     # pgadmin4
     pgadmin4-desktopmode
 
@@ -144,7 +142,6 @@ in
     optipng
     peek
 
-    ffmpeg
     # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
     gst_all_1.gstreamer
     # Common plugins like "filesrc" to combine within e.g. gst-launch
@@ -157,7 +154,7 @@ in
     gst_all_1.gst-libav
     # Support the Video Audio (Hardware) Acceleration API
     gst_all_1.gst-vaapi
-
+    kitty
     zulip
     lazydocker
     mongodb-compass
@@ -195,9 +192,12 @@ in
     zoom-us
     thunderbird
     nodejs_22
+    zed-editor
     pnpm
     deno
     neovim
+    alacritty
+    wezterm
   ]);
   # home.packages = (with pkgs;  [
   #   # Downloader

@@ -29,8 +29,6 @@ in
             telegram-desktop
             github-desktop
             inputs.zen-browser.packages."${system}".default
-          ]) ++ (with pkgs.unstable; [
-            zed-editor
           ]);
         };
       };

@@ -150,7 +150,6 @@ in
       wayland-utils
       xwaylandvideobridge
       curl
-      ffmpeg-full
       flameshot
 
       zulip-term
