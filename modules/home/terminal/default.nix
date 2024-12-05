@@ -4,9 +4,16 @@
     enable = true;
     settings = {
       window = {
-        padding.x = 10;
-        padding.y = 10;
+        padding = {
+          x = 4;
+          y = 8;
+        };
+        
         decorations = "Full";
+        opacity = 1;
+        startup_mode = "Windowed";
+        title = "Alacritty";
+        dynamic_title = true;
       };
 
       font = {
@@ -48,10 +55,6 @@
           white = "0xfffefe";
         };
       };
-      # shell = {
-      #   program = "/bin/zsh";
-      #   args = [ "-l" "-c" "tmux attach || tmux" ];
-      # };
     };
   };
 

@@ -4,15 +4,8 @@
 # =================================
 { pkgs, ... }:
 let
-  x86_64-opengl =
-    if (!pkgs.stdenv.hostPlatform.isAarch64)
-    then {
-      driSupport32Bit = true;
-    } else { };
-
   all-opengl = {
     enable = true;
-    driSupport = true;
   };
 in
 {
@@ -65,7 +58,7 @@ in
     };
 
     # Make sure opengl is enabled
-    hardware.opengl = all-opengl // x86_64-opengl;
+    hardware.opengl = all-opengl;
 
     # Exclude some packages from the KDE desktop environment.
     environment.plasma6.excludePackages =
