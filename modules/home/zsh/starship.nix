@@ -3,8 +3,18 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    # settings = {
+    #   battery.disabled = true;
+    # };
     settings = {
-      battery.disabled = true;
+      format = ''
+        $directory
+        $character
+      '';
+      add_newline = true;
+      package = {
+        disabled = true;
+      };
     };
   };
 }

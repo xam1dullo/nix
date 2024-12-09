@@ -51,13 +51,14 @@
   "editor.unicodeHighlight.invisibleCharacters": false,
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.experimental.updateImportsOnPaste":true,
+  "typescript.experimental.updateImportsOnPaste":true,
   "editor.codeLensFontFamily": "JetBrains Mono",
   "terminal.integrated.localEchoExcludePrograms": [
     "vim",
     "vi",
     "nano",
-    "tmux",
-    "nvim"
+    "eza"
   ],
   "terminal.integrated.lineHeight": 0,
   "terminal.integrated.fontWeight": "normal",

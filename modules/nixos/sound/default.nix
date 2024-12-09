@@ -6,13 +6,13 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
+    # If you want to use JACK applications, uncomment thishttps://www.totaltypescript.com/buy
+    # jack.enable = true;
     wireplumber.enable = true;
   };
   security.rtkit.enable = true;
   security.polkit.enable = true;
-  environment.systemPackages = with pkgs; [ pulseaudioFull ];
+  # environment.systemPackages = with pkgs; [ pulseaudioFull ];
 }
 
 # { pkgs, ... }: {

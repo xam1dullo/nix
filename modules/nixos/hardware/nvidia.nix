@@ -10,7 +10,6 @@
     nvidia-container-toolkit.enable = true;
     opengl = {
       enable = true;
-      driSupport = true;
       extraPackages = with pkgs; [
         vaapiIntel
         vaapiVdpau

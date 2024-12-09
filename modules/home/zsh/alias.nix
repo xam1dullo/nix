@@ -39,7 +39,6 @@ let
     # Made with Rust
     top = "btop";
     cat = "bat";
-    ls = "eza";
     sl = "eza";
     ps = "procs";
     grep = "rg";

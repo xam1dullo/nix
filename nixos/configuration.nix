@@ -17,7 +17,7 @@
       outputs.nixosModules.ssh
       outputs.nixosModules.zsh
       outputs.nixosModules.fonts
-      outputs.nixosModules.sound
+      # outputs.nixosModules.sound
       outputs.nixosModules.nixpkgs
       outputs.nixosModules.users.khamidullo
       outputs.nixosModules.desktop.kde
@@ -87,8 +87,6 @@
   hardware = {
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
     };
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -253,7 +251,9 @@
     #     systemLog.quiet: false
     #   '';
     # };
-    auto-cpufreq.enable = true;
+    # auto-cpufreq.enable = true;
+    power-profiles-daemon.enable = true; # Keep this enabled
+    auto-cpufreq.enable = false; # Disable to resolve conflict
     nginx.enable = true;
   };
 
@@ -270,6 +270,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }
