@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs,  ... }:
 let
   system = pkgs.system;
 in
@@ -28,7 +28,6 @@ in
           packages = (with pkgs; [
             telegram-desktop
             github-desktop
-            inputs.zen-browser.packages."${system}".default
           ]);
         };
       };

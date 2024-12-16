@@ -17,6 +17,9 @@ let
         allowUnfree = true;
       };
     };
+    zen-browser = {
+       url = "github:MarceColl/zen-browser-flake";
+     };
 in
 {
 
@@ -168,7 +171,7 @@ in
     nodePackages.live-server
     nodePackages.nodemon
     nodePackages.prettier
-
+    nest-cli
     pavucontrol
     chromedriver
 
@@ -291,6 +294,7 @@ in
     # Papirus Icon Pack
     papirus-icon-theme
   ]) ++ (with unstablePkgs; [
+    zen-browser.packages."${system}".default
     postman
     zoom-us
     thunderbird
