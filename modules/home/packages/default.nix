@@ -17,9 +17,6 @@ let
         allowUnfree = true;
       };
     };
-    zen-browser = {
-       url = "github:MarceColl/zen-browser-flake";
-     };
 in
 {
 
@@ -92,7 +89,7 @@ in
     nixpkgs-fmt
 
     firefox
-    google-chrome
+    # google-chrome
 
     vim
     git
@@ -196,7 +193,7 @@ in
     nixpkgs-fmt
 
     firefox
-    google-chrome
+    # google-chrome
 
     gcc
     vim
@@ -290,12 +287,14 @@ in
     zulip
     # Browser for at least searching something
     librewolf
-
     # Papirus Icon Pack
     papirus-icon-theme
+    pandoc 
+    texlive.combined.scheme-full
+    certbot
   ]) ++ (with unstablePkgs; [
-    zen-browser.packages."${system}".default
     postman
+    ghostty
     zoom-us
     thunderbird
     nodejs_22

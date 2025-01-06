@@ -58,7 +58,7 @@ in
     };
 
     # Make sure opengl is enabled
-    hardware.opengl = all-opengl;
+    hardware.graphics = all-opengl;
 
     # Exclude some packages from the KDE desktop environment.
     environment.plasma6.excludePackages =

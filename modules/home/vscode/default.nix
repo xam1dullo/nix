@@ -42,7 +42,6 @@
       formulahendry.code-runner
       ms-azuretools.vscode-docker
       github.vscode-pull-request-github
-
       # 'denoland.vscode-deno
       # 'Postman.postman-for-vscode'a
       bbenoist.nix
