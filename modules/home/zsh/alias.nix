@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   determinateSystems = "curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix";
   isMacOS = pkgs.stdenv.hostPlatform.system == "aarch64-darwin" || pkgs.stdenv.hostPlatform.system == "x86_64-darwin";
 
@@ -24,8 +27,6 @@ let
     ssh-hosts = "grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'";
     ydl = "yt-dlp -o '%(title)s.%(ext)s' -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'";
     adl = "yt-dlp -o '%(title)s.%(ext)s' -f 'bestaudio[ext=m4a]/best' --extract-audio";
-
-
 
     # Polite motherfucker!
     # Do you speak it?!
@@ -87,7 +88,6 @@ let
     e = "exit";
     c = "clear";
     nixcleanup = "nix store gc && nix collect-garbage -d";
-
   };
 
   cfg = lib.mkMerge [
@@ -95,8 +95,7 @@ let
     linux
     default
   ];
-in
-{
+in {
   config = {
     programs.zsh.shellAliases = cfg;
   };

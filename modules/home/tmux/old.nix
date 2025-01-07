@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   # Thanks: https://github.com/DanielFGray/dotfiles/blob/master/tmux.remote.conf
   remoteConf = builtins.toFile "tmux.remote.conf" ''
     unbind C-q
@@ -10,10 +12,8 @@ let
     bind C-t last-window
     set-option -g status-position top
   '';
-in
-{
-
-  imports = [ ./theme.nix ];
+in {
+  imports = [./theme.nix];
 
   programs.tmux = {
     enable = true;
@@ -23,8 +23,7 @@ in
     terminal = "tmux-256color";
     historyLimit = 50000;
 
-    extraConfig = with config.theme; with pkgs.tmuxPlugins;
-      ''
+    extraConfig = with config.theme; with pkgs.tmuxPlugins; ''
 
       set-option -g prefix C-space
         # Plugins
@@ -83,6 +82,6 @@ in
         set-option -g display-panes-colour '${colors.dimForeground}'
 
         set-option -g clock-mode-colour '${colors.dominant}'
-      '';
+    '';
   };
 }

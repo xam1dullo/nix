@@ -1,13 +1,15 @@
-{ pkgs, inputs, ... }:
-let
-  system = pkgs.system;
-in
 {
+  pkgs,
+  inputs,
+  ...
+}: let
+  system = pkgs.system;
+in {
   config = {
     users = {
       defaultUserShell = pkgs.zsh;
       groups = {
-        khamidullo = { }; # Create a group for the user
+        khamidullo = {}; # Create a group for the user
       };
       users = {
         khamidullo = {
@@ -25,14 +27,13 @@ in
             "input"
             "systemd-journal"
           ];
-          packages = (with pkgs; [
+          packages = with pkgs; [
             telegram-desktop
             github-desktop
             inputs.zen-browser.packages."${system}".default
-          ]);
+          ];
         };
       };
     };
   };
-
 }

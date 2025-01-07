@@ -2,17 +2,14 @@
 # For further configuration extention, please refer to:
 # https://wiki.nixos.org/wiki/KDE
 # =================================
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   all-opengl = {
     enable = true;
   };
-in
-{
+in {
   config = {
     # Enable the X11 windowing system.
     services = {
-
       # Enable the GDM display manager.
       displayManager = {
         # defaultSession = "none+i3";
@@ -31,7 +28,7 @@ in
 
       xserver = {
         enable = true;
-        videoDrivers = [ "nvidia" ]; # Agar NVIDIA video drayverlari kerak bo'lsa
+        videoDrivers = ["nvidia"]; # Agar NVIDIA video drayverlari kerak bo'lsa
 
         # Configure keymap in X11
         xkb = {
@@ -40,14 +37,12 @@ in
         };
 
         # Exclude some defautl packages
-        excludePackages = [ pkgs.xterm ];
-
+        excludePackages = [pkgs.xterm];
 
         # envfs.enable = true;
         # blueman.enable = true;
 
         # printing.enable = true; # CUPS ni yoqing
-
       };
     };
 
@@ -61,17 +56,14 @@ in
     hardware.graphics = all-opengl;
 
     # Exclude some packages from the KDE desktop environment.
-    environment.plasma6.excludePackages =
-      with pkgs.kdePackages; [
-        # kate # that editor
-        # plasma-browser-integration # browser integration
-      ];
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
+      # kate # that editor
+      # plasma-browser-integration # browser integration
+    ];
 
     # Enable the DConf configuration system.
     programs.dconf.enable = true;
 
-
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   };
 }

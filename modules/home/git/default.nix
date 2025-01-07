@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   programs.git = {
     enable = true;
     lfs.enable = true;
@@ -10,9 +9,9 @@
 
     extraConfig = {
       http.sslVerify = false;
-      init = { defaultBranch = "main"; };
-      pull = { rebase = false; };
-      push = { autoSetupRemote = true; };
+      init = {defaultBranch = "main";};
+      pull = {rebase = false;};
+      push = {autoSetupRemote = true;};
     };
 
     # GPG Signing
@@ -51,7 +50,7 @@
       glol = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
       glola = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all";
       glols = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat";
-  };
+    };
 
     # Git ignores
     ignores = [
@@ -60,5 +59,4 @@
       "nohup.out"
     ];
   };
-
 }

@@ -1,12 +1,13 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   # GPU for docker containers
 
   hardware.pulseaudio.enable = false;
 
-
-   hardware = {
+  hardware = {
     nvidia-container-toolkit.enable = true;
     opengl = {
       enable = true;
@@ -39,6 +40,4 @@
   boot.kernelParams = [
     "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
   ];
-
-
 }

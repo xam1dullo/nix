@@ -1,5 +1,8 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # services.auto-cpufreq.enable = true;
 }

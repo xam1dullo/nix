@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   config = {
     programs.helix = {
       enable = true;
@@ -28,9 +28,9 @@
           };
 
           statusline = {
-            left = [ "mode" "spinner" "read-only-indicator" "file-modification-indicator" ];
+            left = ["mode" "spinner" "read-only-indicator" "file-modification-indicator"];
 
-            center = [ "file-name" ];
+            center = ["file-name"];
 
             right = [
               "diagnostics"
@@ -64,7 +64,7 @@
 
       extraPackages = with pkgs;
         [
-                #     #-- c/c++
+          #     #-- c/c++
           #     cmake
           #     cmake-language-server
           #     gnumake
@@ -113,23 +113,23 @@
           #     shfmt
 
           #     #-- javascript/typescript --#
-              nodePackages.nodejs
-              nodePackages.typescript
-              nodePackages.typescript-language-server
+          nodePackages.nodejs
+          nodePackages.typescript
+          nodePackages.typescript-language-server
           #     # HTML/CSS/JSON/ESLint language servers extracted from vscode
-              nodePackages.vscode-langservers-extracted
+          nodePackages.vscode-langservers-extracted
           #     nodePackages."@tailwindcss/language-server"
 
           #     #-- CloudNative
-              nodePackages.dockerfile-language-server-nodejs
+          nodePackages.dockerfile-language-server-nodejs
           #     emmet-ls
           #     jsonnet
-              # jsonnet-language-server
-              hadolint # Dockerfile linter
+          # jsonnet-language-server
+          hadolint # Dockerfile linter
 
           #-- Others
           taplo # TOML language server / formatter / validator
-              nodePackages.yaml-language-server
+          nodePackages.yaml-language-server
           #     sqlfluff # SQL linter
           #     actionlint # GitHub Actions linter
           #     buf # protoc plugin for linting and formatting
@@ -138,7 +138,7 @@
 
           #     #-- Misc
           #     tree-sitter # common language parser/highlighter
-              nodePackages.prettier # common code formatter
+          nodePackages.prettier # common code formatter
           #     marksman # language server for markdown
           #     glow # markdown previewer
           #     fzf
@@ -149,7 +149,7 @@
         ]
         ++ (
           if pkgs.stdenv.isDarwin
-          then [ ]
+          then []
           else [
             #-- verilog / systemverilog
             verible

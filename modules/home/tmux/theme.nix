@@ -1,17 +1,15 @@
 # A facility centralizing theme / colorscheme
-
 # The default colors are based on the Gruvbox theme:
 #
 # - https://github.com/morhetz/gruvbox
 # - https://github.com/morhetz/gruvbox-contrib
-
-{ config, lib, ... }:
-
-with lib;
-
 {
+  config,
+  lib,
+  ...
+}:
+with lib; {
   options.theme.colors = {
-
     dominantName = mkOption {
       type = types.str;
       default = "green";
@@ -147,7 +145,6 @@ with lib;
       default = "#fe8019";
     };
 
-
     neutralRed = mkOption {
       type = types.str;
       default = "#cc241d";
@@ -183,7 +180,6 @@ with lib;
       default = "#d65d0e";
     };
 
-
     fadedRed = mkOption {
       type = types.str;
       default = "#9d0006";
@@ -218,6 +214,5 @@ with lib;
       type = types.str;
       default = "#af3a03";
     };
-
   };
 }

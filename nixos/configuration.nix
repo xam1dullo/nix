@@ -1,35 +1,30 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs
-, outputs
-, lib
-, config
-, pkgs
-, ...
-}:
-
 {
-  imports =
-    [
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    outputs.nixosModules.ssh
+    outputs.nixosModules.zsh
+    outputs.nixosModules.fonts
+    # outputs.nixosModules.sound
+    outputs.nixosModules.nixpkgs
+    outputs.nixosModules.users.khamidullo
+    outputs.nixosModules.desktop.kde
+    # outputs.nixosModules.hardware
+    outputs.nixosModules.nix-ld
+    # outputs.nixosModules.docker
+    # outputs.homeManagerModules.postgresa
 
-      outputs.nixosModules.ssh
-      outputs.nixosModules.zsh
-      outputs.nixosModules.fonts
-      # outputs.nixosModules.sound
-      outputs.nixosModules.nixpkgs
-      outputs.nixosModules.users.khamidullo
-      outputs.nixosModules.desktop.kde
-      # outputs.nixosModules.hardware
-      outputs.nixosModules.nix-ld
-      # outputs.nixosModules.docker
-      # outputs.homeManagerModules.postgresa
-
-
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs = {
     # You can add overlays here
@@ -38,7 +33,6 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-
     ];
     # Configure your nixpkgs instance
     config = {
@@ -47,30 +41,26 @@
     };
   };
 
-  nix =
-    let
-      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-    in
-    {
-      gc = {
-        automatic = true; # Enable automatic execution of the task
-        dates = "weekly"; # Schedule the task to run weekly
-        options = "--delete-older-than 10d"; # Specify options for the task: delete files older than 10 days
-        randomizedDelaySec = "14m"; # Introduce a randomized delay of up to 14 minutes before executing the task
-      };
-      settings = {
-        experimental-features = "nix-command flakes";
-        flake-registry = "";
-        auto-optimise-store = true;
-        nix-path = config.nix.nixPath;
-      };
-      channel.enable = false;
-
-      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
+    gc = {
+      automatic = true; # Enable automatic execution of the task
+      dates = "weekly"; # Schedule the task to run weekly
+      options = "--delete-older-than 10d"; # Specify options for the task: delete files older than 10 days
+      randomizedDelaySec = "14m"; # Introduce a randomized delay of up to 14 minutes before executing the task
     };
+    settings = {
+      experimental-features = "nix-command flakes";
+      flake-registry = "";
+      auto-optimise-store = true;
+      nix-path = config.nix.nixPath;
+    };
+    channel.enable = false;
 
-
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -83,9 +73,8 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
     };
     nvidia = {
@@ -102,13 +91,11 @@
     };
   };
 
-
   # Enable networking
   networking.networkmanager.enable = true;
 
   # enable direnv
   programs.direnv.enable = true;
-
 
   # Set your time zone.
   time.timeZone = "Asia/Tashkent";
@@ -116,15 +103,11 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-
-
-
   # Enable sound with pipewire.
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-
 
   # home-manager.useGlobalPkgs = true;
   # home-manager.useUserPackages = true;
@@ -151,10 +134,8 @@
   services = {
     xserver = {
       enable = true;
-      videoDrivers = [ "nvidia-open" ];
+      videoDrivers = ["nvidia-open"];
     };
-
-
 
     displayManager.sddm = {
       enable = true;
@@ -166,7 +147,6 @@
     teamviewer.enable = true;
   };
 
-
   # Driver + parameters
   # Don't ask for sudo password
 
@@ -175,7 +155,7 @@
     postgresql = {
       enable = true;
       package = pkgs.postgresql_16;
-      ensureDatabases = [ "b1_db" ];
+      ensureDatabases = ["b1_db"];
       enableTCPIP = true;
       authentication = pkgs.lib.mkOverride 10 ''
         local all      all                    trust
@@ -271,5 +251,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

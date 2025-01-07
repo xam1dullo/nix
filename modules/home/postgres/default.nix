@@ -1,10 +1,13 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_16;
-    ensureDatabases = [ "b1_db" ];
+    ensureDatabases = ["b1_db"];
     enableTCPIP = true;
     authentication = lib.mkOverride 10 ''
       local   all             all                                     trust

@@ -1,6 +1,7 @@
-{ pkgs
-, lib
-, ...
+{
+  pkgs,
+  lib,
+  ...
 }: {
   xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf".text = ''
     context.modules = [

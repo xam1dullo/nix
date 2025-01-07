@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./alias.nix
     ./zoxide.nix
@@ -78,7 +78,7 @@
     # Oh my zsh integration
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = ["git"];
       theme = "robbyrussell";
     };
 
@@ -229,6 +229,7 @@
       # here...
       export NIXPKGS_ALLOW_UNFREE=1
       eval "$(zoxide init zsh)"
+      PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING=1
     '';
   };
 }

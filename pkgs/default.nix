@@ -2,5 +2,5 @@
 # You can build them using 'nix build .#example'
 pkgs: {
   # example = pkgs.callPackage ./example { };
-  google = pkgs.callPackage ./google { };
+  google = pkgs.callPackage ./google {};
 }
