@@ -1,4 +1,7 @@
 {
   "editor.defaultFormatter": "jnoortheen.nix-ide",
     "editor.inlineSuggest.enabled": true,
+    "[markdown]": {
+      "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
 }

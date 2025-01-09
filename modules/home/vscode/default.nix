@@ -4,7 +4,7 @@
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     package = pkgs.vscode;
-    mutableExtensionsDir = false;
+    # mutableExtensionsDir = false;
     # Extentions
     extensions =
       (with pkgs.vscode-extensions; [
@@ -48,12 +48,17 @@
         bbenoist.nix
         prisma.prisma
         alefragnani.project-manager
+        cweijan.vscode-database-client2
+        redhat.vscode-yaml
+        # amazonwebservices.aws-toolkit-vscode
+        github.copilot
+        github.vscode-github-actions
         # wayou.vscode-todo-highlight
         # wayou.vscode-todo-highlight
         # denoland.vscode-deno
-        # Postman.postman-for-vscode
       ])
       ++ (with pkgs.unstable.vscode-extensions; [
+        # postman.postman-for-vscode
         # Unstable
         seatonjiang.gitmoji-vscode
       ]);

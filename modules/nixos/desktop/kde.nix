@@ -57,13 +57,18 @@ in {
 
     # Exclude some packages from the KDE desktop environment.
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
-      # kate # that editor
-      # plasma-browser-integration # browser integration
+      kate # that editor
+      plasma-browser-integration # browser integration
     ];
 
     # Enable the DConf configuration system.
     programs.dconf.enable = true;
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    environment.systemPackages = with pkgs; [
+        openssl
+    ];
+    
+
   };
 }
