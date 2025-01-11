@@ -56,6 +56,7 @@
         # wayou.vscode-todo-highlight
         # wayou.vscode-todo-highlight
         # denoland.vscode-deno
+        nefrob.vscode-just-syntax
       ])
       ++ (with pkgs.unstable.vscode-extensions; [
         # postman.postman-for-vscode

@@ -32,6 +32,9 @@ in {
             github-desktop
             inputs.zen-browser.packages."${system}".default
             docker
+            neovim
+            vim
+            home-manager
           ];
         };
       };

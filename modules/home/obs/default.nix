@@ -21,6 +21,7 @@ in
       };
 
       packages = with pkgs; [
+        davinci-resolve
         obs-cli
         obs-cmd
       ];
@@ -32,6 +33,7 @@ in
         wlrobs
         obs-backgroundremoval
         obs-pipewire-audio-capture
+
       ];
     };
   }

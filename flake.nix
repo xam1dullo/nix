@@ -1,76 +1,3 @@
-#{
-#  description = "My first nix config";
-#
-#  inputs = {
-#    # Nixpkgs
-#    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-#    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-#
-#    # Home manager
-#    home-manager.url = "github:nix-community/home-manager/release-24.11";
-#    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-#  };
-#
-#  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, ... } @ inputs:
-#  let
-#    inherit (self) outputs;
-#
-#    lib = nixpkgs.lib // home-manager.lib;
-#
-#    systems = [
-#      "aarch64-linux"
-#      "i686-linux"
-#      "x86_64-linux"
-#      "aarch64-darwin"
-#      "x86_64-darwin"
-#    ];
-#
-#    forAllSystems = lib.genAttrs systems;
-#
-#    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-#
-#    pkgsFor = lib.genAttrs systems (system:
-#      import nixpkgs {
-#        inherit system;
-#        config.allowUnfree = true;
-#      });
-#
-#    devShellFor = system:
-#      let
-#        pkgs = import nixpkgs {
-#          inherit system;
-#          config.allowUnfree = true;
-#        };
-#      in
-#      import ./shell.nix { inherit pkgs; };
-#
-#  in {
-#    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-#    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-#    overlays = import ./overlays { inherit inputs; };
-#    nixosModules = import ./modules/nixos;
-#    homeManagerModules = import ./modules/home;
-#
-#    nixosConfigurations = {
-#      khamidullo = nixpkgs.lib.nixosSystem {
-#        specialArgs = { inherit inputs outputs; };
-#        modules = [
-#          ./nixos/configuration.nix
-#        ];
-#      };
-#    };
-#
-#    homeConfigurations = {
-#      "khamidullo@nix" = home-manager.lib.homeManagerConfiguration {
-#        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-#        extraSpecialArgs = { inherit inputs outputs; };
-#        modules = [
-#          ./home-manager/home.nix
-#        ];
-#      };
-#    };
-#  };
-#}
 {
   description = "My first nix config";
 
@@ -184,8 +111,8 @@
 #     { self
 #     , nixpkgs
 #     , home-manager
-#     ,zen-browser
-#     ,nixpkgs-unstable
+#     ,z-browser
+#     ,nixpkgs-unstableen
 #     , ...
 #     } @ inputs:
 #     let

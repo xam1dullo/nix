@@ -14,12 +14,12 @@
     };
 in {
   home.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma}/bin/prisma-query-engine";
-      PRISMA_MIGRATION_ENGINE_BINARY = "${pkgs.prisma}/bin/prisma-migration-engine";
-      PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma}/bin/prisma-introspection-engine";
-      PRISMA_FMT_BINARY = "${pkgs.prisma}/bin/prisma-fmt";
-    };
+    NIXOS_OZONE_WL = "1";
+    PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma}/bin/prisma-query-engine";
+    PRISMA_MIGRATION_ENGINE_BINARY = "${pkgs.prisma}/bin/prisma-migration-engine";
+    PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma}/bin/prisma-introspection-engine";
+    PRISMA_FMT_BINARY = "${pkgs.prisma}/bin/prisma-fmt";
+  };
 
   home.packages =
     (with pkgs; [
@@ -70,7 +70,6 @@ in {
       lsof
       yt-dlp
       xclip
-      nest-cli
       # pgadmin4
       pgadmin4-desktopmode
 
@@ -86,12 +85,12 @@ in {
       gst_all_1.gst-vaapi
 
       nil
-      nixd
       nixpkgs-fmt
 
       firefox
       # google-chrome
 
+      gitmux
       vim
       git
       zsh
@@ -158,14 +157,11 @@ in {
       zulip
       lazydocker
       mongodb-compass
-      docker
-      docker-compose
 
       safeeyes # Eye-strain protection
 
       nodePackages.typescript
       nodePackages.prettier
-      nest-cli
       pavucontrol
 
       ngrok
@@ -208,7 +204,6 @@ in {
       # bluez-utils
 
       # home manager
-      home-manager
       zoxide
       starship
       gh
@@ -219,6 +214,8 @@ in {
       unzip
       # insomnia
 
+      lazydocker
+      glab
       gcc
       cmake-language-server
       gnumake
@@ -244,6 +241,7 @@ in {
       stacer
       baobab
       smartmontools
+
       flameshot
       libqalculate
       nfs-utils
@@ -261,18 +259,27 @@ in {
       auto-cpufreq
       # Browser for at least searching something
       # Papirus Icon Pack
+      just
+      ngrok
+      insomnia
+
     ])
     ++ (with unstablePkgs; [
       postman
       ghostty
+      alacritty
       zoom-us
       thunderbird
-      nodejs_22
+      nodejs_23
+      pkgs.extra.npkill
+      nest-cli
+      husky
+      biome
       prisma
+      docker-compose
       zed-editor
       pnpm
       neovim
-      alacritty
     ]);
   # home.packages = (with pkgs;  [
   #   # Downloader

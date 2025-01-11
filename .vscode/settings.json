@@ -1,7 +1,10 @@
 {
-  "editor.defaultFormatter": "jnoortheen.nix-ide",
+  "editor.defaultFormatter": "jnoortheen.nix",
     "editor.inlineSuggest.enabled": true,
     "[markdown]": {
       "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "[nix]": {
+      "editor.defaultFormatter": "jnoortheen.nix-ide"
     },
 }

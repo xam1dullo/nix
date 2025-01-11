@@ -64,11 +64,9 @@ in {
     # Enable the DConf configuration system.
     programs.dconf.enable = true;
 
-
     environment.systemPackages = with pkgs; [
-        openssl
+      openssl
+      nixd
     ];
-    
-
   };
 }
