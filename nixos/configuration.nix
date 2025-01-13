@@ -19,7 +19,7 @@
     outputs.nixosModules.desktop.kde
     # outputs.nixosModules.hardware
     outputs.nixosModules.nix-ld
-    # outputs.nixosModules.docker
+    outputs.nixosModules.docker
     # outputs.homeManagerModules.postgresa
 
     # Include the results of the hardware scan.

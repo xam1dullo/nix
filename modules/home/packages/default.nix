@@ -38,8 +38,6 @@ in {
       git-lfs
       gitoxide
       # cargo-update
-      docker-client
-      # Environment
       fd
       bat
       btop
@@ -214,7 +212,6 @@ in {
       unzip
       # insomnia
 
-      lazydocker
       glab
       gcc
       cmake-language-server
@@ -263,20 +260,23 @@ in {
       ngrok
       insomnia
 
+      alacritty
+    
+      kompose
+      kubectl
+      kubernetes
     ])
+
     ++ (with unstablePkgs; [
       postman
       ghostty
-      alacritty
       zoom-us
       thunderbird
       nodejs_23
-      pkgs.extra.npkill
       nest-cli
       husky
       biome
       prisma
-      docker-compose
       zed-editor
       pnpm
       neovim
