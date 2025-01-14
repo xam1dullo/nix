@@ -4,7 +4,7 @@
     import
     (fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-      sha256 = "01f1ym9f0dr66yg6d2fzapscrd0dh125zpi04wp0b2l32v57nxq8"; # Replace with actual sha256
+      sha256 = "0mdqa9w1p6cmli6976v4wi0sw9r4p5prkj7lzfd1877wk11c9c73"; # Replace with actual sha256
     })
     {
       inherit (pkgs) system;
@@ -262,10 +262,8 @@ in {
 
       alacritty
     
-      kompose
-      kubectl
-      kubernetes
-    ])
+      anki
+])
 
     ++ (with unstablePkgs; [
       postman
