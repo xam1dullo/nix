@@ -74,7 +74,7 @@
   # plain files is through 'home.file'.
   home.file = {
     # ".zshrc".source = ~/dotfiles/zshrc/.zshrc;
-    ".config/wezterm".source = ../config/wezterm;
+    # ".config/wezterm".source = ../config/wezterm;
     # ".config/skhd".source = ~/dotfiles/skhd;
     # ".config/starship".source = ~/dotfiles/starship;
     # ".config/zellij".source = ~/dotfiles/zellij;
