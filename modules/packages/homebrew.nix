@@ -6,28 +6,19 @@ _: {
     ];
     casks = [
       # Development Tools
-      "docker-desktop"
       "visual-studio-code"
-      "zed"
       "postman"
       "termius"
       "mongodb-compass"
-      "jetbrains-toolbox"
       "proxyman"
       "utm"
       "little-snitch"
 
       # Communication Tools
-      "discord"
-      "slack"
       "telegram"
-      "zoom"
-      "element"
-      "zulip"
 
       # Utility Tools
       # "syncthing"
-      "1password"
       "obsidian"
       "keymapp"
       "wakatime"
@@ -39,16 +30,13 @@ _: {
 
       # Entertainment Tools
       "vlc"
-      "spotify"
       "obs"
       "krita"
-      "blender"
 
       # Productivity Tools
       "raycast"
 
       # Browsers
-      "floorp"
       "google-chrome"
     ];
     onActivation = {

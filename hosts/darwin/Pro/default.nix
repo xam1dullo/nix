@@ -9,7 +9,7 @@
     modules.nix.darwin
     modules.astronvim-nix-darwin
     modules.packages
-    modules.users.shakhzod
+    modules.users.admin
   ];
 
   # Turn off NIX_PATH warnings now that we're using flakes
@@ -28,7 +28,7 @@
   system = {
     stateVersion = 6;
 
-    primaryUser = "shakhzod";
+    primaryUser = "admin";
 
     defaults = {
       NSGlobalDomain = {

@@ -57,12 +57,12 @@
           ./hosts/linux/dreampad/configuration.nix
         ];
       };
-      darwinConfigurations.powerlaptop = nix-darwin.lib.darwinSystem {
+      darwinConfigurations.Pro = nix-darwin.lib.darwinSystem {
         inherit specialArgs;
         modules = [
           determinate.darwinModules.default
           home-manager.darwinModules.home-manager
-          ./hosts/darwin/powerlaptop
+          ./hosts/darwin/Pro
         ];
         system = "aarch64-darwin";
       };
