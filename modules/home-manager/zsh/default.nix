@@ -37,6 +37,12 @@
       export BLAZINGLY_FAST="$HOME/blazingly-fast"
       export NIX_SHELL_WORKSPACE="$HOME/dev/nix-shell-workspace"
 
+      # pnpm setup
+      export PNPM_HOME="$HOME/.local/share/pnpm"
+      case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+      esac
 
       if [ -f "$HOME/.zshrc_custom" ]; then
         source "$HOME/.zshrc_custom"

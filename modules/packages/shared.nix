@@ -50,7 +50,6 @@ with pkgs; [
   nodePackages.npm # globally install npm
   nodePackages.prettier
   nodePackages.jsdoc
-  nest-cli
   nodejs
   pnpm_10
 
