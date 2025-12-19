@@ -39,18 +39,20 @@ with pkgs; [
   bundletool
 
   # Cloud-related tools and SDKs
-  # docker
-  # docker-compose
+  docker
+  docker-compose
 
   # Media-related packages
   ffmpeg
   fd
 
   # Node.js development tools
-  # nodePackages.npm # globally install npm
-  # nodePackages.prettier
-  # nodejs
-  # pnpm_10
+  nodePackages.npm # globally install npm
+  nodePackages.prettier
+  nodePackages.jsdoc
+  nest-cli
+  nodejs
+  pnpm_10
 
   # Text and terminal utilities
   htop
@@ -66,14 +68,14 @@ with pkgs; [
   texliveFull
 
   # Python packages
-  # python3
-  # virtualenv
+  python3
+  virtualenv
 
   # Nix related
-  # nil
-  # nixd
-  # nixpkgs-fmt
-  # nixfmt
+  nil
+  nixd
+  nixpkgs-fmt
+  nixfmt
 
   wakatime-cli
 ]
