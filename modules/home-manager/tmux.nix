@@ -12,6 +12,11 @@ _: {
     prefix = "M-s";
     terminal = "screen-256color";
     extraConfig = ''
+      # Explicitly set prefix to Option+S (Meta-s)
+      # Note: On macOS, ensure Alacritty has option_as_alt = "Both" (already configured)
+      set -g prefix M-s
+      unbind C-b
+      
       # Vim-like pane navigation
       bind h select-pane -L
       bind j select-pane -D
