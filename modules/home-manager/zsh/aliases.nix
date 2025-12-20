@@ -18,6 +18,34 @@
     # ping = "gping";
     # time = "hyperfine";
 
+    down = "cd ~/Downloads";
+    ".." = "cd ..";
+    "...." = "cd ../..";
+    "celar" = "clear";
+    ":q" = "exit";
+
+  # docker
+    dps = "docker ps";
+    dimages = "docker images";
+    drm = "docker rm";
+    drmi = "docker rmi";
+    dstop = "docker stop";
+    dstart = "docker start";
+    dexec = "docker exec -it";
+    dbash = "docker exec -it $1 /bin/bash";
+    dash = "docker exec -it $1 /bin/sh";
+    dlogs = "docker logs -f";
+    dbuild = "docker build -t $1 .";
+    dclean = "docker system prune -af --volumes";
+    dkillall = "f() { docker kill $(docker ps -q); }; f";
+  # docker compose 
+    dc = "docker compose";
+    dcup = "docker compose up -d";
+    dcdown = "docker compose down";
+    dclogs = "docker compose logs -f";
+    dcbash = "docker compose exec $1 /bin/bash";
+    dcsh = "docker compose exec $1 /bin/sh";
+
     # zednix = "nohup zed --new --foreground . &";
     # zn = "nohup zed --new --foreground . &";
 
