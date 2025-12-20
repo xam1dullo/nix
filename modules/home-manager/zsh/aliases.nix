@@ -46,6 +46,9 @@
     dcbash = "docker compose exec $1 /bin/bash";
     dcsh = "docker compose exec $1 /bin/sh";
 
+    # lazydocker
+    lzd = "lazydocker";
+    
     # zednix = "nohup zed --new --foreground . &";
     # zn = "nohup zed --new --foreground . &";
 
