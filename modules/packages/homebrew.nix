@@ -3,6 +3,7 @@ _: {
     enable = true;
     brews = [
       "cocoapods"
+      "doctl"
     ];
     casks = [
       # Development Tools
