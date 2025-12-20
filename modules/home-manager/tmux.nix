@@ -9,7 +9,7 @@ _: {
     keyMode = "vi";
     mouse = true;
     newSession = true;
-    prefix = "C-Space";
+    prefix = "M-s";
     terminal = "screen-256color";
     extraConfig = ''
       # Vim-like pane navigation
