@@ -25,7 +25,8 @@ in {
         # Essential
         neovim-unwrapped
         # ripgrep
-        # lazygit
+        lazygit
+        lazydocker
         # gdu
         # bottom
         # # LSP dependencies
