@@ -11,7 +11,12 @@
       "Bash(nvim:*)",
       "Bash(nix flake show:*)",
       "Bash(git add:*)",
-      "Read(//Users/admin/.config/nvim/lua/**)"
+      "Read(//Users/admin/.config/nvim/lua/**)",
+      "Bash(tmux show-options:*)",
+      "Read(//Users/admin/.config/tmux/**)",
+      "Bash(home-manager switch:*)",
+      "Read(//Users/admin/.config/nixpkgs/**)",
+      "Bash(tmux source-file:*)"
     ]
   }
 }

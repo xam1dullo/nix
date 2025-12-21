@@ -2,9 +2,16 @@
 
 ---@type LazySpec
 return {
+  -- ensure mason.nvim is loaded first
+  {
+    "williamboman/mason.nvim",
+    lazy = false,
+    priority = 1000,
+  },
   -- use mason-lspconfig to configure LSP installations
   {
     "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it

@@ -14,7 +14,7 @@ return {
   -- { import = "astrocommunity.pack.dart" },
   -- shell
   { import = "astrocommunity.pack.nix" },
-  { import = "astrocommunity.pack.docker" },
+  -- { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.bash" },
   -- conf
   { import = "astrocommunity.pack.lua" },
