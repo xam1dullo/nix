@@ -7,7 +7,11 @@
       "Bash(git remote:*)",
       "Bash(/bin/ls:*)",
       "Bash(nix-shell -p home-manager --run \"home-manager option programs.zsh\")",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(nvim:*)",
+      "Bash(nix flake show:*)",
+      "Bash(git add:*)",
+      "Read(//Users/admin/.config/nvim/lua/**)"
     ]
   }
 }
