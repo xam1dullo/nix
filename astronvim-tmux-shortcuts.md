@@ -1,5 +1,32 @@
 # AstroNvim & tmux Shortcuts Cheat Sheet
 
+## 🚀 Quick Start
+
+### Your Setup
+- **AstroNvim Leader**: `Space` (press Space to see all commands)
+- **tmux Prefix**: `Option+S` (then press another key)
+- **Both support**: Mouse navigation, Vim keybindings
+
+### Most Used Commands (Memorize These!)
+
+**AstroNvim:**
+- `Space + ff` → Find files
+- `Space + fw` → Find word (grep)
+- `Space + e` → File explorer
+- `Space + gg` → Git (lazygit)
+- `gd` → Go to definition
+- `K` → Hover docs
+- `]b` / `[b` → Next/Previous buffer
+
+**tmux:**
+- `Option+S + h/j/k/l` → Navigate panes (Vim style!)
+- `Option+S + |` → Split horizontal
+- `Option+S + -` → Split vertical
+- `Option+S + r` → Reload config
+- `Option+S + ?` → Show all keybindings
+
+---
+
 ## AstroNvim Keybindings
 
 ### Leader Key
@@ -180,10 +207,10 @@
 | `<Leader>pu` | Update plugins |
 | `<Leader>pU` | Update plugin (unstable) |
 
-## tmux Shortcuts (Default)
+## tmux Shortcuts (Your Configuration)
 
 ### Prefix Key
-- **Prefix**: `Ctrl+b` (default)
+- **Prefix**: `Option+S` (Meta-s / M-s) - Your custom prefix!
 
 ### Session Management
 | Key | Action |
@@ -205,14 +232,13 @@
 | `prefix + ,` | Rename window |
 | `prefix + &` | Kill window |
 
-### Pane Management
+### Pane Management (Vim-like!)
 | Key | Action |
 |-----|--------|
-| `prefix + %` | Split horizontally |
-| `prefix + "` | Split vertically |
-| `prefix + o` | Switch pane |
-| `prefix + arrow` | Navigate panes |
-| `prefix + q` | Show pane numbers |
+| `prefix + \|` | Split horizontally (opens in current dir) |
+| `prefix + -` | Split vertically (opens in current dir) |
+| `prefix + h/j/k/l` | Navigate panes (Vim style!) |
+| `prefix + H/J/K/L` | Resize panes (hold for repeat) |
 | `prefix + x` | Kill pane |
 | `prefix + z` | Zoom pane |
 | `prefix + space` | Toggle layouts |
@@ -220,24 +246,22 @@
 | `prefix + }` | Move pane right |
 | `prefix + !` | Convert pane to window |
 
-### Copy Mode
+### Copy Mode (Vi mode enabled!)
 | Key | Action |
 |-----|--------|
 | `prefix + [` | Enter copy mode |
 | `q` | Exit copy mode |
-| `Space` | Start selection |
-| `Enter` | Copy selection |
+| `v` | Start visual selection |
+| `y` | Copy selection and exit |
+| `r` | Toggle rectangle selection |
 | `prefix + ]` | Paste buffer |
 
-### Resize Panes
+### Window Navigation
 | Key | Action |
 |-----|--------|
-| `prefix + Ctrl+arrow` | Resize pane |
-| `prefix + Alt+1` | Even horizontal |
-| `prefix + Alt+2` | Even vertical |
-| `prefix + Alt+3` | Main horizontal |
-| `prefix + Alt+4` | Main vertical |
-| `prefix + Alt+5` | Tiled |
+| `prefix + C-h` | Previous window |
+| `prefix + C-l` | Next window |
+| `prefix + r` | Reload config |
 
 ### Other Commands
 | Key | Action |
@@ -266,25 +290,37 @@ tmux split-window -v       # Split vertical
 tmux kill-pane            # Kill pane
 ```
 
-## Custom tmux Config Suggestion
+## Quick Reference - Most Used Commands
 
-Add to `modules/home-manager/tmux.nix` for vim-like navigation:
-```nix
-extraConfig = ''
-  # Vim-like pane navigation
-  bind h select-pane -L
-  bind j select-pane -D
-  bind k select-pane -U
-  bind l select-pane -R
+### AstroNvim Daily Workflow
+```
+Space + ff    → Find files (Telescope)
+Space + fw    → Find word (grep)
+Space + e     → Toggle file explorer
+Space + gg    → Open lazygit
+Space + tf    → Floating terminal
+Space + c     → Close buffer
+]b / [b       → Next/Previous buffer
+gd            → Go to definition
+K             → Hover documentation
+Space + lf    → Format code
+```
 
-  # Better splits
-  bind | split-window -h
-  bind - split-window -v
-'';
+### tmux Daily Workflow
+```
+Option+S + h/j/k/l  → Navigate panes
+Option+S + |        → Split horizontal
+Option+S + -        → Split vertical
+Option+S + r        → Reload config
+Option+S + [        → Copy mode (then v to select, y to copy)
+Option+S + C-h/l    → Switch windows
 ```
 
 ## Tips
-- **AstroNvim**: Use `<Leader>` (Space) for most commands
-- **Which-key**: Press `<Leader>` and wait to see available keymaps
-- **tmux**: Use `prefix + ?` to see all keybindings
-- **Copy Mode**: In tmux, use vi mode with `setw -g mode-keys vi`
+- **AstroNvim**: Press `<Leader>` (Space) and wait to see all available keymaps (which-key)
+- **tmux**: Press `Option+S + ?` to see all keybindings
+- **Copy Mode**: In tmux, use `v` to start selection, `y` to copy (vi mode enabled)
+- **Mouse**: Both AstroNvim and tmux support mouse - click to navigate!
+- **Quick Help**: 
+  - AstroNvim: `:Telescope keymaps` or press Space and wait
+  - tmux: `Option+S + ?` for keybindings help

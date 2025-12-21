@@ -16,7 +16,7 @@ _: {
       # Note: On macOS, ensure Alacritty has option_as_alt = "Both" (already configured)
       set -g prefix M-s
       unbind C-b
-      
+
       # Vim-like pane navigation
       bind h select-pane -L
       bind j select-pane -D
@@ -48,7 +48,7 @@ _: {
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
 
       # Status bar
-      set -g status-position top
+      set -g status-position bottom
       set -g status-bg colour234
       set -g status-fg colour137
       set -g status-left ""
