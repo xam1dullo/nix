@@ -67,7 +67,7 @@ in {
       };
       "nvim/extra-lua/cornelis.lua" = {
         text = lib.replaceContents (builtins.readFile ../extra-lua/cornelis.lua) {
-          "cornelis" = pkgs.vimPlugins.cornelis;
+          "cornelis" = "${pkgs.vimPlugins.cornelis}";
         };
       };
     };

@@ -1,12 +1,11 @@
 ---@type LazySpec
 return {
   {
-    -- "isovector/cornelis",
-    dir = "{cornelis}",
+    "isovector/cornelis",
     name = "cornelis",
     ft = "agda",
-    -- build = "stack install",
-    version = "*",
+    build = "stack install",
+    -- version = "*",
     config = function()
       vim.api.nvim_create_autocmd({ "FileType", "BufWritePre" }, {
         pattern = "*.agda,*.lagda.md",
