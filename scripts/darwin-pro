@@ -14,16 +14,22 @@ cmd="${1:-}"
 case "$cmd" in
   build)
     shift
-    exec darwin-rebuild build --flake "$flake_target" "$@"
+    exec env -u DEVELOPER_DIR -u SDKROOT \
+      nix --extra-experimental-features "nix-command flakes" \
+      run nix-darwin -- build --flake "$flake_target" "$@"
     ;;
   switch)
     shift
-    exec sudo darwin-rebuild switch --flake "$flake_target" "$@"
+    exec env -u DEVELOPER_DIR -u SDKROOT \
+      sudo nix --extra-experimental-features "nix-command flakes" \
+      run nix-darwin -- switch --flake "$flake_target" "$@"
     ;;
   rollback)
     shift
     # Rollback is generation-based; flake selection does not apply.
-    exec sudo darwin-rebuild switch --rollback "$@"
+    exec env -u DEVELOPER_DIR -u SDKROOT \
+      sudo nix --extra-experimental-features "nix-command flakes" \
+      run nix-darwin -- switch --rollback "$@"
     ;;
   edit)
     shift
