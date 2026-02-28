@@ -1,6 +1,4 @@
 {
-  inputs,
-  pkgs,
   modules,
   ...
 }: {
@@ -9,59 +7,13 @@
     modules.nix.darwin
     modules.astronvim-nix-darwin
     modules.packages
+    modules.packagesHomebrew
     modules.users.admin
+    ./system.nix
+    ./ui.nix
+    ./devtools.nix
+    ./shell.nix
+    ./git.nix
+    ./languages.nix
   ];
-
-  # Turn off NIX_PATH warnings now that we're using flakes
-  # system.checks.verifyNixPath = false;
-
-  environment.systemPackages = let
-    kmonad =
-      inputs.kmonad.packages."${pkgs.stdenv.hostPlatform.system}".default;
-  in [
-    kmonad
-    (pkgs.writeScriptBin "kmonad-gallium" ''
-      sudo ${kmonad}/bin/kmonad ${./keyboard.kbd}
-    '')
-  ];
-
-  system = {
-    stateVersion = 6;
-
-    primaryUser = "admin";
-
-    defaults = {
-      NSGlobalDomain = {
-        AppleShowAllExtensions = true;
-        ApplePressAndHoldEnabled = false;
-
-        # 120, 90, 60, 30, 12, 6, 2
-        KeyRepeat = 2;
-
-        # 120, 94, 68, 35, 25, 15
-        InitialKeyRepeat = 15;
-
-        "com.apple.mouse.tapBehavior" = 1;
-        "com.apple.sound.beep.volume" = 0.0;
-        "com.apple.sound.beep.feedback" = 0;
-      };
-
-      dock = {
-        autohide = true;
-        show-recents = false;
-        launchanim = true;
-        orientation = "bottom";
-        tilesize = 48;
-      };
-
-      finder = {
-        _FXShowPosixPathInTitle = false;
-      };
-
-      trackpad = {
-        Clicking = true;
-        TrackpadThreeFingerDrag = true;
-      };
-    };
-  };
 }

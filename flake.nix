@@ -47,6 +47,16 @@
         inherit inputs lib;
         modules = import ./modules;
       };
+    in let
+      proDarwin = nix-darwin.lib.darwinSystem {
+        inherit specialArgs;
+        modules = [
+          determinate.darwinModules.default
+          home-manager.darwinModules.home-manager
+          ./hosts/darwin/Pro
+        ];
+        system = "aarch64-darwin";
+      };
     in {
       nixosConfigurations.dreampad = nixpkgs.lib.nixosSystem {
         inherit specialArgs;
@@ -57,14 +67,10 @@
           ./hosts/linux/dreampad/configuration.nix
         ];
       };
-      darwinConfigurations.Pro = nix-darwin.lib.darwinSystem {
-        inherit specialArgs;
-        modules = [
-          determinate.darwinModules.default
-          home-manager.darwinModules.home-manager
-          ./hosts/darwin/Pro
-        ];
-        system = "aarch64-darwin";
+      darwinConfigurations = {
+        # Canonical host key is lowercase; keep Pro alias for compatibility.
+        pro = proDarwin;
+        Pro = proDarwin;
       };
     });
 }

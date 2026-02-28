@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  options,
   modules,
   ...
 } @ args: let
@@ -39,7 +40,7 @@ in
     })
 
     # nix-darwin
-    (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    (lib.optionalAttrs (lib.hasAttrByPath ["users" "knownUsers"] options) {
       users.knownUsers = [user];
       users.users.${user} = {
         uid = 501;

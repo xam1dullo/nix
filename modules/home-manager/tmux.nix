@@ -1,22 +1,34 @@
-_: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     aggressiveResize = true;
     baseIndex = 1;
     clock24 = true;
     escapeTime = 0;
+    focusEvents = true;
     historyLimit = 10000;
     keyMode = "vi";
     mouse = true;
     newSession = true;
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      yank
+      resurrect
+    ];
     prefix = "M-s";
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     extraConfig = ''
       # Explicitly set prefix to Option+S (Meta-s)
       # Note: On macOS, ensure Alacritty has option_as_alt = "Both" (already configured)
       set -g prefix M-s
       unbind C-b
-      
+      set -g set-clipboard on
+
+      # Tool popups
+      bind g display-popup -E -w 90% -h 90% lazygit
+      bind d display-popup -E -w 90% -h 90% lazydocker
+      bind f display-popup -E -w 90% -h 90% yazi
+
       # Vim-like pane navigation
       bind h select-pane -L
       bind j select-pane -D
@@ -48,7 +60,7 @@ _: {
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
 
       # Status bar
-      set -g status-position top
+      set -g status-position bottom
       set -g status-bg colour234
       set -g status-fg colour137
       set -g status-left ""
