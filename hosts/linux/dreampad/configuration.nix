@@ -9,7 +9,7 @@
     modules.nix.linux
     modules.astronvim-nix-nixos
     modules.packages
-    modules.users.shakhzod
+    modules.users.admin
   ];
 
   boot.kernelParams = [

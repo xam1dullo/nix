@@ -47,10 +47,9 @@ with pkgs; [
   fd
 
   # Node.js development tools
-  nodePackages.npm # globally install npm
   nodePackages.prettier
   nodePackages.jsdoc
-  nodejs
+  nodejs_20
   pnpm_10
 
   # Text and terminal utilities

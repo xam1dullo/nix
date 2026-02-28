@@ -48,6 +48,7 @@
 
     # lazydocker
     lzd = "lazydocker";
+    lg = "lazygit";
     
     # zednix = "nohup zed --new --foreground . &";
     # zn = "nohup zed --new --foreground . &";
