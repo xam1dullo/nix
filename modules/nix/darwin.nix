@@ -7,15 +7,11 @@
 
   # Determinate manages Nix settings in /etc/nix/nix.custom.conf.
   determinate-nix.customSettings = {
-    # Enables parallel evaluation (remove this setting or set the value to 1 to disable)
-    eval-cores = 0;
+    # Keep this to features supported by your installed Nix version.
     experimental-features = [
       "nix-command"
       "flakes"
-      "build-time-fetch-tree" # Enables build-time flake inputs
-      "parallel-eval" # Enables parallel evaluation
     ];
-    # Other settings
   };
 
   # Ensure the canonical nix.conf exists and includes Determinate's generated settings.
