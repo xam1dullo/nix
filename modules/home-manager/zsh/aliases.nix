@@ -57,6 +57,12 @@
     nixconf = "nvim $BLAZINGLY_FAST -c \"cd $BLAZINGLY_FAST\"";
 
     # nix related
+    nup = "nixupgrade";
+    nr = "nixrebuild";
+    npl = "nixpull";
+    nps = "nixpush";
+    nfu = "nix flake update --flake $BLAZINGLY_FAST";
+    nck = "nix flake check $BLAZINGLY_FAST";
     nixupgrade = "f() { nix flake update --flake $BLAZINGLY_FAST $1 && nixrebuild }; f";
     nixpull = "f() { cd $BLAZINGLY_FAST && git pull && cd -}; f || cd -";
     nixpush = "f() { cd $BLAZINGLY_FAST && git add . && git commit -m \"automatically updated by nixpush\" && git push && cd - }; f || cd -";
@@ -69,6 +75,8 @@
   };
   darwin = {
     nixrebuild = "f() { git -C $BLAZINGLY_FAST add . && sudo darwin-rebuild switch --flake $BLAZINGLY_FAST --impure $1 }; f";
+    nbdry = "f() { cd $BLAZINGLY_FAST && ./scripts/darwin-pro build --dry-run --show-trace -v \"$@\" && cd -}; f || cd -";
+    nsdry = "f() { cd $BLAZINGLY_FAST && sudo darwin-rebuild switch --flake $BLAZINGLY_FAST#Pro --dry-run \"$@\" && cd -}; f || cd -";
   };
 in
   lib.mkMerge [

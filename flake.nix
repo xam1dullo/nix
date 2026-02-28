@@ -48,6 +48,15 @@
         modules = import ./modules;
       };
     in let
+      dreampadNixos = nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
+        modules = [
+          determinate.nixosModules.default
+          nixos-hardware.nixosModules.lenovo-thinkpad-t14-intel-gen6
+          home-manager.nixosModules.home-manager
+          ./hosts/linux/dreampad/configuration.nix
+        ];
+      };
       proDarwin = nix-darwin.lib.darwinSystem {
         inherit specialArgs;
         modules = [
@@ -58,19 +67,27 @@
         system = "aarch64-darwin";
       };
     in {
-      nixosConfigurations.dreampad = nixpkgs.lib.nixosSystem {
-        inherit specialArgs;
-        modules = [
-          determinate.nixosModules.default
-          nixos-hardware.nixosModules.lenovo-thinkpad-t14-intel-gen6
-          home-manager.nixosModules.home-manager
-          ./hosts/linux/dreampad/configuration.nix
-        ];
-      };
+      nixosConfigurations.dreampad = dreampadNixos;
       darwinConfigurations = {
         # Canonical host key is lowercase; keep Pro alias for compatibility.
         pro = proDarwin;
         Pro = proDarwin;
+      };
+      packages = {
+        aarch64-darwin = {
+          darwin-pro = proDarwin.config.system.build.toplevel;
+        };
+        x86_64-linux = {
+          nixos-dreampad = dreampadNixos.config.system.build.toplevel;
+        };
+      };
+      checks = {
+        aarch64-darwin = {
+          darwin-pro = proDarwin.config.system.build.toplevel;
+        };
+        x86_64-linux = {
+          nixos-dreampad = dreampadNixos.config.system.build.toplevel;
+        };
       };
     });
 }

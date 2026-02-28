@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  nix-eval:
+    name: Nix Eval (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Configure Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Flake Show
+        run: nix flake show
+
+      - name: Eval Darwin Target
+        run: |
+          test "$(nix eval --raw .#darwinConfigurations.Pro.pkgs.stdenv.hostPlatform.system)" = "aarch64-darwin"
+
+      - name: Eval NixOS Target
+        run: |
+          test "$(nix eval --raw .#nixosConfigurations.dreampad.pkgs.stdenv.hostPlatform.system)" = "x86_64-linux"
+
+      - name: Flake Check (No Build)
+        run: nix flake check --no-build
+
+  windows-sanity:
+    name: Windows Sanity (windows-latest)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Repo Structure
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          if (-not (Test-Path "flake.nix")) { throw "flake.nix missing" }
+          if (-not (Test-Path "hosts/darwin/Pro/default.nix")) { throw "hosts/darwin/Pro/default.nix missing" }
+          if (-not (Test-Path "hosts/linux/dreampad/configuration.nix")) { throw "hosts/linux/dreampad/configuration.nix missing" }
