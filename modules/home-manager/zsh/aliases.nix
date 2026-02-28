@@ -74,9 +74,15 @@
     nixcleanup = "nix-env --delete-generations +2 && nix store gc && nix-channel --update && nix-env -u --always && nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration switch";
   };
   darwin = {
-    nixrebuild = "f() { git -C $BLAZINGLY_FAST add . && sudo darwin-rebuild switch --flake $BLAZINGLY_FAST --impure $1 }; f";
+    # nix-darwin invocation that works even when darwin-rebuild is not in PATH.
+    brew = "env -u DEVELOPER_DIR -u SDKROOT brew";
+    drs = "env -u DEVELOPER_DIR -u SDKROOT sudo nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- switch --flake $BLAZINGLY_FAST#Pro";
+    drb = "env -u DEVELOPER_DIR -u SDKROOT nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- build --flake $BLAZINGLY_FAST#Pro";
+    darwin-switch = "env -u DEVELOPER_DIR -u SDKROOT sudo nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- switch --flake $BLAZINGLY_FAST#Pro";
+    darwin-build = "env -u DEVELOPER_DIR -u SDKROOT nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- build --flake $BLAZINGLY_FAST#Pro";
+    nixrebuild = "f() { git -C $BLAZINGLY_FAST add . && env -u DEVELOPER_DIR -u SDKROOT sudo nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- switch --flake $BLAZINGLY_FAST#Pro --impure \"$@\"; }; f";
     nbdry = "f() { cd $BLAZINGLY_FAST && ./scripts/darwin-pro build --dry-run --show-trace -v \"$@\" && cd -}; f || cd -";
-    nsdry = "f() { cd $BLAZINGLY_FAST && sudo darwin-rebuild switch --flake $BLAZINGLY_FAST#Pro --dry-run \"$@\" && cd -}; f || cd -";
+    nsdry = "f() { cd $BLAZINGLY_FAST && env -u DEVELOPER_DIR -u SDKROOT sudo nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- switch --flake $BLAZINGLY_FAST#Pro --dry-run \"$@\" && cd -}; f || cd -";
   };
 in
   lib.mkMerge [
