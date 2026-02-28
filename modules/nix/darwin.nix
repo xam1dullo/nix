@@ -9,6 +9,8 @@
     # Enables parallel evaluation (remove this setting or set the value to 1 to disable)
     eval-cores = 0;
     extra-experimental-features = [
+      "nix-command"
+      "flakes"
       "build-time-fetch-tree" # Enables build-time flake inputs
       "parallel-eval" # Enables parallel evaluation
     ];
