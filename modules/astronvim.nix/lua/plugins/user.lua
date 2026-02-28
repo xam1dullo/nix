@@ -53,6 +53,17 @@ return {
     end,
   },
 
+  -- Configure Neo-tree to open on the right
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = {
+        position = "right",
+        width = 30,
+      },
+    },
+  },
+
   {
     "windwp/nvim-autopairs",
     config = function(plugin, opts)

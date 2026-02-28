@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+flake_target="${repo_root}#Pro"
+
+usage() {
+  cat <<'EOF'
+Usage: ./scripts/darwin-pro <build|switch|rollback|edit>
+EOF
+}
+
+cmd="${1:-}"
+case "$cmd" in
+  build)
+    shift
+    exec darwin-rebuild build --flake "$flake_target" "$@"
+    ;;
+  switch)
+    shift
+    exec sudo darwin-rebuild switch --flake "$flake_target" "$@"
+    ;;
+  rollback)
+    shift
+    # Rollback is generation-based; flake selection does not apply.
+    exec sudo darwin-rebuild switch --rollback "$@"
+    ;;
+  edit)
+    shift
+    exec "${EDITOR:-vi}" \
+      "$@" \
+      "${repo_root}/flake.nix" \
+      "${repo_root}/hosts/darwin/Pro/default.nix"
+    ;;
+  *)
+    usage >&2
+    exit 1
+    ;;
+esac

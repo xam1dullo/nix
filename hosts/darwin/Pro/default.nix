@@ -5,7 +5,6 @@
   imports = [
     modules.configurations.darwin
     modules.nix.darwin
-    modules.astronvim-nix-darwin
     modules.packages
     modules.packagesHomebrew
     modules.users.admin
