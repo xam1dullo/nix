@@ -7,7 +7,6 @@
     ./hardware-configuration.nix
     modules.configurations.nixos
     modules.nix.linux
-    modules.astronvim-nix-nixos
     modules.packages
     modules.users.admin
   ];

@@ -11,11 +11,6 @@
 in
   lib.mkMerge [
     {
-      AstroNvim = {
-        enable = true;
-        username = user;
-      };
-
       home-manager.users.${user} = lib.recursiveUpdate (modules.home-manager args) {
         programs.git = {
           settings.user = {

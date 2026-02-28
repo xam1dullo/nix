@@ -22,7 +22,6 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kmonad.url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
   };
   outputs = {
     nixpkgs,

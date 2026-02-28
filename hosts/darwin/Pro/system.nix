@@ -1,9 +1,8 @@
 {
-  inputs,
   pkgs,
   ...
 }: let
-  kmonad = inputs.kmonad.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  kmonad = pkgs.kmonad;
 in {
   networking.hostName = "pro";
 
