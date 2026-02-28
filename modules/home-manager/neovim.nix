@@ -1,6 +1,11 @@
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   neovimToolchain = with pkgs; [
-    neovim
+    neovim-unwrapped
 
     # Core CLI tooling
     ripgrep
@@ -50,20 +55,22 @@
     vscode-js-debug
   ];
 in
-  lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+  if pkgs.stdenv.hostPlatform.isDarwin
+  then {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      package = pkgs.neovim;
+      package = pkgs.neovim-unwrapped;
     };
 
     home.packages = neovimToolchain;
 
     # Keep Neovim config in-repo for reproducibility.
     xdg.configFile."nvim" = {
-      source = ../../nvim;
+      source = "${inputs.self}/nvim";
       recursive = true;
     };
   }
+  else {}
