@@ -49,6 +49,27 @@
         eval "$(fnm env --use-on-cd --shell zsh)"
       fi
 
+      # smart directory jumpers
+      if command -v zoxide >/dev/null 2>&1; then
+        eval "$(zoxide init zsh)"
+      fi
+      if [ -f "${pkgs.autojump}/share/autojump/autojump.zsh" ]; then
+        source "${pkgs.autojump}/share/autojump/autojump.zsh"
+      fi
+
+      # quick text/number helpers
+      lower() { print -r -- "$*" | tr '[:upper:]' '[:lower:]'; }
+      upper() { print -r -- "$*" | tr '[:lower:]' '[:upper:]'; }
+      num() {
+        local min="$1" max="$2"
+        [ -z "$min" ] && min=0
+        [ -z "$max" ] && max=100
+        if [ "$min" -gt "$max" ]; then
+          local tmp="$min"; min="$max"; max="$tmp"
+        fi
+        echo $(( RANDOM % (max - min + 1) + min ))
+      }
+
       if [ -f "$HOME/.zshrc_custom" ]; then
         source "$HOME/.zshrc_custom"
       fi
