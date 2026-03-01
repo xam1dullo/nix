@@ -44,6 +44,11 @@
         *) export PATH="$PNPM_HOME:$PATH" ;;
       esac
 
+      # fnm setup (Nix-native alternative to nvm)
+      if command -v fnm >/dev/null 2>&1; then
+        eval "$(fnm env --use-on-cd --shell zsh)"
+      fi
+
       if [ -f "$HOME/.zshrc_custom" ]; then
         source "$HOME/.zshrc_custom"
       fi
