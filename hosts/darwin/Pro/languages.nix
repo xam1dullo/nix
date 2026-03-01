@@ -5,7 +5,10 @@
     pnpm_10
     bun
     deno
+    codex
     fnm
+    zoxide
+    autojump
 
     # Rust toolchain
     rustc
