@@ -66,8 +66,6 @@
         else ""
       }
 
-      # Initialize zoxide at the end so `cd` is overridden reliably.
-      eval "$(${pkgs.zoxide}/bin/zoxide init zsh --cmd cd)"
     '';
   };
 }
