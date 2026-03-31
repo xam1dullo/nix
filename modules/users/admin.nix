@@ -12,6 +12,8 @@ in
   lib.mkMerge [
     {
       home-manager.users.${user} = lib.recursiveUpdate (modules.home-manager args) {
+        imports = [./hm-darwin-install-packages.nix];
+
         programs.git = {
           settings.user = {
             inherit name email;
