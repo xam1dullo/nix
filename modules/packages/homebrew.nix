@@ -7,10 +7,10 @@ _: {
     ];
     casks = [
       # Development Tools
+      "zed"
       "visual-studio-code"
       "postman"
       "termius"
-      "mongodb-compass"
       "proxyman"
       "utm"
       "little-snitch"
@@ -32,7 +32,6 @@ _: {
       # Entertainment Tools
       "vlc"
       "obs"
-      "krita"
 
       # Productivity Tools
       "raycast"
