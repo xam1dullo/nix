@@ -10,6 +10,7 @@
       then "14"
       else "10";
   in ''
+    command = /bin/zsh -l
     font-family = JetBrainsMono Nerd Font
     font-size = ${fontSize}
     cursor-style = block
