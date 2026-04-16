@@ -2,14 +2,13 @@
   lib,
   pkgs,
   ...
-}: {
-  # ghostty installed via homebrew cask; config managed here
-  xdg.configFile."ghostty/config".text = let
-    fontSize =
-      if pkgs.stdenv.hostPlatform.isDarwin
-      then "14"
-      else "10";
-  in ''
+}: let
+  fontSize =
+    if pkgs.stdenv.hostPlatform.isDarwin
+    then "14"
+    else "10";
+
+  ghosttyConfig = ''
     command = /bin/zsh -l
     font-family = JetBrainsMono Nerd Font
     font-size = ${fontSize}
@@ -38,4 +37,13 @@
     palette = 14=#89b482
     palette = 15=#d4be98
   '';
+in {
+  # macOS: Ghostty reads from ~/Library/Application Support/com.mitchellh.ghostty/config
+  # Linux: Ghostty reads from ~/.config/ghostty/config (XDG)
+  home.file."Library/Application Support/com.mitchellh.ghostty/config" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    text = ghosttyConfig;
+  };
+  xdg.configFile."ghostty/config" = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+    text = ghosttyConfig;
+  };
 }
