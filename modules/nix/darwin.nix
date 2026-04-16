@@ -6,7 +6,7 @@
   nix.enable = false;
 
   # Determinate manages Nix settings in /etc/nix/nix.custom.conf.
-  determinate-nix.customSettings = {
+  determinateNix.customSettings = {
     # Keep this to features supported by your installed Nix version.
     experimental-features = [
       "nix-command"

@@ -68,6 +68,7 @@
     nixpush = "f() { cd $BLAZINGLY_FAST && git add . && git commit -m \"automatically updated by nixpush\" && git push && cd - }; f || cd -";
 
     nix-shell-go = "nix-shell $NIX_SHELL_WORKSPACE/golang/latest/shell.nix";
+    cld = "ANTHROPIC_AUTH_TOKEN=freecc ANTHROPIC_BASE_URL=http://localhost:8082 claude";
   };
   linux = {
     nixrebuild = "f() { git -C $BLAZINGLY_FAST add . && sudo nixos-rebuild switch --flake $BLAZINGLY_FAST --impure $1 }; f";

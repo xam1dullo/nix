@@ -16,7 +16,9 @@
       "Read(//Users/admin/.config/tmux/**)",
       "Bash(home-manager switch:*)",
       "Read(//Users/admin/.config/nixpkgs/**)",
-      "Bash(tmux source-file:*)"
+      "Bash(tmux source-file:*)",
+      "Read(//Users/admin/**)",
+      "Bash(nr)"
     ]
   }
 }
