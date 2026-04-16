@@ -49,7 +49,7 @@
         eval "$(fnm env --use-on-cd --shell zsh)"
       fi
 
-      # smart directory jumpers
+      # autojump
       if [ -f "${pkgs.autojump}/share/autojump/autojump.zsh" ]; then
         source "${pkgs.autojump}/share/autojump/autojump.zsh"
       fi

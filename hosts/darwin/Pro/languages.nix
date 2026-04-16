@@ -7,7 +7,6 @@
     deno
     codex
     fnm
-    zoxide
     autojump
 
     # Rust toolchain

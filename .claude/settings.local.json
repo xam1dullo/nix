@@ -18,7 +18,10 @@
       "Read(//Users/admin/.config/nixpkgs/**)",
       "Bash(tmux source-file:*)",
       "Read(//Users/admin/**)",
-      "Bash(nr)"
+      "Bash(nr)",
+      "Bash(brew list:*)",
+      "Bash(nix flake:*)",
+      "Bash(env -u DEVELOPER_DIR -u SDKROOT sudo nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- switch --flake /Users/admin/blazingly-fast#Pro)"
     ]
   }
 }

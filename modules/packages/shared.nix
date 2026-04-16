@@ -1,12 +1,9 @@
 {pkgs, ...}:
 with pkgs; [
   # General packages for development and system management
-  alacritty
   aspell
   aspellDicts.en
   bash-completion
-  bat
-  btop
   coreutils
   killall
   neofetch
@@ -15,21 +12,21 @@ with pkgs; [
   wget
   zip
   unzip
-  lnav
   unrar
-  tree
+  lnav
   devbox
-  fzf
 
-  # orzklv's rust rewrite packages
-  btop
+  # Rust-rewritten CLI tools
   bat
+  btop
   eza
-  procs
-  ripgrep
   fd
+  fzf
   gping
   hyperfine
+  procs
+  ripgrep
+  tree
 
   # Encryption and security tools
   age
@@ -44,7 +41,6 @@ with pkgs; [
 
   # Media-related packages
   ffmpeg
-  fd
 
   # Node.js development tools
   nodePackages.prettier
@@ -57,11 +53,7 @@ with pkgs; [
   hunspell
   iftop
   jq
-  ripgrep
-  tree
   tmux
-  unrar
-  unzip
   zsh-powerlevel10k
   texliveFull
 
