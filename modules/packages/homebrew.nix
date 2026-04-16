@@ -7,8 +7,9 @@ _: {
     ];
     casks = [
       # Development Tools
-      "zed"
+      "ghostty"
       "visual-studio-code"
+      "alacritty"
       "postman"
       "termius"
       "proxyman"
