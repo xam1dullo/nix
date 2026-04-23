@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # JavaScript/TypeScript runtimes and package managers
-    nodejs_20
-    pnpm_10
+    nodejs
+    pnpm
     bun
     deno
     codex
