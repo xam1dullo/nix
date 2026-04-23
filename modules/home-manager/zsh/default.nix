@@ -58,6 +58,9 @@
         source "$HOME/.zshrc_custom"
       fi
 
+      # zoxide initialization
+      eval "$(zoxide init zsh)"
+
       ${
         if pkgs.stdenv.hostPlatform.isDarwin
         then ''
