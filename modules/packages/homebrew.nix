@@ -2,13 +2,13 @@ _: {
   homebrew = {
     enable = true;
     brews = [
-      "cocoapods"
       "doctl"
     ];
     casks = [
       # Development Tools
       "ghostty"
       "visual-studio-code"
+      "zed"
       "alacritty"
       "postman"
       "termius"
@@ -24,8 +24,6 @@ _: {
       "obsidian"
       "keymapp"
       "wakatime"
-      "balenaetcher"
-      "karabiner-elements"
       "font-jetbrains-mono-nerd-font"
       "logi-options+"
       "piphero"
