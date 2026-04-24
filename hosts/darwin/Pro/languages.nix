@@ -24,6 +24,6 @@
 
     # AI Code Models
     qwen-code
-    open-code-large
+    opencode
   ];
 }
