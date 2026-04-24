@@ -21,5 +21,9 @@
     cabal-install
     haskell-language-server
     stack
+
+    # AI Code Models
+    qwen-code
+    open-code-large
   ];
 }

@@ -21,6 +21,9 @@ _: {
       launchanim = true;
       orientation = "bottom";
       tilesize = 48;
+
+      # Ilovalarni guruhlashni yoqish
+      minimize-to-application = true;
     };
 
     finder = {
