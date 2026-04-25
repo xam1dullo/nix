@@ -70,6 +70,8 @@
       fi
 
       # zoxide initialization
+      # Suppress Node.js punycode deprecation warnings (DEP0040)
+      export NODE_OPTIONS="--no-deprecation"
       eval "$(zoxide init zsh)"
 
       ${
