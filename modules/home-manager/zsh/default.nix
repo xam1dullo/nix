@@ -58,6 +58,20 @@
         source "$HOME/.zshrc_custom"
       fi
 
+      # Source user-installed local env (created by some installers, e.g. uv)
+      # If that env file isn't present, ensure ~/.local/bin is on PATH.
+      if [ -f "$HOME/.local/bin/env" ]; then
+        source "$HOME/.local/bin/env"
+      else
+        case ":$PATH:" in
+          *":$HOME/.local/bin:"*) ;;
+          *) export PATH="$HOME/.local/bin:$PATH" ;;
+        esac
+      fi
+
+      # zoxide initialization
+      eval "$(zoxide init zsh)"
+
       ${
         if pkgs.stdenv.hostPlatform.isDarwin
         then ''

@@ -1,42 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(direnv allow:*)",
-      "Bash(tree:*)",
-      "Bash(cat:*)",
-      "Bash(git remote:*)",
-      "Bash(/bin/ls:*)",
-      "Bash(nix-shell -p home-manager --run \"home-manager option programs.zsh\")",
-      "Bash(find:*)",
-      "Bash(nvim:*)",
-      "Bash(nix flake show:*)",
-      "Bash(git add:*)",
-      "Read(//Users/admin/.config/nvim/lua/**)",
-      "Bash(tmux show-options:*)",
-      "Read(//Users/admin/.config/tmux/**)",
-      "Bash(home-manager switch:*)",
-      "Read(//Users/admin/.config/nixpkgs/**)",
-      "Bash(tmux source-file:*)",
-      "Read(//Users/admin/**)",
-      "Bash(nr)",
-      "Bash(brew list:*)",
-      "Bash(nix flake:*)",
-      "Bash(env -u DEVELOPER_DIR -u SDKROOT sudo nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- switch --flake /Users/admin/blazingly-fast#Pro)",
-      "Bash(nix search:*)",
-      "Bash(nix eval:*)",
-      "Bash(brew info:*)",
-      "Bash(git commit -m ':*)",
-      "Bash(git commit -m 'feat: ghostty as default terminal, cleanup packages, re-add autojump:*)",
-      "Bash(git checkout:*)",
-      "Bash(GIT_PAGER=cat git merge feat/zoxide-cd-reliable-init)",
-      "Bash(git stash:*)",
-      "Bash(GIT_PAGER=cat git pull --rebase origin main)",
-      "Bash(git push:*)",
-      "Bash(gh pr create --title 'feat: ghostty default terminal, cleanup packages' --body ':*)",
-      "Bash(GIT_PAGER=cat gh pr merge 22 --squash --auto)",
-      "Bash(GIT_PAGER=cat gh pr merge 22 --squash)",
-      "Bash(git pull:*)",
-      "Bash(git -C /Users/admin/blazingly-fast add .)"
-    ]
+      "Bash(darwin-rebuild switch --flake .)"
+    ],
+    "deny": [],
+    "ask": []
   }
 }
