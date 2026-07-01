@@ -9,7 +9,6 @@ with pkgs; [
   pinentry-all
   android-studio
   google-chrome
-  element-desktop
   xclip
   wl-clipboard
   wpsoffice
@@ -17,4 +16,5 @@ with pkgs; [
   guvcview
   postman
   vlc
+  go
 ]

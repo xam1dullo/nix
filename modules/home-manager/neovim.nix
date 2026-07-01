@@ -29,7 +29,7 @@ let
     nodePackages.yaml-language-server
 
     # Containers
-    docker
+    docker_29
     docker-compose
     dockerfile-language-server
 

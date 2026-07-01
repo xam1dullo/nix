@@ -1,7 +1,6 @@
 {
   description = "blazingly fast nix config";
   inputs = {
-    # nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nix-darwin = {
