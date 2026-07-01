@@ -37,7 +37,7 @@ with pkgs;
   bundletool
 
   # Cloud-related tools and SDKs
-  docker
+  docker_29
   docker-compose
   google-cloud-sdk
 
@@ -49,7 +49,6 @@ with pkgs;
   nodePackages.jsdoc
   nodejs
   pnpm
-  go
 
   # Text and terminal utilities
   htop

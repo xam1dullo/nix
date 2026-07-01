@@ -5,8 +5,8 @@
     nodejs
     pnpm
     bun
-    deno
-    go
+    unstable.deno
+    unstable.go
     codex
     fnm
     autojump

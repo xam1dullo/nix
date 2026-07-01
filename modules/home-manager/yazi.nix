@@ -1,7 +1,11 @@
 {pkgs, ...}: {
   programs.zoxide = {
     enable = true;
-    enableZshIntegration = true;
+    # HM's zsh integration inits too early (before mkAfter content/plugins),
+    # so chpwd_functions ends up with zoxide's hook non-last -> _ZO_DOCTOR
+    # warning (nix-community/home-manager#9349). Real init happens at the
+    # end of modules/home-manager/zsh/default.nix instead.
+    enableZshIntegration = false;
     options = ["--cmd" "cd"];
   };
 

@@ -74,7 +74,9 @@
           source "$HOME/.zshrc_custom"
         fi
 
-        # Fallback init in case HM zoxide integration isn't loaded yet.
+        # HM's built-in zsh integration is disabled (programs.zoxide.enableZshIntegration = false
+        # in yazi.nix) because it inits too early and trips the _ZO_DOCTOR warning; init here instead,
+        # at the true end of initContent.
         if command -v zoxide >/dev/null 2>&1; then
           eval "$(zoxide init zsh --cmd cd)"
         fi
