@@ -1,5 +1,6 @@
-{pkgs, ...}:
-with pkgs; [
+{ pkgs, ... }:
+with pkgs;
+[
   # General packages for development and system management
   aspell
   aspellDicts.en
@@ -38,6 +39,7 @@ with pkgs; [
   # Cloud-related tools and SDKs
   docker
   docker-compose
+  google-cloud-sdk
 
   # Media-related packages
   ffmpeg
@@ -45,8 +47,9 @@ with pkgs; [
   # Node.js development tools
   nodePackages.prettier
   nodePackages.jsdoc
-  nodejs_20
-  pnpm_10
+  nodejs
+  pnpm
+  go
 
   # Text and terminal utilities
   htop
@@ -60,6 +63,11 @@ with pkgs; [
   # Python packages
   python3
   virtualenv
+
+  # AI coding agents
+  (aider-chat.overridePythonAttrs (_: {
+    doCheck = false;
+  }))
 
   # Nix related
   nil

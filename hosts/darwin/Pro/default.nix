@@ -11,7 +11,6 @@
     ./system.nix
     ./ui.nix
     ./devtools.nix
-    ./shell.nix
     ./git.nix
     ./languages.nix
   ];

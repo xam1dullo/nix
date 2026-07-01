@@ -3,18 +3,17 @@ _: {
     enable = true;
     brews = [
       "doctl"
+      "beads"
     ];
     casks = [
       # Development Tools
       "ghostty"
       "visual-studio-code"
       "zed"
-      "alacritty"
       "postman"
       "termius"
       "proxyman"
       "utm"
-      "little-snitch"
 
       # Communication Tools
       "telegram"
@@ -22,11 +21,8 @@ _: {
       # Utility Tools
       # "syncthing"
       "obsidian"
-      "keymapp"
       "wakatime"
       "font-jetbrains-mono-nerd-font"
-      "logi-options+"
-      "piphero"
 
       # Entertainment Tools
       "vlc"
@@ -41,6 +37,7 @@ _: {
     onActivation = {
       autoUpdate = true;
       cleanup = "uninstall";
+      extraFlags = [ "--force-cleanup" ];
       upgrade = true;
     };
 
