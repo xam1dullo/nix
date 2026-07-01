@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(darwin-rebuild switch --flake .)"
+      "Bash(darwin-rebuild switch --flake .)",
+      "Read(//Users/admin/**)",
+      "Bash(sudo darwin-rebuild switch --flake .)",
+      "Bash(drs)"
     ],
     "deny": [],
     "ask": []

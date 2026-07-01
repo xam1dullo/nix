@@ -2,13 +2,16 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   shared = {
     # made with rust from orzklv/nix
     # top = "btop";
     # htop = "btop";
-    cat = "bat";
-    ls = "eza";
+    # Keep core command aliases independent of PATH so a Home Manager-only
+    # activation cannot leave `ls`/`cat` pointing at missing executables.
+    cat = lib.getExe pkgs.bat;
+    ls = lib.getExe pkgs.eza;
     # sl = "eza";
     # ps = "procs";
     # grep = "rg";
@@ -24,7 +27,7 @@
     "celar" = "clear";
     ":q" = "exit";
 
-  # docker
+    # docker
     dps = "docker ps";
     dimages = "docker images";
     drm = "docker rm";
@@ -38,7 +41,7 @@
     dbuild = "docker build -t $1 .";
     dclean = "docker system prune -af --volumes";
     dkillall = "f() { docker kill $(docker ps -q); }; f";
-  # docker compose 
+    # docker compose
     dc = "docker compose";
     dcup = "docker compose up -d";
     dcdown = "docker compose down";
@@ -49,7 +52,7 @@
     # lazydocker
     lzd = "lazydocker";
     lg = "lazygit";
-    
+
     # zednix = "nohup zed --new --foreground . &";
     # zn = "nohup zed --new --foreground . &";
 
@@ -69,6 +72,7 @@
 
     nix-shell-go = "nix-shell $NIX_SHELL_WORKSPACE/golang/latest/shell.nix";
     cld = "ANTHROPIC_AUTH_TOKEN=freecc ANTHROPIC_BASE_URL=http://localhost:8082 claude";
+    wiki-init = "/Users/admin/Documents/claude-node/scripts/session-start.sh | jq -r .hookSpecificOutput.additionalContext";
   };
   linux = {
     nixrebuild = "f() { git -C $BLAZINGLY_FAST add . && sudo nixos-rebuild switch --flake $BLAZINGLY_FAST --impure $1 }; f";
@@ -86,8 +90,8 @@
     nsdry = "f() { cd $BLAZINGLY_FAST && env -u DEVELOPER_DIR -u SDKROOT sudo nix --extra-experimental-features \"nix-command flakes\" run nix-darwin -- switch --flake $BLAZINGLY_FAST#Pro --dry-run \"$@\" && cd -}; f || cd -";
   };
 in
-  lib.mkMerge [
-    shared
-    (lib.mkIf pkgs.stdenv.hostPlatform.isLinux linux)
-    (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin darwin)
-  ]
+lib.mkMerge [
+  shared
+  (lib.mkIf pkgs.stdenv.hostPlatform.isLinux linux)
+  (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin darwin)
+]

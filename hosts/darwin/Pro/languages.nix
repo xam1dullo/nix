@@ -1,10 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     # JavaScript/TypeScript runtimes and package managers
     nodejs
     pnpm
     bun
     deno
+    go
     codex
     fnm
     autojump
@@ -24,6 +26,10 @@
 
     # AI Code Models
     qwen-code
+    claude-code
     opencode
+    lmstudio
+    railway
+
   ];
 }

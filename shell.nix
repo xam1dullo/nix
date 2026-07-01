@@ -10,6 +10,7 @@ mkShell {
     statix
     alejandra
     git
+    autojump
   ];
   shellHook = ''
     export EDITOR=nvim

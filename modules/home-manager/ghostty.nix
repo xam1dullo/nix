@@ -9,7 +9,8 @@
     else "10";
 
   ghosttyConfig = ''
-    command = /bin/zsh -l
+    command = ${lib.getExe pkgs.zsh}
+    shell-integration = detect
     font-family = JetBrainsMono Nerd Font
     font-size = ${fontSize}
     cursor-style = block

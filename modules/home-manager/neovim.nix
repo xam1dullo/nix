@@ -3,7 +3,8 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   neovimToolchain = with pkgs; [
     neovim-unwrapped
 
@@ -18,8 +19,8 @@
     lazydocker
 
     # Node / TS
-    nodejs_20
-    pnpm_10
+    nodejs
+    pnpm
     nodePackages.typescript
     nodePackages.prettier
     nodePackages.typescript-language-server
@@ -55,8 +56,8 @@
     vscode-js-debug
   ];
 in
-  if pkgs.stdenv.hostPlatform.isDarwin
-  then {
+if pkgs.stdenv.hostPlatform.isDarwin then
+  {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -73,4 +74,5 @@ in
       recursive = true;
     };
   }
-  else {}
+else
+  { }
