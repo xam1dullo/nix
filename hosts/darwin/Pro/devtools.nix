@@ -7,6 +7,7 @@
     fzf
     direnv
     just
+    ngrok
     bash-completion
     zsh-completions
     glab

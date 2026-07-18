@@ -4,6 +4,7 @@ _: {
     brews = [
       "doctl"
       "beads"
+      "nginx" # `brew services start nginx` to run as a managed service
     ];
     casks = [
       # Development Tools
@@ -14,6 +15,7 @@ _: {
       "termius"
       "proxyman"
       "utm"
+      "dbeaver-community"
 
       # Communication Tools
       "telegram"
