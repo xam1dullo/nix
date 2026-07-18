@@ -24,4 +24,5 @@ switch-pro:
     sudo darwin-rebuild switch --flake .#pro
 
 switch-dreampad:
+    @command -v nixos-rebuild >/dev/null 2>&1 || { echo "nixos-rebuild not found — run this ON the dreampad NixOS host (darwin can't build a NixOS closure locally)"; exit 1; }
     sudo nixos-rebuild switch --flake .#dreampad
