@@ -4,7 +4,7 @@
     # JavaScript/TypeScript runtimes and package managers
     nodejs
     pnpm
-    bun
+    unstable.bun
     unstable.deno
     unstable.go
     codex
