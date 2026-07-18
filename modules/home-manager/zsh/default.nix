@@ -96,6 +96,13 @@
         # Suppress Node.js punycode deprecation warnings (DEP0040)
         export NODE_OPTIONS="--no-deprecation"          
 
+        # Silence zoxide's doctor self-check. It misfires under Claude Code's
+        # Bash tool, which replays a captured shell snapshot in a non-interactive
+        # `zsh -c` where zoxide's "am I initialized last?" invariant can't hold,
+        # printing the warning on every command. Our interactive init below is
+        # already correct (last in the file), so the check has nothing to catch.
+        export _ZO_DOCTOR=0
+
         # HM's built-in zsh integration is disabled (programs.zoxide.enableZshIntegration = false
         # in yazi.nix) because it inits too early and trips the _ZO_DOCTOR warning; init here instead,
         # at the true end of the shell initialization.
