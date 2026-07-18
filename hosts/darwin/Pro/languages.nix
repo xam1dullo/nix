@@ -25,9 +25,7 @@
     stack
 
     # AI Code Models
-    qwen-code
     claude-code
-    opencode
     lmstudio
     railway
 

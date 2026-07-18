@@ -6,7 +6,9 @@
     fd
     fzf
     direnv
+    just
     bash-completion
     zsh-completions
+    glab
   ];
 }
