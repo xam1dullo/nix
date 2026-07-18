@@ -9,7 +9,8 @@ _: {
     casks = [
       # Development Tools
       "ghostty"
-      "visual-studio-code"
+      # visual-studio-code: now managed by nix (programs.vscode in modules/home-manager/vscode.nix)
+      # zed: app kept as cask here, but settings/extensions managed by nix (programs.zed-editor, package=null)
       "zed"
       "postman"
       "termius"

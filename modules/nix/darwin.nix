@@ -30,6 +30,9 @@
 
     overlays = [
       inputs.nur.overlays.default
+      # Adds pkgs.vscode-marketplace/open-vsx, evaluated against THIS nixpkgs
+      # config so allowUnfree applies to unfree extensions (claude-code, etc.).
+      inputs.nix-vscode-extensions.overlays.default
       (final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           system = prev.system;
