@@ -42,14 +42,8 @@ let
     nil
     alejandra
 
-    # Lua / Haskell formatters + tooling
+    # Lua formatter
     stylua
-    fourmolu
-    ormolu
-    ghc
-    cabal-install
-    hlint
-    haskell-language-server
 
     # LSP / DAP runtime binaries
     lua-language-server

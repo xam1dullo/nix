@@ -18,15 +18,8 @@
     rustfmt
     rust-analyzer
 
-    # Haskell toolchain
-    ghc
-    cabal-install
-    haskell-language-server
-    stack
-
     # AI Code Models
     claude-code
-    lmstudio
     railway
 
   ];
