@@ -3,7 +3,8 @@
   environment.systemPackages = with pkgs; [
     # JavaScript/TypeScript runtimes and package managers
     nodejs
-    pnpm
+    pnpm # → latest via the Darwin pnpm overlay (modules/nix/darwin.nix)
+    nest-cli # NestJS CLI (`nest`)
     unstable.bun
     unstable.deno
     unstable.go

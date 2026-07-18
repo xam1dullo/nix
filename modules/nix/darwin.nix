@@ -35,6 +35,11 @@
           system = prev.system;
           config = prev.config;
         };
+        # Track latest pnpm. Darwin-only: this overlay module isn't imported by
+        # the Linux host, so every `pnpm` reference (shared.nix, languages.nix,
+        # neovim.nix) resolves to one derivation here — no version collision —
+        # while dreampad keeps stable pnpm.
+        pnpm = final.unstable.pnpm;
       })
     ];
   };
