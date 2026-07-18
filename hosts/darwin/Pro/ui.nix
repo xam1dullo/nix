@@ -16,7 +16,7 @@ _: {
     };
 
     dock = {
-      autohide = true;
+      autohide = false;
       show-recents = false;
       launchanim = true;
       orientation = "bottom";
