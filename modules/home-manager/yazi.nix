@@ -6,7 +6,6 @@
     # warning (nix-community/home-manager#9349). Real init happens at the
     # end of modules/home-manager/zsh/default.nix instead.
     enableZshIntegration = false;
-    options = ["--cmd" "cd"];
   };
 
   programs.yazi = {

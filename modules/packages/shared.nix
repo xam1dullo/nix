@@ -63,11 +63,6 @@ with pkgs;
   python3
   virtualenv
 
-  # AI coding agents
-  (aider-chat.overridePythonAttrs (_: {
-    doCheck = false;
-  }))
-
   # Nix related
   nil
   nixd

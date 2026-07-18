@@ -6,7 +6,7 @@
 }:
 let
   neovimToolchain = with pkgs; [
-    neovim-unwrapped
+    unstable.neovim-unwrapped
 
     # Core CLI tooling
     ripgrep
@@ -63,7 +63,7 @@ if pkgs.stdenv.hostPlatform.isDarwin then
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      package = pkgs.neovim-unwrapped;
+      package = pkgs.unstable.neovim-unwrapped;
     };
 
     home.packages = neovimToolchain;

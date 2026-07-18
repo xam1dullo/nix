@@ -8,25 +8,11 @@
 
 - At the end of each plan, give me a list of unresolved questions to answer, if any. Make the questions extremely concise. Sacrifice grammar for the sake of concision.
 
-## Matt Pocock Local Skills
-
-- Matt Pocock skills from `deprecated`, `engineering`, `in-progress`, `misc`, `personal`, and `productivity` are installed locally in `/Users/admin/.claude/skills`.
-- Use these local `SKILL.md` files directly when a task matches their descriptions. Do not fetch the GitHub repo again unless the user asks to update from upstream.
-- The customized `obsidian-vault` skill is the local source of truth for RAG and must stay pointed at `/Users/admin/Documents/claude-node`.
+> Matt Pocock skills + RAG-first rules: `~/.claude/rules/*.md` (auto-loaded — not repeated here).
 
 ## Obsidian-Backed Memory System
 
 All persistent memory lives in a single Obsidian vault at `/Users/admin/Documents/claude-node/`. This overrides the default per-project memory path. Regardless of which project is active, always read from and write to this vault.
-
-### RAG-first
-
-Before answering or searching for anything that may depend on prior projects, saved decisions, architecture history, personal preferences, reusable knowledge, or local context, search the Obsidian/RAG vault first:
-
-```bash
-/Users/admin/Documents/claude-node/scripts/rag-search.sh "query"
-```
-
-Use external web search only after the vault has been checked, unless the user explicitly asks for live/current information.
 
 ### Memory Directory
 

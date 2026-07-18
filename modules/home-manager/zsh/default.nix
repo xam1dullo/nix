@@ -52,6 +52,14 @@
           *":/etc/profiles/per-user/$USER/bin:"*) ;;
           *) export PATH="/etc/profiles/per-user/$USER/bin:$PATH" ;;
         esac
+        # Fallback for system packages (node, fnm, ...): PATH normally reaches
+        # them via /run/current-system/sw/bin, but that symlink lives in
+        # /var/run and can vanish after a reboot until activation re-runs.
+        # The profile path below points at the same generation and survives.
+        case ":$PATH:" in
+          *":/nix/var/nix/profiles/system/sw/bin:"*) ;;
+          *) export PATH="/nix/var/nix/profiles/system/sw/bin:$PATH" ;;
+        esac
 
         # pnpm setup
         export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -74,13 +82,6 @@
           source "$HOME/.zshrc_custom"
         fi
 
-        # HM's built-in zsh integration is disabled (programs.zoxide.enableZshIntegration = false
-        # in yazi.nix) because it inits too early and trips the _ZO_DOCTOR warning; init here instead,
-        # at the true end of initContent.
-        if command -v zoxide >/dev/null 2>&1; then
-          eval "$(zoxide init zsh --cmd cd)"
-        fi
-
         # Source user-installed local env (created by some installers, e.g. uv)
         # If that env file isn't present, ensure ~/.local/bin is on PATH.
         if [ -f "$HOME/.local/bin/env" ]; then
@@ -93,31 +94,14 @@
         fi
 
         # Suppress Node.js punycode deprecation warnings (DEP0040)
-        export NODE_OPTIONS="--no-deprecation"
+        export NODE_OPTIONS="--no-deprecation"          
 
-        # qwen-code 0.2.2 in nixpkgs has minified env-var names (process.env["n"]);
-        # OPENAI_API_KEY/etc. are never read. Write creds to settings.json instead.
-        # Run once after exporting DASHSCOPE_API_KEY (or OPENAI_API_KEY).
-        qwen-setup() {
-          local key="''${OPENAI_API_KEY:-$DASHSCOPE_API_KEY}"
-          local base="''${OPENAI_BASE_URL:-https://dashscope-intl.aliyuncs.com/compatible-mode/v1}"
-          local model="''${OPENAI_MODEL:-qwen3-coder-plus}"
-          if [ -z "$key" ]; then
-            echo "qwen-setup: set DASHSCOPE_API_KEY or OPENAI_API_KEY first" >&2
-            return 1
-          fi
-          mkdir -p "$HOME/.qwen"
-          rm -f "$HOME/.qwen/oauth_creds.json"
-          umask 077
-          cat > "$HOME/.qwen/settings.json" <<EOF
-        {
-          "security": { "auth": { "apiKey": "$key", "baseUrl": "$base" } },
-          "model": { "name": "$model" }
-        }
-        EOF
-          chmod 600 "$HOME/.qwen/settings.json"
-          echo "qwen-setup: wrote ~/.qwen/settings.json (model=$model)"
-        }
+        # HM's built-in zsh integration is disabled (programs.zoxide.enableZshIntegration = false
+        # in yazi.nix) because it inits too early and trips the _ZO_DOCTOR warning; init here instead,
+        # at the true end of the shell initialization.
+        if command -v zoxide >/dev/null 2>&1; then
+          eval "$(zoxide init zsh --cmd cd)"
+        fi
 
       '')
     ];

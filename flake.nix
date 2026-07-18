@@ -16,7 +16,6 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,17 +27,17 @@
     nixos-hardware,
     home-manager,
     nix-darwin,
-    flake-utils,
     ...
-  } @ inputs:
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in {
-      formatter = pkgs.alejandra;
-      devShells.default = pkgs.callPackage ./shell.nix {};
-    })
+  } @ inputs: let
+    systems = ["aarch64-darwin" "x86_64-linux"];
+    forEachSystem = nixpkgs.lib.genAttrs systems;
+  in
+    {
+      formatter = forEachSystem (system: (import nixpkgs {inherit system;}).alejandra);
+      devShells = forEachSystem (system: {
+        default = (import nixpkgs {inherit system;}).callPackage ./shell.nix {};
+      });
+    }
     // (let
       lib = nixpkgs.lib // home-manager.lib // (import ./lib);
       specialArgs = {

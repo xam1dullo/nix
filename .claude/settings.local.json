@@ -4,7 +4,16 @@
       "Bash(darwin-rebuild switch --flake .)",
       "Read(//Users/admin/**)",
       "Bash(sudo darwin-rebuild switch --flake .)",
-      "Bash(drs)"
+      "Bash(drs)",
+      "Bash(nix-instantiate --parse modules/packages/shared.nix)",
+      "Bash(nix-instantiate --parse modules/packages/linux.nix)",
+      "Bash(zoxide --version)",
+      "Bash(zoxide init *)",
+      "Bash(timeout 120 nix eval --no-update-lock-file --raw '.#darwinConfigurations.pro.config.home-manager.users.admin.home.file.\".zshrc\".text')",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(timeout 120 nix eval --no-update-lock-file --raw '.#darwinConfigurations.pro.config.home-manager.users.admin.home' --apply 'h: h.file.\".zshrc\".text')",
+      "Bash(gh issue *)",
+      "Bash(git rm *)"
     ],
     "deny": [],
     "ask": []
